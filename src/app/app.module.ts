@@ -1,4 +1,3 @@
-import { RecordRTCService } from 'src/app/services/record-rtc.service';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,7 +26,7 @@ import { RecordAudioComponent } from './components/record-audio/record-audio.com
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [RecordRTCService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

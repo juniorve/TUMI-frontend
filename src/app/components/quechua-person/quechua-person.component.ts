@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { RecordRTCService } from 'src/app/services/record-rtc.service';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
-  styleUrls: ['./quechua-person.component.scss']
+  styleUrls: ['./quechua-person.component.scss'],
+  providers: [RecordRTCService]
 })
 export class QuechuaPersonComponent implements OnInit {
   listAge = [
