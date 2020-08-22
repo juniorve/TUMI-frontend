@@ -1,0 +1,114 @@
+<div class="global-content" style="background-color: white; min-height: 100vh; width: 100%;">
+    <div class="container-fluid" style="padding: 0 10%; font-size: 11px;">
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="col-sm-12">
+            <mat-label>Seleccione su edad</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let age of listAge" [value]="age.value">
+                {{age.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <div class="col-sm-12">
+            <mat-label style="margin-right: 10px; font-weight: 500;">Sexo: </mat-label>
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button color="primary" value="1">Hombre</mat-radio-button>
+              <mat-radio-button style="margin-left:15px;" color="primary" value="2">Mujer</mat-radio-button>
+            </mat-radio-group>
+          </div>
+  
+          <br>
+          <div class="col-sm-12 grid">
+            <mat-label class="black">Idioma nativo</mat-label>
+            <mat-form-field class="example-form-field" appearance="outline">
+              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+              <input matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
+            </mat-form-field>
+          </div>
+  
+          <div class="col-sm-12 black">
+            <p>Lugar de nacimiento</p>
+          </div>
+  
+          <mat-form-field appearance="outline" class="col-sm-12">
+            <mat-label>Departamento</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let department of listDepartments" [value]="department.value">
+                {{department.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="col-sm-12">
+            <mat-label>Provincia</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let provincia of listProvincias" [value]="provincia.value">
+                {{provincia.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="col-sm-12">
+            <mat-label>Distrito</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let distrito of listDistritos" [value]="distrito.value">
+                {{distrito.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+        </div>
+  
+        <div class="col-md-6">
+          <img src="../assets/images/plazaAyacucho.jpg" class="img-square" alt="">
+        </div>
+      </div>
+  
+      <div class="row" style="margin-top: 12px;">
+        <div class="col-md-6">
+          <div class="col-sm-12 black">
+            <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
+          </div>
+          <mat-form-field class="example-form-field" appearance="outline" class="col-sm-12">
+            <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+            <input matInput type="text" autocomplete="off">
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6">
+          <div class="col-sm-12 black">
+            <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
+          </div>
+          <mat-form-field class="example-form-field" appearance="outline" class="col-sm-12">
+            <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+            <input matInput type="text" autocomplete="off">
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6">
+          <div class="col-sm-12 black">
+            <mat-label>Categoría a la que considera pertenece</mat-label>
+          </div>
+  
+          <mat-form-field appearance="outline" class="col-sm-12">
+            <mat-label class="black">Categoría</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let type of listOfTypes" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-sm-12" align="center">
+          <button mat-raised-button color="primary"> <mat-icon>accessibility</mat-icon> Graba y participa activamente</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <br>
