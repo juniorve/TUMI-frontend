@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageTypeComponent } from './components/language-type/language-type.component';
 import { NaturalPersonComponent } from './components/natural-person/natural-person.component';
 import { HeaderComponent } from './components/header/header.component';
+import { QuechuaPersonComponent } from './components/quechua-person/quechua-person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LanguageTypeComponent,
     NaturalPersonComponent,
-    HeaderComponent
+    HeaderComponent,
+    QuechuaPersonComponent
   ],
   imports: [
     BrowserModule,
