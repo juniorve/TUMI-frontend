@@ -1,0 +1,34 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .distant{
+      margin-top: 10px;
+  }
+
+  .map{
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+  }
+
+  img{
+      position: absolute;
+      top: 0;
+      right: 0;
+  }
+
+  mat-radio-button{
+    // border: 1px solid;
+    width: 100%;
+    position: relative;
+    height: 150px;
+    display: flex;
+    font-size: 18px;
+  }
