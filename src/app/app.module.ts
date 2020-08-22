@@ -1,3 +1,4 @@
+import { RecordRTCService } from 'src/app/services/record-rtc.service';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { LanguageTypeComponent } from './components/language-type/language-type.
 import { NaturalPersonComponent } from './components/natural-person/natural-person.component';
 import { HeaderComponent } from './components/header/header.component';
 import { QuechuaPersonComponent } from './components/quechua-person/quechua-person.component';
+import { RecordAudioComponent } from './components/record-audio/record-audio.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { QuechuaPersonComponent } from './components/quechua-person/quechua-pers
     LanguageTypeComponent,
     NaturalPersonComponent,
     HeaderComponent,
-    QuechuaPersonComponent
+    QuechuaPersonComponent,
+    RecordAudioComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { QuechuaPersonComponent } from './components/quechua-person/quechua-pers
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [RecordRTCService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
