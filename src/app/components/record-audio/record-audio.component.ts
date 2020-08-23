@@ -4,7 +4,8 @@ import { RecordRTCService } from 'src/app/services/record-rtc.service';
 @Component({
   selector: 'app-record-audio',
   templateUrl: './record-audio.component.html',
-  styleUrls: ['./record-audio.component.scss']
+  styleUrls: ['./record-audio.component.scss'],
+  providers: [RecordRTCService]
 })
 export class RecordAudioComponent implements OnInit {
 
