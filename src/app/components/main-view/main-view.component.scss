@@ -25,5 +25,17 @@ img{
 }
 
 button{
-    padding: 10px 20px;
+    padding: 5px 10px;
+}
+
+
+@media screen and (max-width:767px){
+    .carousel-content{
+        margin-top: 15px;
+        padding:0 !important;
+    }
+
+    .show-list{
+        margin-top: 10px;
+    }
 }
