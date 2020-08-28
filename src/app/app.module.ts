@@ -11,6 +11,7 @@ import { NaturalPersonComponent } from './components/natural-person/natural-pers
 import { HeaderComponent } from './components/header/header.component';
 import { QuechuaPersonComponent } from './components/quechua-person/quechua-person.component';
 import { RecordAudioComponent } from './components/record-audio/record-audio.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RecordAudioComponent } from './components/record-audio/record-audio.com
     HeaderComponent,
     QuechuaPersonComponent,
     RecordAudioComponent,
+    MainViewComponent,
   ],
   imports: [
     BrowserModule,
