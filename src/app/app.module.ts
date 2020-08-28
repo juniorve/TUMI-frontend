@@ -13,6 +13,7 @@ import { QuechuaPersonComponent } from './components/quechua-person/quechua-pers
 import { RecordAudioComponent } from './components/record-audio/record-audio.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { PersonTypeFormComponent } from './components/person-type-form/person-type-form.component';
+import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { PersonTypeFormComponent } from './components/person-type-form/person-ty
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    routing
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

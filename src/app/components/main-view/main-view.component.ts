@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 declare var $: any;
 declare var jQuery: any;
 @Component({
@@ -8,9 +9,12 @@ declare var jQuery: any;
 })
 export class MainViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  showNewPerson() {
+    this.router.navigate(['/tipo-persona']);
+  }
 }

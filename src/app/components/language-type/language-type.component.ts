@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,9 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./language-type.component.scss']
 })
 export class LanguageTypeComponent implements OnInit {
-  @Output() next = new EventEmitter<any>();
   form: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       idioma: [null, Validators.required]
     });
@@ -20,7 +20,12 @@ export class LanguageTypeComponent implements OnInit {
 
   sendValue() {
     console.log(this.form.value);
-    this.next.emit(this.form.controls.idioma.value);
+    if (this.form.controls.idioma.value === '1' || this.form.controls.idioma.value === '3') {
+      this.router.navigate(['persona-natural']);
+    }
+    if (this.form.controls.idioma.value === '2') {
+      this.router.navigate(['persona-quechua']);
+    }
   }
 
 }
