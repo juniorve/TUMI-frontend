@@ -3,7 +3,8 @@
     padding: 30px;
     font-size: 16px;
     text-align: justify;
-    font-weight: 500;
+    font-weight: 400;
+    color: #03457c;
 }
 
 .carousel-indicators li {
@@ -15,5 +16,14 @@
 
 img{
     width: 100% !important;
-    height: 350px;
+    height: 300px;
+}
+
+.concept{
+    background:#337b7b;
+    color: white;
+}
+
+button{
+    padding: 10px 20px;
 }
