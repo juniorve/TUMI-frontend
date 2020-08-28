@@ -3,12 +3,20 @@
 }
 
 .img-unmsm{
-    height: 100px;
+    height: 90px;
     width: auto;
 }
 
 .header-content{
     box-shadow: 2px 2px 2px 2px silver;
-    margin-bottom: 13px;
-    background: white !important;
+    margin-bottom: 15px;
+    background: #5c81a1 !important;
+}
+
+.header-info{
+    font-weight:500;
+    color: white; 
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 18px;
 }
