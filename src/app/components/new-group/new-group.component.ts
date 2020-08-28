@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-new-group',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-group.component.scss']
 })
 export class NewGroupComponent implements OnInit {
+  @ViewChild('inputUpload') file: ElementRef;
   sectores = [
     'Sector económico',
     'Sector social',
@@ -68,9 +69,14 @@ export class NewGroupComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private renderer: Renderer2) {
 
   }
   ngOnInit(): void {
   }
+
+  selectFile() {
+    this.renderer.selectRootElement(this.file.nativeElement).click();
+  }
+
 }

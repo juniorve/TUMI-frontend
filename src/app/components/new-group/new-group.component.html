@@ -48,6 +48,21 @@
     
           <div class="col-md-12" style="padding: 0 !important;">
             <div class="col-md-12 black">
+              <mat-label>Opcional - Adjuntar Acta/Acuerdo/Manifiesto:</mat-label>
+            </div>
+            <div class="col-md-12" style="text-align: center; padding: 10px;">
+                
+                <button mat-raised-button (click)="selectFile()" class="upload">
+                    <mat-icon>cloud_upload</mat-icon> Subir archivo
+                </button>
+                    <input #inputUpload id="files" onclick="this.value=null;" type="file" style="display: none;"
+                            accept="application/pdf" />
+            </div>
+            
+          </div>
+
+          <div class="col-md-12" style="padding: 0 !important;">
+            <div class="col-md-12 black">
               <mat-label>Categoría a la que considera pertenece</mat-label>
             </div>
     
@@ -60,15 +75,8 @@
               </mat-select>
             </mat-form-field>
           </div>
-    
-    
-        </div>
-  
 
-     <!--  </div>
-  
-      <div class="row" style="margin-top: 12px;"> -->
-       
+        </div>
         
         <div class="col-md-6">
           <img src="../../../assets/images/carousel3.jpg" class="img-square" alt="">
