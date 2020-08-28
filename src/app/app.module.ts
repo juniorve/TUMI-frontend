@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { QuechuaPersonComponent } from './components/quechua-person/quechua-person.component';
 import { RecordAudioComponent } from './components/record-audio/record-audio.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
+import { PersonTypeFormComponent } from './components/person-type-form/person-type-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MainViewComponent } from './components/main-view/main-view.component';
     QuechuaPersonComponent,
     RecordAudioComponent,
     MainViewComponent,
+    PersonTypeFormComponent,
   ],
   imports: [
     BrowserModule,
