@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tumi-frontend';
- 
+  type;
+  constructor() {
+
+  }
+
+  next(event) {
+    console.log(event);
+    this.type = event;
+  }
 }

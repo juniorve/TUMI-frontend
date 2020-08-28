@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,13 +19,14 @@ import { RecordAudioComponent } from './components/record-audio/record-audio.com
     NaturalPersonComponent,
     HeaderComponent,
     QuechuaPersonComponent,
-    RecordAudioComponent
+    RecordAudioComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

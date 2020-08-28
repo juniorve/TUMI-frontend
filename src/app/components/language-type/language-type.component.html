@@ -1,37 +1,50 @@
-<div class="container">
+<form 
+class="container"
+style="background:white; padding-top: 15px;"
+[formGroup]="form"
+(ngSubmit)="sendValue()"
+>
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <label id="example-radio-group-label text-black" class="text-black" style="font-size: 17px;">Seleccione su idioma</label>
+      <h1 id="example-radio-group-label text-black" class="text-black title">
+        Selección de idioma
+      </h1>
       <mat-radio-group
         aria-labelledby="example-radio-group-label"
-        class="example-radio-group">
+        class="example-radio-group"
+        formControlName="idioma"
+        >
         <mat-radio-button color="primary" class="example-radio-button" value="1">
           Español o Castellano
           <!-- <div class="image"> -->
-            <img src="../../../assets/images/plazaAyacucho.jpg" alt="" class="map">
+            <img src="../../../assets/images/mapa.jpg" alt="" class="map">
           <!-- </div> -->
         </mat-radio-button>
 
         
         <mat-radio-button color="primary" class="example-radio-button distant" value="2">
           Quechua Chanca o Collao
-          <img src="../../../assets/images/plazaAyacucho.jpg" alt="" class="map">
+          <img src="../../../assets/images/mapa.jpg" alt="" class="map">
         </mat-radio-button>
         
         <mat-radio-button color="primary" class="example-radio-button distant" value="3">
           Bilingüe (Español/Idioma nativo)
-          <img src="../../../assets/images/plazaAyacucho.jpg" alt="" class="map">
+          <img src="../../../assets/images/mapa.jpg" alt="" class="map">
         </mat-radio-button>
       
       </mat-radio-group>
     </div>
     <div class="col-md-3"></div>
 
-    <div class="col-sm-12" align="center">
-      <button mat-raised-button color="primary"> <mat-icon>navigate_next</mat-icon> Siguiente</button>
+    <div class="col-sm-12" align="center" style="margin-bottom:15px">
+      <button
+      mat-raised-button color="primary"
+      type="submit"
+      [disabled]="!form.valid"
+      > <mat-icon>navigate_next</mat-icon> Siguiente</button>
     </div>
   </div>
-</div>
+</form>
 
 <br>

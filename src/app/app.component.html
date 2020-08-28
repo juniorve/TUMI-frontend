@@ -1,5 +1,9 @@
 <app-header></app-header>
-<!-- <app-language-type></app-language-type> -->
+<app-language-type
+(next)="next($event)"
+*ngIf="!type"
+>
+</app-language-type>
 
-<app-natural-person></app-natural-person>
-<!-- <app-quechua-person></app-quechua-person> -->
+<app-natural-person *ngIf="type==='1'"></app-natural-person>
+<app-quechua-person *ngIf="type==='2'"></app-quechua-person>
