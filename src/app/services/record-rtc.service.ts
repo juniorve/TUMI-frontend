@@ -14,7 +14,7 @@ export class RecordRTCService {
   options: any = {
     type: 'audio',
     mimeType: 'audio/webm'
-  }
+  };
 
   constructor(
     private sanitizer: DomSanitizer
@@ -61,8 +61,9 @@ export class RecordRTCService {
     this.recordWebRTC.stop((blob) => {
       //NOTE: upload on server
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+      console.log(blob, this.blobUrl);
       this.startCountdown(true);
-    })
+    });
   }
 
   /**

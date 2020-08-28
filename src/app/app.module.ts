@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,7 @@ import { RecordAudioComponent } from './components/record-audio/record-audio.com
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { PersonTypeFormComponent } from './components/person-type-form/person-type-form.component';
 import { routing, appRoutingProviders } from './app.routing';
+import { TranslatorService } from './services/translator.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { routing, appRoutingProviders } from './app.routing';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     routing
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, TranslatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

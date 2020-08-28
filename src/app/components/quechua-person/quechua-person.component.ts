@@ -1,3 +1,4 @@
+import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-quechua-person',
@@ -61,11 +62,31 @@ export class QuechuaPersonComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private translatorService: TranslatorService) {
 
   }
 
   ngOnInit(): void {
   }
 
+  show() {
+    /*     const blobDataInWavFormat: Blob = new Blob([this.recordRTC.blobUrl], { type: 'audio/wav; codecs=0' });
+        const dataUrl = URL.createObjectURL(blobDataInWavFormat);
+        console.log(dataUrl);
+        console.log(this.recordRTC.blobUrl); */
+
+    /*     const request = {
+          file: dataUrl
+        };
+        this.translatorService.translateLanguage(request).subscribe(response => {
+          console.log(response);
+        });
+     */
+    setTimeout(() => {
+      this.translatorService.getText()
+        .subscribe(value => {
+          console.log(value);
+        });
+    }, 4000);
+  }
 }
