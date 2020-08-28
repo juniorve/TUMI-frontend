@@ -16,5 +16,9 @@ export class PersonTypeFormComponent implements OnInit {
   selectLanguage() {
     this.router.navigate(['/seleccion-persona']);
   }
+  
+  newGroup(){
+    this.router.navigate(['/nuevo-grupo']);
+  }
 
 }

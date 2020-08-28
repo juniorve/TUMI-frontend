@@ -16,6 +16,7 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { PersonTypeFormComponent } from './components/person-type-form/person-type-form.component';
 import { routing, appRoutingProviders } from './app.routing';
 import { TranslatorService } from './services/translator.service';
+import { NewGroupComponent } from './components/new-group/new-group.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TranslatorService } from './services/translator.service';
     RecordAudioComponent,
     MainViewComponent,
     PersonTypeFormComponent,
+    NewGroupComponent,
   ],
   imports: [
     BrowserModule,

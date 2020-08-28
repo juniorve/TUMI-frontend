@@ -1,0 +1,84 @@
+<div class="global-content">
+    <div class="container" style="padding: 0 10%; font-size: 11px;background:white">
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title">
+              Registro de grupo o movimiento
+          </h1>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Tipo de institución</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of listInstitucion" [value]="item.value">
+                {{item.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let item of sectores" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="col-md-12" style="padding: 0 !important;">
+            <div class="col-md-12 black">
+              <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
+            </div>
+            <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
+              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+              <input matInput type="text" autocomplete="off">
+            </mat-form-field>
+          </div>
+    
+          <div class="col-md-12" style="padding: 0 !important;">
+            <div class="col-md-12 black">
+              <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
+            </div>
+            <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
+              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+              <input matInput type="text" autocomplete="off">
+            </mat-form-field>
+          </div>
+    
+          <div class="col-md-12" style="padding: 0 !important;">
+            <div class="col-md-12 black">
+              <mat-label>Categoría a la que considera pertenece</mat-label>
+            </div>
+    
+            <mat-form-field appearance="outline" class="col-md-12">
+              <mat-label class="black">Categoría</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let type of listOfTypes" [value]="type.value">
+                  {{type.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+    
+    
+        </div>
+  
+
+     <!--  </div>
+  
+      <div class="row" style="margin-top: 12px;"> -->
+       
+        
+        <div class="col-md-6">
+          <img src="../../../assets/images/carousel3.jpg" class="img-square" alt="">
+        </div>
+        <div class="col-md-12" align="center" style="margin-top: 10px;">
+          <button mat-raised-button color="primary"> <mat-icon>accessibility</mat-icon> Graba y participa activamente</button>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+  
+  <br>
