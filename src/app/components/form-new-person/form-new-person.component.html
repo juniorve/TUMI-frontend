@@ -1,0 +1,33 @@
+<mat-vertical-stepper #stepper>
+    <mat-step [stepControl]="personTypeForm.form">
+        <ng-template matStepLabel>Selección de persona</ng-template>
+        <app-person-type-form #personTypeForm></app-person-type-form>
+        <!-- form1 -->
+    </mat-step>
+    <mat-step [stepControl]="languageType.form">
+        <ng-template matStepLabel>Selección de idioma</ng-template>
+        <app-language-type #languageType>
+            <div class="col-sm-12" style="margin-bottom:15px" content-btn>
+                <button
+                style="border: 1px solid black;"
+                mat-flat-button
+                type="button"
+                (click)="stepper.previous()"
+                > <mat-icon>navigate_before</mat-icon> Anterior
+                </button>
+                <button
+                style="margin-left: 4px;"
+                mat-flat-button color="primary"
+                type="button"
+                (click)="stepper.next()"
+                [disabled]="!languageType.form.valid"
+                > <mat-icon>navigate_next</mat-icon> Siguiente
+                </button>
+            </div>
+        </app-language-type>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registro de persona</ng-template>
+      <app-quechua-person #quechuaPerson></app-quechua-person>
+    </mat-step>
+  </mat-vertical-stepper>

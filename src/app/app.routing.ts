@@ -1,3 +1,4 @@
+import { FormNewPersonComponent } from './components/form-new-person/form-new-person.component';
 import { NewGroupComponent } from './components/new-group/new-group.component';
 import { LanguageTypeComponent } from './components/language-type/language-type.component';
 import { QuechuaPersonComponent } from './components/quechua-person/quechua-person.component';
@@ -10,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'principal', component: MainViewComponent },
+  { path: 'registro-persona', component: FormNewPersonComponent },
   { path: 'tipo-persona', component: PersonTypeFormComponent },
   { path: 'seleccion-persona', component: LanguageTypeComponent },
   { path: 'persona-natural', component: NaturalPersonComponent },

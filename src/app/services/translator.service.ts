@@ -15,8 +15,9 @@ export class TranslatorService {
 
     translateLanguage(request: any): Observable<any> {
 
+        console.log(request);
         const formdata = new FormData();
-        formdata.append('files', request.file, '/C:/Users/Jofré Valenzuela/Downloads/punoondaazul2017Nov23A_16-117.wav');
+        formdata.append('files', request.file, 'a');
 
 
         return this.http.post('http://18.218.29.107:5000/upload', formdata, { headers: this.headers });

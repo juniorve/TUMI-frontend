@@ -27,9 +27,12 @@ export class RecordRTCService {
    */
   toggleRecord() {
     if (this.recordingTimer) {
+      console.log('a');
       this.stopRTC();
     } else {
+      console.log('b');
       navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        console.log(stream);
         this.startRTC(stream);
       }).catch(error => {
         alert(error)
@@ -45,6 +48,7 @@ export class RecordRTCService {
    */
   startRTC(stream: any) {
     this.recordWebRTC = new RecordRTC.StereoAudioRecorder(stream, this.options);
+    
     this.mediaRecordStream = stream;
     this.blobUrl = null;
     this.recordWebRTC.record();
@@ -63,6 +67,10 @@ export class RecordRTCService {
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
       console.log(blob, this.blobUrl);
       this.startCountdown(true);
+    });
+
+    RecordRTC.getDataURL(function (dataURL) {
+      console.log(dataURL);
     });
   }
 

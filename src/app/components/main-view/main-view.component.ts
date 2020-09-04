@@ -15,6 +15,6 @@ export class MainViewComponent implements OnInit {
   }
 
   showNewPerson() {
-    this.router.navigate(['/tipo-persona']);
+    this.router.navigate(['/registro-persona']);
   }
 }

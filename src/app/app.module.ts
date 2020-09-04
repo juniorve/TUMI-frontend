@@ -17,6 +17,7 @@ import { PersonTypeFormComponent } from './components/person-type-form/person-ty
 import { routing, appRoutingProviders } from './app.routing';
 import { TranslatorService } from './services/translator.service';
 import { NewGroupComponent } from './components/new-group/new-group.component';
+import { FormNewPersonComponent } from './components/form-new-person/form-new-person.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NewGroupComponent } from './components/new-group/new-group.component';
     MainViewComponent,
     PersonTypeFormComponent,
     NewGroupComponent,
+    FormNewPersonComponent,
   ],
   imports: [
     BrowserModule,

@@ -82,11 +82,11 @@ export class QuechuaPersonComponent implements OnInit {
           console.log(response);
         });
      */
-    setTimeout(() => {
+  /*   setTimeout(() => {
       this.translatorService.getText()
         .subscribe(value => {
           console.log(value);
         });
-    }, 4000);
+    }, 4000); */
   }
 }

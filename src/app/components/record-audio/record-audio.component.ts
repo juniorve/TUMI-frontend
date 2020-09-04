@@ -1,7 +1,6 @@
 import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit } from '@angular/core';
 import { RecordRTCService } from 'src/app/services/record-rtc.service';
-
 @Component({
   selector: 'app-record-audio',
   templateUrl: './record-audio.component.html',
@@ -28,18 +27,19 @@ export class RecordAudioComponent implements OnInit {
     console.log(dataUrl);
     console.log(this.recordRTC.blobUrl);
 
-    /*     const request = {
-          file: dataUrl
-        };
-        this.translatorService.translateLanguage(request).subscribe(response => {
-          console.log(response);
-        });
-     */
-    setTimeout(() => {
-      this.translatorService.getText()
-        .subscribe(value => {
-          console.log(value);
-        });
-    }, 1000);
+
+    const request = {
+      file: dataUrl
+    };
+    this.translatorService.translateLanguage(request).subscribe(response => {
+      console.log(response);
+    });
+
+    /*  setTimeout(() => {
+       this.translatorService.getText()
+         .subscribe(value => {
+           console.log(value);
+         });
+     }, 1000); */
   }
 }

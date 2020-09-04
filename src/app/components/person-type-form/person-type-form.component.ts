@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./person-type-form.component.scss']
 })
 export class PersonTypeFormComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  form: FormGroup;
+  constructor(
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      type: []
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -16,8 +24,8 @@ export class PersonTypeFormComponent implements OnInit {
   selectLanguage() {
     this.router.navigate(['/seleccion-persona']);
   }
-  
-  newGroup(){
+
+  newGroup() {
     this.router.navigate(['/nuevo-grupo']);
   }
 
