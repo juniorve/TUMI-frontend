@@ -79,4 +79,6 @@ export class NewGroupComponent implements OnInit {
     this.renderer.selectRootElement(this.file.nativeElement).click();
   }
 
+ 
+
 }
