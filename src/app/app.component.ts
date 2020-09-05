@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Tumi-frontend';
   type;
   constructor() {
-    this.getLocation();
+    // this.getLocation();
   }
 
   next(event) {
@@ -17,7 +17,7 @@ export class AppComponent {
     this.type = event;
   }
 
-  getLocation(): void {
+/*   getLocation(): void {
     console.log('a');
     if (navigator.geolocation) {
       console.log('b');
@@ -30,5 +30,5 @@ export class AppComponent {
     } else {
       console.log("No support for geolocation")
     }
-  }
+  } */
 }

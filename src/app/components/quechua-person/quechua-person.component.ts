@@ -1,19 +1,25 @@
+import { RecordAudioComponent } from './../record-audio/record-audio.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from './../../services/util.service';
 import { TranslatorService } from './../../services/translator.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
   styleUrls: ['./quechua-person.component.scss']
 })
 export class QuechuaPersonComponent implements OnInit {
+  @ViewChild('audio1') audio1: RecordAudioComponent;
+  @ViewChild('audio2') audio2: RecordAudioComponent;
+  @ViewChild('audio3') audio3: RecordAudioComponent;
   ageList = [];
   listOfDepartments = [];
   listOfProvinces = [];
   listOfDistricts = [];
 
   form: FormGroup;
+  longitude;
+  latitude;
   constructor(
     private translatorService: TranslatorService,
     private utilService: UtilService,
@@ -28,15 +34,31 @@ export class QuechuaPersonComponent implements OnInit {
       distrito: [null, Validators.required],
       latitud: [null], // revisar
       longitud: [null], // revisar
-      file_vision: [null, Validators.required],
-      file_concepto: [null, Validators.required],
-      file_categoria: [null, Validators.required],
+      vision: [null],
+      concepto: [null],
+      categoria: [null],
     });
   }
 
   ngOnInit(): void {
     this.getDepartments();
     this.getAgeList();
+    this.getLocation();
+  }
+
+  getLocation(): void {
+    console.log('a');
+    if (navigator.geolocation) {
+      console.log('b');
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log('c');
+        console.log(position);
+        this.longitude = position.coords.longitude;
+        this.latitude = position.coords.latitude;
+      });
+    } else {
+      console.log("No support for geolocation")
+    }
   }
 
   getAgeList() {
@@ -70,24 +92,37 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   show() {
-    console.log(this.form.value);
-    /*     const blobDataInWavFormat: Blob = new Blob([this.recordRTC.blobUrl], { type: 'audio/wav; codecs=0' });
-        const dataUrl = URL.createObjectURL(blobDataInWavFormat);
-        console.log(dataUrl);
-        console.log(this.recordRTC.blobUrl); */
+    console.log(this.form.value,
+      this.audio1.recordRTC.blob,
+      this.audio2.recordRTC.blob,
+      this.audio3.recordRTC.blob
+    );
+    this.saveAudios();
+  }
 
-    /*     const request = {
-          file: dataUrl
-        };
-        this.translatorService.translateLanguage(request).subscribe(response => {
-          console.log(response);
-        });
-     */
-    /*   setTimeout(() => {
-        this.translatorService.getText()
-          .subscribe(value => {
-            console.log(value);
+  saveAudios() {
+    this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio1 => {
+      this.form.controls.vision.setValue(JSON.parse(audio1).text_source);
+
+      this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio2 => {
+        this.form.controls.concepto.setValue(JSON.parse(audio2).text_source);
+
+        this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio3 => {
+          this.form.controls.categoria.setValue(JSON.parse(audio3).text_source);
+          this.form.controls.latitud.setValue(this.latitude);
+          this.form.controls.longitud.setValue(this.longitude);
+          this.utilService.saveQuechuaPerson(this.form.value).subscribe(response=>{
+            console.log(response);
           });
-      }, 4000); */
+        });
+      });
+    });
+
+    // ATUKUNA UAU
+  /*   this.form.controls.latitud.setValue(this.latitude);
+    this.form.controls.longitud.setValue(this.longitude);
+    this.utilService.saveQuechuaPerson(this.form.value).subscribe(response=>{
+      console.log(response);
+    }); */
   }
 }

@@ -9,7 +9,7 @@ export class RecordRTCService {
    * UPLOAD ON SERVER @function stopRTC write your code
    */
 
-   blob:any;
+  blob: any;
   blobUrl: any;
   interval; recordingTimer: string; recordWebRTC: any; mediaRecordStream: any;
   options: any = {
@@ -36,8 +36,8 @@ export class RecordRTCService {
         console.log(stream);
         this.startRTC(stream);
       }).catch(error => {
-        alert(error)
-      })
+        alert(error);
+      });
     }
   }
 
@@ -49,7 +49,7 @@ export class RecordRTCService {
    */
   startRTC(stream: any) {
     this.recordWebRTC = new RecordRTC.StereoAudioRecorder(stream, this.options);
-    
+
     this.mediaRecordStream = stream;
     this.blobUrl = null;
     this.recordWebRTC.record();
@@ -68,7 +68,7 @@ export class RecordRTCService {
       this.blob = blob;
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
       console.log(blob, this.blobUrl);
-      this.startCountdown(true);
+      this.startCountdown(true, true);
     });
   }
 
@@ -77,16 +77,21 @@ export class RecordRTCService {
    * `false` miens recording start if getting `true` then we are stop counting `clearStream`
    * Maximum Recoding time `10`Minutes @see minutes == 10
    */
-  startCountdown(clearTime = false) {
+  startCountdown(clearTime = false, showTime?: boolean) {
+    console.log('aaaa');
     if (clearTime) {
       this.clearStream(this.mediaRecordStream);
       this.recordWebRTC = null;
+      // if (!showTime) {
       this.recordingTimer = null;
+      // }
       this.mediaRecordStream = null;
       clearInterval(this.interval);
       return;
     } else {
+      // if (!showTime) {
       this.recordingTimer = `00:00`;
+      // }
       clearInterval(this.interval);
     }
 

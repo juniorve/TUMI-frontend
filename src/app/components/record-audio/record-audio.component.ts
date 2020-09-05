@@ -25,16 +25,7 @@ export class RecordAudioComponent implements OnInit {
   }
 
   show() {
-    console.log(this.recordRTC.blobUrl, this.recordRTC.blob);
-    const blobDataInWavFormat: Blob = new Blob([this.recordRTC.blobUrl], { type: 'audio/wav; codecs=0' });
-    const dataUrl = URL.createObjectURL(blobDataInWavFormat);
-    console.log(dataUrl.substr(5));
-
-
-    const request = {
-      file: this.recordRTC.blob
-    };
-    this.translatorService.translateLanguage(request, dataUrl).then(response => {
+    this.translatorService.translateLanguage(this.recordRTC.blob).then(response => {
       console.log(response);
     });
 

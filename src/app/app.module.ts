@@ -1,9 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,7 @@ import { TranslatorService } from './services/translator.service';
 import { NewGroupComponent } from './components/new-group/new-group.component';
 import { FormNewPersonComponent } from './components/form-new-person/form-new-person.component';
 import { UtilService } from './services/util.service';
+import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,9 +41,15 @@ import { UtilService } from './services/util.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    routing
+    routing,
+    NgxSpinnerModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    },
     appRoutingProviders,
     TranslatorService,
     UtilService

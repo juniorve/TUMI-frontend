@@ -20,8 +20,8 @@
           <div class="col-sm-12">
             <mat-label style="margin-right: 10px; font-weight: 500;">Sexo: </mat-label>
             <mat-radio-group aria-label="Select an option" formControlName="sexo">
-              <mat-radio-button color="primary" value="1">Hombre</mat-radio-button>
-              <mat-radio-button style="margin-left:15px;" color="primary" value="2">Mujer</mat-radio-button>
+              <mat-radio-button color="primary" value="hombre">Hombre</mat-radio-button>
+              <mat-radio-button style="margin-left:15px;" color="primary" value="mujer">Mujer</mat-radio-button>
             </mat-radio-group>
           </div>
   
@@ -85,21 +85,21 @@
           <div class="col-sm-12 black">
             <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
           </div>
-          <app-record-audio></app-record-audio>
+          <app-record-audio #audio1></app-record-audio>
         </div>
   
         <div class="col-md-6">
           <div class="col-sm-12 black">
             <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
           </div>
-          <app-record-audio></app-record-audio>
+          <app-record-audio #audio2></app-record-audio>
         </div>
   
         <div class="col-md-6" style="margin-top: 15px;">
           <div class="col-sm-12 black">
             <mat-label>Con cuál de las siguientes categorías: Deber, Derecho, Valor, Hecho, Política, identifica su concepto?</mat-label>
           </div>
-          <app-record-audio></app-record-audio>
+          <app-record-audio #audio3></app-record-audio>
         </div>
   
         <div class="col-sm-12" align="center" style="margin-top:20px">
