@@ -1,48 +1,63 @@
-<mat-vertical-stepper #stepper>
-    <mat-step [stepControl]="personTypeForm.form">
-        <ng-template matStepLabel>Selección de persona</ng-template>
-        <app-person-type-form #personTypeForm>
-            <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
-                <button
-                style="margin-left: 4px;"
-                mat-flat-button color="primary"
-                type="button"
-                (click)="stepper.next()"
-                [disabled]="!personTypeForm.form.valid"
-                > <mat-icon>navigate_next</mat-icon> Siguiente
-                </button>
-            </div>
-        </app-person-type-form>
-    </mat-step>
-    <mat-step [stepControl]="languageType.form">
-        <ng-template matStepLabel>Selección de idioma</ng-template>
-        <app-language-type #languageType>
-            <div class="col-sm-12" content-btn>
-                <button
-                style="border: 1px solid black;"
-                mat-flat-button
-                type="button"
-                (click)="stepper.previous()"
-                > <mat-icon>navigate_before</mat-icon> Anterior
-                </button>
-                <button
-                style="margin-left: 4px;"
-                mat-flat-button color="primary"
-                type="button"
-                (click)="stepper.next()"
-                [disabled]="!languageType.form.valid"
-                > <mat-icon>navigate_next</mat-icon> Siguiente
-                </button>
-            </div>
-        </app-language-type>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Registro de persona</ng-template>
-      <app-natural-person 
-      *ngIf="languageType.form.controls.idioma.value==='1'
-      || languageType.form.controls.idioma.value==='3'"
-      >
-    </app-natural-person>
-      <app-quechua-person *ngIf="languageType.form.controls.idioma.value==='2'"></app-quechua-person>
-    </mat-step>
-  </mat-vertical-stepper>
+<div class="container-fluid">
+    <div class="row">
+        <mat-vertical-stepper 
+        style="border-bottom:20px solid #eeeeee;"
+        [ngClass]="{'first': indexStepper==0}"
+        #stepper 
+        class="col-md-3"  
+        [linear]="true"
+        [selectedIndex]="indexStepper"
+        (selectionChange)="indexStepper = $event.selectedIndex"
+        >
+            <mat-step [stepControl]="personTypeForm.form">
+                <ng-template matStepLabel>Selección de persona</ng-template>
+            </mat-step>
+            <mat-step [stepControl]="languageType.form">
+                <ng-template matStepLabel>Selección de idioma</ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Registro de persona</ng-template>
+            </mat-step>
+        </mat-vertical-stepper>
+
+        <div class="col-md-9">
+            <app-person-type-form 
+            #personTypeForm
+            [hidden]="indexStepper!=0"
+            >
+                <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
+                    <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
+                        (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
+                        <mat-icon>navigate_next</mat-icon> Siguiente
+                    </button>
+                </div>
+            </app-person-type-form>
+
+            <app-language-type 
+            #languageType
+            [hidden]="indexStepper!=1"
+            >
+                <div class="col-sm-12" content-btn>
+                    <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
+                        <mat-icon>navigate_before</mat-icon> Anterior
+                    </button>
+                    <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
+                        (click)="stepper.next()" [disabled]="!languageType.form.valid">
+                        <mat-icon>navigate_next</mat-icon> Siguiente
+                    </button>
+                </div>
+            </app-language-type>
+
+            <app-natural-person 
+            [hidden]="indexStepper!=2"
+            *ngIf="languageType.form.controls.idioma.value==='1'
+                  || languageType.form.controls.idioma.value==='3'">
+            </app-natural-person>
+            <app-quechua-person
+            [hidden]="indexStepper!=2"
+            *ngIf="languageType.form.controls.idioma.value==='2'"
+            ></app-quechua-person>
+        </div>
+
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +14,7 @@ export class PersonTypeFormComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      type: []
+      type: [null, Validators.required]
     });
   }
 

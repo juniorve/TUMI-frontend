@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-new-person.component.scss']
 })
 export class FormNewPersonComponent implements OnInit {
-
+  indexStepper = 0;
   constructor() { }
 
   ngOnInit(): void {

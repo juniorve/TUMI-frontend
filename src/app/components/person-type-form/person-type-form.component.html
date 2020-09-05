@@ -1,22 +1,27 @@
 <!-- <div class="container" style="background: white ; padding: 20px 30px 65px 30px"> -->
-<div class="container-fluid" style="background: white;">
-    <div class="row">
-        <mat-radio-group class="col-md-12" style="display: flex;">
+<form [formGroup]="form">
+    <div class="container-fluid" style="background: white; padding:30px">
+        <div class="row">
+            <mat-radio-group class="col-md-12" style="display: flex;" formControlName="type">
                 <!-- <div class="col-md-4"></div> -->
-                <div class="col-md-6" style="border-right: 2px solid black; display: flex; flex-direction: column; align-items: center;">
-                    <img src="../../../assets/images/persona4.png" alt="" style="width: 280px;
-                    height: 160px;">
+                <div class="col-md-6"
+                    style="border-right: 2px solid black; display: flex; flex-direction: column; align-items: center;">
+                    <img src="../../../assets/images/persona6.jpg" alt="" style="width: 280px;
+                    height: 250px;">
                     <!-- <i class="fa fa-male" aria-hidden="true"></i> -->
-                    <mat-radio-button color="primary" class="example-margin" value="after">Persona Natural</mat-radio-button>
+                    <mat-radio-button color="primary" class="example-margin" value="1">Persona Natural
+                    </mat-radio-button>
                 </div>
 
                 <div class="col-md-6" style="display: flex; flex-direction: column; align-items: center;">
-                    <img class="img-fluid" src="../../../assets/images/grupo3.jpg" alt=""
-                    style="height: 160px; width: 280px;">
+                    <img class="img-fluid" src="../../../assets/images/grupo4.jpg" alt=""
+                        style="height: 250px; width: 350px;">
                     <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
-                    <mat-radio-button color="primary" class="example-margin" value="before">Grupo / Movimiento / Organización</mat-radio-button>
+                    <mat-radio-button color="primary" class="example-margin" value="2">Grupo / Movimiento / Organización
+                    </mat-radio-button>
                 </div>
-          </mat-radio-group>
-          <ng-content select="[content-btn]"></ng-content>
+            </mat-radio-group>
+            <ng-content select="[content-btn]"></ng-content>
+        </div>
     </div>
-</div>
+</form>
