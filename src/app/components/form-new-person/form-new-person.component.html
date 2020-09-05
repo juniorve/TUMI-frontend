@@ -12,12 +12,22 @@
             <mat-step [stepControl]="personTypeForm.form">
                 <ng-template matStepLabel>Selección de persona</ng-template>
             </mat-step>
-            <mat-step [stepControl]="languageType.form">
-                <ng-template matStepLabel>Selección de idioma</ng-template>
-            </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>Registro de persona</ng-template>
-            </mat-step>
+            <ng-container *ngIf="personTypeForm.form.controls.type.value=='1'">
+                <!-- <mat-step [stepControl]="languageType.form"> -->
+                <mat-step>
+                    <ng-template matStepLabel>Selección de idioma</ng-template>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Registro de persona</ng-template>
+                </mat-step>
+            </ng-container>
+
+            <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">
+                <mat-step>
+                    <ng-template matStepLabel>Registro de grupo</ng-template>
+                </mat-step>
+                <!-- <app-new-group></app-new-group> -->
+            </ng-container>
         </mat-vertical-stepper>
 
         <div class="col-md-9">
@@ -27,36 +37,42 @@
             >
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
                     <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
-                        (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
-                        <mat-icon>navigate_next</mat-icon> Siguiente
-                    </button>
+                    (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
+                    <mat-icon>navigate_next</mat-icon> Siguiente
+                </button>
                 </div>
             </app-person-type-form>
+    
+            <ng-container *ngIf="personTypeForm.form.controls.type.value=='1'">
+                <app-language-type 
+                #languageType
+                [hidden]="indexStepper!=1"
+                >
+                    <div class="col-sm-12" content-btn>
+                        <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
+                            <mat-icon>navigate_before</mat-icon> Anterior
+                        </button>
+                        <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
+                            (click)="stepper.next()" [disabled]="!languageType.form.valid">
+                            <mat-icon>navigate_next</mat-icon> Siguiente
+                        </button>
+                    </div>
+                </app-language-type>
+    
+                <app-natural-person 
+                [hidden]="indexStepper!=2"
+                *ngIf="languageType.form.controls.idioma.value==='1'
+                      || languageType.form.controls.idioma.value==='3'">
+                </app-natural-person>
+                <app-quechua-person
+                [hidden]="indexStepper!=2"
+                *ngIf="languageType.form.controls.idioma.value==='2'"
+                ></app-quechua-person>
+            </ng-container>
 
-            <app-language-type 
-            #languageType
-            [hidden]="indexStepper!=1"
-            >
-                <div class="col-sm-12" content-btn>
-                    <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
-                        <mat-icon>navigate_before</mat-icon> Anterior
-                    </button>
-                    <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
-                        (click)="stepper.next()" [disabled]="!languageType.form.valid">
-                        <mat-icon>navigate_next</mat-icon> Siguiente
-                    </button>
-                </div>
-            </app-language-type>
-
-            <app-natural-person 
-            [hidden]="indexStepper!=2"
-            *ngIf="languageType.form.controls.idioma.value==='1'
-                  || languageType.form.controls.idioma.value==='3'">
-            </app-natural-person>
-            <app-quechua-person
-            [hidden]="indexStepper!=2"
-            *ngIf="languageType.form.controls.idioma.value==='2'"
-            ></app-quechua-person>
+            <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">
+                <app-new-group [hidden]="indexStepper!=1"></app-new-group>
+            </ng-container>
         </div>
 
     </div>
