@@ -1,4 +1,4 @@
-<div class="global-content">
+<form [formGroup]="form" class="global-content">
     <div class="container" style="padding: 0 10%; font-size: 11px;background:white">
       <br>
       <div class="row">
@@ -12,8 +12,8 @@
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Seleccione su edad</mat-label>
             <mat-select>
-              <mat-option *ngFor="let age of listAge" [value]="age.value">
-                {{age.viewValue}}
+              <mat-option *ngFor="let age of ageList" [value]="age.id">
+                {{age.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -41,27 +41,27 @@
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Departamento</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let department of listDepartments" [value]="department.value">
-                {{department.viewValue}}
+            <mat-select (selectionChange)="getProvinces()" formControlName="departamento">
+              <mat-option *ngFor="let department of listOfDepartments" [value]="department.id">
+                {{department.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Provincia</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let provincia of listProvincias" [value]="provincia.value">
-                {{provincia.viewValue}}
+            <mat-select (selectionChange)="getDistricts()"  formControlName="provincia">
+              <mat-option *ngFor="let provincia of listOfProvinces" [value]="provincia.id">
+                {{provincia.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Distrito</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let distrito of listDistritos" [value]="distrito.value">
-                {{distrito.viewValue}}
+            <mat-select formControlName="distrito">
+              <mat-option *ngFor="let distrito of listOfDistricts" [value]="distrito.id">
+                {{distrito.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -115,6 +115,6 @@
       </div>
       <br>
     </div>
-  </div>
+  </form>
   
   <br>
