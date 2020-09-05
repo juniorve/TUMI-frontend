@@ -9,6 +9,7 @@ export class RecordRTCService {
    * UPLOAD ON SERVER @function stopRTC write your code
    */
 
+   blob:any;
   blobUrl: any;
   interval; recordingTimer: string; recordWebRTC: any; mediaRecordStream: any;
   options: any = {
@@ -64,13 +65,10 @@ export class RecordRTCService {
   stopRTC() {
     this.recordWebRTC.stop((blob) => {
       //NOTE: upload on server
+      this.blob = blob;
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
       console.log(blob, this.blobUrl);
       this.startCountdown(true);
-    });
-
-    RecordRTC.getDataURL(function (dataURL) {
-      console.log(dataURL);
     });
   }
 
@@ -86,7 +84,7 @@ export class RecordRTCService {
       this.recordingTimer = null;
       this.mediaRecordStream = null;
       clearInterval(this.interval);
-      return
+      return;
     } else {
       this.recordingTimer = `00:00`;
       clearInterval(this.interval);
@@ -101,7 +99,7 @@ export class RecordRTCService {
       if (minutes == 10) {
         this.recordWebRTC.stopRecording();
         clearInterval(this.interval);
-        return
+        return;
       }
       ++seconds;
       if (seconds >= 59) {

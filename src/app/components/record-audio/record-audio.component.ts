@@ -16,22 +16,25 @@ export class RecordAudioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showValue(audio) {
+    console.log(audio);
+  }
 
   startVoiceRecord() {
     this.recordRTC.toggleRecord();
   }
 
   show() {
+    console.log(this.recordRTC.blobUrl, this.recordRTC.blob);
     const blobDataInWavFormat: Blob = new Blob([this.recordRTC.blobUrl], { type: 'audio/wav; codecs=0' });
     const dataUrl = URL.createObjectURL(blobDataInWavFormat);
-    console.log(dataUrl);
-    console.log(this.recordRTC.blobUrl);
+    console.log(dataUrl.substr(5));
 
 
     const request = {
-      file: dataUrl
+      file: this.recordRTC.blob
     };
-    this.translatorService.translateLanguage(request).subscribe(response => {
+    this.translatorService.translateLanguage(request, dataUrl).then(response => {
       console.log(response);
     });
 

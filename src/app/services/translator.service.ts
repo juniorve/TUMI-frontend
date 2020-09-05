@@ -13,14 +13,29 @@ export class TranslatorService {
 
     }
 
-    translateLanguage(request: any): Observable<any> {
+    translateLanguage(request: any): any {
 
         console.log(request);
-        const formdata = new FormData();
-        formdata.append('files', request.file, 'a');
 
 
-        return this.http.post('http://18.218.29.107:5000/upload', formdata, { headers: this.headers });
+        return new Promise((resolve, reject) => {
+            const formdata = new FormData();
+            formdata.append('files', request.file, '/C:/Users/Jofré Valenzuela/Downloads/punoondaazul2017Nov23A_16-117 (1).wav');
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
+            };
+            xhr.open('POST', 'http://18.218.29.107:5000/upload', true);
+            xhr.send(formdata); 
+        });
     }
 
     getText(): Observable<any> {
