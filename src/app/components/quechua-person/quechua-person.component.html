@@ -15,6 +15,14 @@
                 {{age.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.grupoEdad">
+              <mat-error *ngIf="
+                  form.controls['grupoEdad'].hasError(validation.type) &&
+                  (form.controls['grupoEdad'].dirty || form.controls['grupoEdad'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <div class="col-sm-12">
@@ -31,6 +39,14 @@
             <mat-form-field class="example-form-field" appearance="outline">
               <input  formControlName="idioma"
               matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
+              <mat-error *ngFor="let validation of messagesValidations.idioma">
+                <mat-error *ngIf="
+                    form.controls['idioma'].hasError(validation.type) &&
+                    (form.controls['idioma'].dirty || form.controls['idioma'].touched)
+                  ">
+                  {{ validation.message }}
+                </mat-error>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -48,6 +64,14 @@
                 {{department.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.departamento">
+              <mat-error *ngIf="
+                  form.controls['departamento'].hasError(validation.type) &&
+                  (form.controls['departamento'].dirty || form.controls['departamento'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
@@ -60,6 +84,14 @@
                 {{province.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.provincia">
+              <mat-error *ngIf="
+                  form.controls['provincia'].hasError(validation.type) &&
+                  (form.controls['provincia'].dirty || form.controls['provincia'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
@@ -71,6 +103,14 @@
                 {{district.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.distrito">
+              <mat-error *ngIf="
+                  form.controls['distrito'].hasError(validation.type) &&
+                  (form.controls['distrito'].dirty || form.controls['distrito'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
         </div>

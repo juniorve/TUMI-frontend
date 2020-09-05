@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from './../../services/util.service';
 import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { messages } from './quechua-persona-validatons';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
@@ -16,6 +17,7 @@ export class QuechuaPersonComponent implements OnInit {
   listOfDepartments = [];
   listOfProvinces = [];
   listOfDistricts = [];
+  messagesValidations: any = {};
 
   form: FormGroup;
   longitude;
@@ -44,6 +46,7 @@ export class QuechuaPersonComponent implements OnInit {
     this.getDepartments();
     this.getAgeList();
     this.getLocation();
+    this.messagesValidations = messages;
   }
 
   getLocation(): void {
