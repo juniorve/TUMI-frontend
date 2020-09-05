@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
 import { RecordAudioComponent } from './../record-audio/record-audio.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from './../../services/util.service';
 import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { messages } from './quechua-persona-validatons';
+import { showNotificationMini } from 'src/app/services/utilFunction';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
@@ -25,7 +27,8 @@ export class QuechuaPersonComponent implements OnInit {
   constructor(
     private translatorService: TranslatorService,
     private utilService: UtilService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router:Router
   ) {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
@@ -107,25 +110,24 @@ export class QuechuaPersonComponent implements OnInit {
     this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio1 => {
       this.form.controls.vision.setValue(JSON.parse(audio1).text_source);
 
-      this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio2 => {
+      this.translatorService.translateLanguage(this.audio2.recordRTC.blob).then(audio2 => {
         this.form.controls.concepto.setValue(JSON.parse(audio2).text_source);
 
-        this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio3 => {
+        this.translatorService.translateLanguage(this.audio3.recordRTC.blob).then(audio3 => {
           this.form.controls.categoria.setValue(JSON.parse(audio3).text_source);
           this.form.controls.latitud.setValue(this.latitude);
           this.form.controls.longitud.setValue(this.longitude);
           this.utilService.saveQuechuaPerson(this.form.value).subscribe(response=>{
             console.log(response);
+            showNotificationMini('Persona registrada exitosamente!', 'success');
+            this.router.navigate(['/principal']);
           });
         });
       });
     });
 
     // ATUKUNA UAU
-  /*   this.form.controls.latitud.setValue(this.latitude);
-    this.form.controls.longitud.setValue(this.longitude);
-    this.utilService.saveQuechuaPerson(this.form.value).subscribe(response=>{
-      console.log(response);
-    }); */
+    // awajakikuna
+    // manam karirqanchI
   }
 }
