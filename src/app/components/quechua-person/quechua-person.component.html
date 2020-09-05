@@ -1,25 +1,25 @@
-<div class="global-content" style="min-height: 100vh; width: 100%;">
+<form [formGroup]="form" class="global-content" style="min-height: 100vh; width: 100%;">
     <div class="container" style="padding: 0 10%; font-size: 11px; background: white;">
       <br>
       <div class="row">
         <div class="col-sm-12">
           <h1 class="title">
-              Registro de persona Quechua
+              Registro de persona 
           </h1>
         </div>
         <div class="col-md-6">
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Seleccione su edad</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let age of listAge" [value]="age.value">
-                {{age.viewValue}}
+            <mat-select formControlName="grupoEdad">
+              <mat-option *ngFor="let age of ageList" [value]="age.id">
+                {{age.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
   
           <div class="col-sm-12">
             <mat-label style="margin-right: 10px; font-weight: 500;">Sexo: </mat-label>
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option" formControlName="sexo">
               <mat-radio-button color="primary" value="1">Hombre</mat-radio-button>
               <mat-radio-button style="margin-left:15px;" color="primary" value="2">Mujer</mat-radio-button>
             </mat-radio-group>
@@ -29,8 +29,8 @@
           <div class="col-sm-12 grid">
             <mat-label class="black">Idioma nativo</mat-label>
             <mat-form-field class="example-form-field" appearance="outline">
-              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
+              <input  formControlName="idioma"
+              matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
             </mat-form-field>
           </div>
   
@@ -40,27 +40,35 @@
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Departamento</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let department of listDepartments" [value]="department.value">
-                {{department.viewValue}}
+            <mat-select 
+            formControlName="departamento"
+            (selectionChange)="getProvinces()"
+            >
+              <mat-option *ngFor="let department of listOfDepartments" [value]="department.id">
+                {{department.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Provincia</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let provincia of listProvincias" [value]="provincia.value">
-                {{provincia.viewValue}}
+            <mat-select 
+            formControlName="provincia"
+            (selectionChange)="getDistricts()"
+            >
+              <mat-option *ngFor="let province of listOfProvinces" [value]="province.id">
+                {{province.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Distrito</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let distrito of listDistritos" [value]="distrito.value">
-                {{distrito.viewValue}}
+            <mat-select 
+            formControlName="distrito"
+            >
+              <mat-option *ngFor="let district of listOfDistricts" [value]="district.id">
+                {{district.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -100,6 +108,6 @@
       </div>
 <br>  
 </div>
-</div>
+</form>
 
 <br>  

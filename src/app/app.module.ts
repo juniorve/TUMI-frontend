@@ -18,6 +18,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { TranslatorService } from './services/translator.service';
 import { NewGroupComponent } from './components/new-group/new-group.component';
 import { FormNewPersonComponent } from './components/form-new-person/form-new-person.component';
+import { UtilService } from './services/util.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,11 @@ import { FormNewPersonComponent } from './components/form-new-person/form-new-pe
     HttpClientModule,
     routing
   ],
-  providers: [appRoutingProviders, TranslatorService],
+  providers: [
+    appRoutingProviders,
+    TranslatorService,
+    UtilService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
