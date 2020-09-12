@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from './../../services/util.service';
 import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { messages } from './quechua-persona-validatons';
+import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
 @Component({
   selector: 'app-quechua-person',
@@ -28,7 +28,7 @@ export class QuechuaPersonComponent implements OnInit {
     private translatorService: TranslatorService,
     private utilService: UtilService,
     private fb: FormBuilder,
-    private router:Router
+    private router: Router
   ) {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
@@ -53,17 +53,13 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   getLocation(): void {
-    console.log('a');
     if (navigator.geolocation) {
-      console.log('b');
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log('c');
-        console.log(position);
         this.longitude = position.coords.longitude;
         this.latitude = position.coords.latitude;
       });
     } else {
-      console.log("No support for geolocation")
+      console.log('No support for geolocation');
     }
   }
 
@@ -117,7 +113,7 @@ export class QuechuaPersonComponent implements OnInit {
           this.form.controls.categoria.setValue(JSON.parse(audio3).text_source);
           this.form.controls.latitud.setValue(this.latitude);
           this.form.controls.longitud.setValue(this.longitude);
-          this.utilService.saveQuechuaPerson(this.form.value).subscribe(response=>{
+          this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
             console.log(response);
             showNotificationMini('Persona registrada exitosamente!', 'success');
             this.router.navigate(['/principal']);

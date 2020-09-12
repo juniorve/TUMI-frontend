@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="global-content">
+<form [formGroup]="form" class="global-content" (ngSubmit)="savePerson()">
     <div class="container" style="padding: 0 10%; font-size: 11px;background:white">
       <br>
       <div class="row">
@@ -11,16 +11,24 @@
         <div class="col-md-6">
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Seleccione su edad</mat-label>
-            <mat-select>
+            <mat-select formControlName="grupoEdad">
               <mat-option *ngFor="let age of ageList" [value]="age.id">
                 {{age.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.grupoEdad">
+              <mat-error *ngIf="
+                  form.controls['grupoEdad'].hasError(validation.type) &&
+                  (form.controls['grupoEdad'].dirty || form.controls['grupoEdad'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <div class="col-sm-12">
             <mat-label style="margin-right: 10px; font-weight: 500;">Sexo: </mat-label>
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option"  formControlName="sexo">
               <mat-radio-button color="primary" value="1">Hombre</mat-radio-button>
               <mat-radio-button style="margin-left:15px;" color="primary" value="2">Mujer</mat-radio-button>
             </mat-radio-group>
@@ -31,7 +39,15 @@
             <mat-label class="black">Idioma nativo</mat-label>
             <mat-form-field class="example-form-field" appearance="outline">
               <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
+              <input matInput type="text" autocomplete="off"  formControlName="idioma" placeholder="Ingrese su idioma nativo">
+              <mat-error *ngFor="let validation of messagesValidations.idioma">
+                <mat-error *ngIf="
+                    form.controls['idioma'].hasError(validation.type) &&
+                    (form.controls['idioma'].dirty || form.controls['idioma'].touched)
+                  ">
+                  {{ validation.message }}
+                </mat-error>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -41,29 +57,53 @@
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Departamento</mat-label>
-            <mat-select (selectionChange)="getProvinces()" formControlName="departamento">
+            <mat-select formControlName="departamento" (selectionChange)="getProvinces()" formControlName="departamento">
               <mat-option *ngFor="let department of listOfDepartments" [value]="department.id">
                 {{department.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.departamento">
+              <mat-error *ngIf="
+                  form.controls['departamento'].hasError(validation.type) &&
+                  (form.controls['departamento'].dirty || form.controls['departamento'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Provincia</mat-label>
-            <mat-select (selectionChange)="getDistricts()"  formControlName="provincia">
+            <mat-select formControlName="provincia" (selectionChange)="getDistricts()"  formControlName="provincia">
               <mat-option *ngFor="let provincia of listOfProvinces" [value]="provincia.id">
                 {{provincia.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.provincia">
+              <mat-error *ngIf="
+                  form.controls['provincia'].hasError(validation.type) &&
+                  (form.controls['provincia'].dirty || form.controls['provincia'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Distrito</mat-label>
-            <mat-select formControlName="distrito">
+            <mat-select formControlName="distrito" formControlName="distrito">
               <mat-option *ngFor="let distrito of listOfDistricts" [value]="distrito.id">
                 {{distrito.nombre}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.distrito">
+              <mat-error *ngIf="
+                  form.controls['distrito'].hasError(validation.type) &&
+                  (form.controls['distrito'].dirty || form.controls['distrito'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
   
         </div>
@@ -80,7 +120,15 @@
           </div>
           <mat-form-field class="example-form-field" appearance="outline" class="col-sm-12">
             <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-            <input matInput type="text" autocomplete="off">
+            <input matInput type="text" autocomplete="off" formControlName="vision">
+            <mat-error *ngFor="let validation of messagesValidations.vision">
+              <mat-error *ngIf="
+                  form.controls['vision'].hasError(validation.type) &&
+                  (form.controls['vision'].dirty || form.controls['vision'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
   
@@ -90,7 +138,15 @@
           </div>
           <mat-form-field class="example-form-field" appearance="outline" class="col-sm-12">
             <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-            <input matInput type="text" autocomplete="off">
+            <input matInput type="text" autocomplete="off" formControlName="concepto">
+            <mat-error *ngFor="let validation of messagesValidations.concepto">
+              <mat-error *ngIf="
+                  form.controls['concepto'].hasError(validation.type) &&
+                  (form.controls['concepto'].dirty || form.controls['concepto'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
   
@@ -101,16 +157,30 @@
   
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label class="black">Categoría</mat-label>
-            <mat-select>
+            <mat-select formControlName="categoria">
               <mat-option *ngFor="let type of listOfTypes" [value]="type.value">
                 {{type.viewValue}}
               </mat-option>
             </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.categoria">
+              <mat-error *ngIf="
+                  form.controls['categoria'].hasError(validation.type) &&
+                  (form.controls['categoria'].dirty || form.controls['categoria'].touched)
+                ">
+                {{ validation.message }}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
   
         <div class="col-sm-12" align="center">
-          <button mat-raised-button color="primary"> <mat-icon>accessibility</mat-icon> Graba y participa activamente</button>
+          <button 
+          mat-raised-button 
+          color="primary" 
+          [disabled]="!form.valid"
+          type="submit">
+          <mat-icon>accessibility</mat-icon> Graba y participa activamente
+          </button>
         </div>
       </div>
       <br>
