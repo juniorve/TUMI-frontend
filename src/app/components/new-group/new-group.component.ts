@@ -26,7 +26,7 @@ export class NewGroupComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      nombInstitucion: 'Universidad Nacional Mayor de San Marcos',
+      nombInstitucion: [''],
       tipoInstitucion: [null, Validators.required],
       sectorEconomico: [null, Validators.required],
       categoria: [null, Validators.required],
@@ -105,12 +105,20 @@ export class NewGroupComponent implements OnInit {
       .subscribe(group => {
         console.log(group);
         requestFile.code = group;
-        this.groupService.saveFile(requestFile).subscribe(response => {
-          console.log(response);
-          showNotificationMini('Grupo registrado exitosamente!', 'success');
-          this.router.navigate(['/principal']);
-        });
+        if (this.fileUpload) {
+          this.groupService.saveFile(requestFile).subscribe(response => {
+            console.log(response);
+            this.finish();
+          });
+        } else {
+          this.finish();
+        }
       });
+  }
+
+  finish() {
+    showNotificationMini('Grupo registrado exitosamente!', 'success');
+    this.router.navigate(['/principal']);
   }
 
 }

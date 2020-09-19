@@ -1,3 +1,4 @@
+import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from 'src/app/services/util.service';
@@ -16,28 +17,7 @@ export class NaturalPersonComponent implements OnInit {
   listOfDistricts = [];
   ageList = [];
 
-  listOfTypes = [
-    {
-      value: '1',
-      viewValue: 'Deber'
-    },
-    {
-      value: '2',
-      viewValue: 'Derecho'
-    },
-    {
-      value: '3',
-      viewValue: 'Hecho'
-    },
-    {
-      value: '4',
-      viewValue: 'Política'
-    },
-    {
-      value: '5',
-      viewValue: 'Valor'
-    }
-  ];
+  categoryList = [];
   form: FormGroup;
   longitude;
   latitude;
@@ -45,6 +25,7 @@ export class NaturalPersonComponent implements OnInit {
   constructor(
     private utilService: UtilService,
     private router: Router,
+    private groupService: GroupService,
     private fb: FormBuilder) {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
@@ -65,6 +46,14 @@ export class NaturalPersonComponent implements OnInit {
     this.getLocation();
     this.getDepartments();
     this.getAgeList();
+    this.getCategoryList();
+  }
+
+  getCategoryList() {
+    this.groupService.getCategoryList().subscribe(response => {
+      console.log(response);
+      this.categoryList = response;
+    });
   }
 
   getLocation(): void {
@@ -106,8 +95,9 @@ export class NaturalPersonComponent implements OnInit {
   getProvinces() {
     this.utilService.getProvinces(this.form.controls.departamento.value)
       .subscribe(response => {
-        console.log(response);
         this.listOfProvinces = response;
+        this.form.controls.provincia.setValue(null);
+        this.form.controls.distrito.setValue(null);
       });
   }
 

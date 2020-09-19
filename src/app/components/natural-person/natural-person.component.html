@@ -158,8 +158,8 @@
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label class="black">Categoría</mat-label>
             <mat-select formControlName="categoria">
-              <mat-option *ngFor="let type of listOfTypes" [value]="type.value">
-                {{type.viewValue}}
+              <mat-option *ngFor="let type of categoryList" [value]="type.id">
+                {{type.nombre}}
               </mat-option>
             </mat-select>
             <mat-error *ngFor="let validation of messagesValidations.categoria">

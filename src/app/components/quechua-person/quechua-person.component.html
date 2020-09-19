@@ -147,7 +147,14 @@
         </div>
   
         <div class="col-sm-12" align="center" style="margin-top:20px">
-          <button mat-raised-button color="primary" (click)="save()"> <mat-icon>accessibility</mat-icon> Graba y haz escuchar tu voz</button>
+          <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="save()"
+          [disabled]="!form.valid 
+          || !this.audio1.recordRTC.blob
+          || !this.audio2.recordRTC.blob"
+          > <mat-icon>accessibility</mat-icon> Graba y haz escuchar tu voz</button>
         </div>
       </div>
 <br>  

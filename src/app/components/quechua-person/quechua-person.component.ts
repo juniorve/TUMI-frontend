@@ -47,7 +47,7 @@ export class QuechuaPersonComponent implements OnInit {
       longitud: [null], // revisar
       vision: [null],
       concepto: [null],
-      categoria: [null],
+      categoria: [null, Validators.required]
     });
   }
 
@@ -96,6 +96,8 @@ export class QuechuaPersonComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.listOfProvinces = response;
+        this.form.controls.provincia.setValue(null);
+        this.form.controls.distrito.setValue(null);
       });
   }
 

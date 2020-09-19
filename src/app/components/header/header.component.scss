@@ -7,6 +7,14 @@
     width: auto;
 }
 
+.img-logo{
+    height: 128px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    outline:none;
+}
+
 .header-content{
     box-shadow: 2px 2px 2px 2px silver;
     margin-bottom: 15px;
@@ -19,4 +27,10 @@
     font-size: 18px;
     text-align: center;
     margin-bottom: 18px;
+}
+
+.logo-content{
+    text-align: center;
+    align-self:center;
+    padding: 0 !important;
 }

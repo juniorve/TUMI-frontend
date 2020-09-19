@@ -16,24 +16,8 @@ export class AudioService {
         const nameFile = (now.getFullYear() + (now.getMonth() + 1) + now.getDate()
             + now.getSeconds() + now.getMilliseconds() + '.wav').toString();
         console.log(nameFile);
-        // return new Promise((resolve, reject) => {
         const formdata = new FormData();
         formdata.append('file', file, nameFile);
-
-        /*     const xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        resolve(xhr.response);
-                    } else {
-                        reject(xhr.response);
-                    }
-                }
-            };
-            xhr.open('POST', 'http://localhost:8181/vgrupo/descargar', true);
-            xhr.send(formdata);
-        }); */
         return this.http.post('http://localhost:8181/vgrupo/descargar', formdata, { headers: this.headers });
 
     }

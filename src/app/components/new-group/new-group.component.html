@@ -16,6 +16,19 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+
+          <mat-form-field  class="col-md-12" appearance="outline">
+            <mat-label class="black">Nombre institución (opcional)</mat-label>
+              <input matInput type="text" autocomplete="off"  formControlName="nombInstitucion" placeholder="Ingrese su idioma nativo">
+          <!--     <mat-error *ngFor="let validation of messagesValidations.idioma">
+                <mat-error *ngIf="
+                    form.controls['idioma'].hasError(validation.type) &&
+                    (form.controls['idioma'].dirty || form.controls['idioma'].touched)
+                  ">
+                  {{ validation.message }}
+                </mat-error>
+              </mat-error> -->
+            </mat-form-field>
           
           <mat-form-field appearance="outline" class="col-md-12">
             <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
