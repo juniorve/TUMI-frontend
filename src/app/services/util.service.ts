@@ -1,6 +1,7 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -14,23 +15,23 @@ export class UtilService {
     }
 
     getAgeList(): Observable<any> {
-        return this.http.get(`http://localhost:8181/util/getListaGrupoEdad`);
+        return this.http.get(`${environment.url}/util/getListaGrupoEdad`);
     }
 
     getDepatments(): Observable<any> {
-        return this.http.get(`http://localhost:8181/util/getListaDepartamentos`);
+        return this.http.get(`${environment.url}/util/getListaDepartamentos`);
     }
 
     getProvinces(departmentId): Observable<any> {
-        return this.http.get(`http://localhost:8181/util/getListaProvincias?pdepartamento=${departmentId}`);
+        return this.http.get(`${environment.url}/util/getListaProvincias?pdepartamento=${departmentId}`);
     }
 
     getDistricts(departmentId, provinceId): Observable<any> {
-        return this.http.get(`http://localhost:8181/util/getListaProvincias?pdepartamento=${departmentId}&pprovincia=${provinceId}`);
+        return this.http.get(`${environment.url}/util/getListaProvincias?pdepartamento=${departmentId}&pprovincia=${provinceId}`);
     }
 
     saveQuechuaPerson(request): Observable<any> {
-        return this.http.post(`http://localhost:8181/vpersonaquec/registrar`, request,
+        return this.http.post(`${environment.url}/vpersonaquec/registrar`, request,
             { headers: this.headers });
     }
 }

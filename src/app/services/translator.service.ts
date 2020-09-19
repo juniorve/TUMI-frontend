@@ -17,6 +17,6 @@ export class TranslatorService {
             + now.getSeconds() + now.getMilliseconds() + '.wav').toString();
         const formdata = new FormData();
         formdata.append('files', file, nameFile);
-        return this.http.post('http://18.218.29.107:5000/upload', formdata, { headers: this.headers });
+        return this.http.post(`http://18.218.29.107:5000/upload`, formdata, { headers: this.headers });
     }
 }
