@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class TranslatorService {
+export class AudioService {
     headers: HttpHeaders = new HttpHeaders({
         'Content-Type': 'audio/wav'
     });
@@ -13,14 +13,14 @@ export class TranslatorService {
 
     }
 
-    translateLanguage(file: any): any {
+    saveAudio(file: any): any {
         const now = new Date();
         const nameFile = (now.getFullYear() + (now.getMonth() + 1) + now.getDate()
             + now.getSeconds() + now.getMilliseconds() + '.wav').toString();
         console.log(nameFile);
         return new Promise((resolve, reject) => {
             const formdata = new FormData();
-            formdata.append('files', file, nameFile);
+            formdata.append('file', file, nameFile);
 
             const xhr = new XMLHttpRequest();
 
@@ -33,7 +33,7 @@ export class TranslatorService {
                     }
                 }
             };
-            xhr.open('POST', 'http://18.218.29.107:5000/upload', true);
+            xhr.open('POST', 'http://localhost:8181/vgrupo/descargar', true);
             xhr.send(formdata);
         });
     }

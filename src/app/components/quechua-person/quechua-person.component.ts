@@ -1,3 +1,4 @@
+import { AudioService } from './../../services/audio.service';
 import { Router } from '@angular/router';
 import { RecordAudioComponent } from './../record-audio/record-audio.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
+import { concatMap } from 'rxjs/operators';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
@@ -26,6 +28,7 @@ export class QuechuaPersonComponent implements OnInit {
   latitude;
   constructor(
     private translatorService: TranslatorService,
+    private audioService: AudioService,
     private utilService: UtilService,
     private fb: FormBuilder,
     private router: Router
@@ -103,6 +106,7 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   saveAudios() {
+
     this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio1 => {
       this.form.controls.vision.setValue(JSON.parse(audio1).text_source);
 
@@ -113,17 +117,30 @@ export class QuechuaPersonComponent implements OnInit {
           this.form.controls.categoria.setValue(JSON.parse(audio3).text_source);
           this.form.controls.latitud.setValue(this.latitude);
           this.form.controls.longitud.setValue(this.longitude);
-          this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
-            console.log(response);
-            showNotificationMini('Persona registrada exitosamente!', 'success');
-            this.router.navigate(['/principal']);
+
+          this.audioService.saveAudio(this.audio1.recordRTC.blob).then(() => {
+            this.audioService.saveAudio(this.audio2.recordRTC.blob).then(() => {
+              this.audioService.saveAudio(this.audio3.recordRTC.blob).then(() => {
+                console.log('guarda');
+                this.savePerson();
+              });
+            });
           });
+          console.log('No espera');
         });
       });
     });
-
     // ATUKUNA UAU
     // awajakikuna
     // manam karirqanchI
   }
+
+  savePerson() {
+    this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
+      console.log(response);
+      showNotificationMini('Persona registrada exitosamente!', 'success');
+      this.router.navigate(['/principal']);
+    });
+  }
+
 }
