@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
 import { concatMap } from 'rxjs/operators';
+import { GroupService } from 'src/app/services/group.service';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
@@ -16,7 +17,6 @@ import { concatMap } from 'rxjs/operators';
 export class QuechuaPersonComponent implements OnInit {
   @ViewChild('audio1') audio1: RecordAudioComponent;
   @ViewChild('audio2') audio2: RecordAudioComponent;
-  @ViewChild('audio3') audio3: RecordAudioComponent;
   ageList = [];
   listOfDepartments = [];
   listOfProvinces = [];
@@ -26,12 +26,15 @@ export class QuechuaPersonComponent implements OnInit {
   form: FormGroup;
   longitude;
   latitude;
+  categoryList = [];
+
   constructor(
     private translatorService: TranslatorService,
     private audioService: AudioService,
     private utilService: UtilService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private groupService: GroupService
   ) {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
@@ -51,8 +54,16 @@ export class QuechuaPersonComponent implements OnInit {
   ngOnInit(): void {
     this.getDepartments();
     this.getAgeList();
+    this.getCategoryList();
     this.getLocation();
     this.messagesValidations = messages;
+  }
+
+  getCategoryList() {
+    this.groupService.getCategoryList().subscribe(response => {
+      console.log(response);
+      this.categoryList = response;
+    });
   }
 
   getLocation(): void {
@@ -96,38 +107,23 @@ export class QuechuaPersonComponent implements OnInit {
       });
   }
 
-  show() {
-    console.log(this.form.value,
-      this.audio1.recordRTC.blob,
-      this.audio2.recordRTC.blob,
-      this.audio3.recordRTC.blob
-    );
-    this.saveAudios();
-  }
+  save() {
 
-  saveAudios() {
+    this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
+      this.form.controls.vision.setValue(audio1.text_source);
 
-    this.translatorService.translateLanguage(this.audio1.recordRTC.blob).then(audio1 => {
-      this.form.controls.vision.setValue(JSON.parse(audio1).text_source);
+      this.translatorService.translateLanguage(this.audio2.recordRTC.blob).subscribe(audio2 => {
+        this.form.controls.concepto.setValue(audio2.text_source);
+        this.form.controls.latitud.setValue(this.latitude);
+        this.form.controls.longitud.setValue(this.longitude);
 
-      this.translatorService.translateLanguage(this.audio2.recordRTC.blob).then(audio2 => {
-        this.form.controls.concepto.setValue(JSON.parse(audio2).text_source);
-
-        this.translatorService.translateLanguage(this.audio3.recordRTC.blob).then(audio3 => {
-          this.form.controls.categoria.setValue(JSON.parse(audio3).text_source);
-          this.form.controls.latitud.setValue(this.latitude);
-          this.form.controls.longitud.setValue(this.longitude);
-
-          this.audioService.saveAudio(this.audio1.recordRTC.blob).then(() => {
-            this.audioService.saveAudio(this.audio2.recordRTC.blob).then(() => {
-              this.audioService.saveAudio(this.audio3.recordRTC.blob).then(() => {
-                console.log('guarda');
-                this.savePerson();
-              });
-            });
+        this.audioService.saveAudio(this.audio1.recordRTC.blob).subscribe(() => {
+          this.audioService.saveAudio(this.audio2.recordRTC.blob).subscribe(() => {
+            console.log('guarda');
+            this.savePerson();
           });
-          console.log('No espera');
         });
+        console.log('No espera');
       });
     });
     // ATUKUNA UAU

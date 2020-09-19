@@ -136,14 +136,18 @@
         </div>
   
         <div class="col-lg-6" style="margin-top: 15px;">
-          <div class="col-sm-12 black">
-            <mat-label>Con cuál de las siguientes categorías: Deber, Derecho, Valor, Hecho, Política, identifica su concepto?</mat-label>
-          </div>
-          <app-record-audio #audio3></app-record-audio>
+            <mat-form-field appearance="outline" class="col-sm-12">
+              <mat-label class="black">Categoría</mat-label>
+              <mat-select formControlName="categoria">
+                <mat-option *ngFor="let type of categoryList" [value]="type.id">
+                  {{type.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
         </div>
   
         <div class="col-sm-12" align="center" style="margin-top:20px">
-          <button mat-raised-button color="primary" (click)="show()"> <mat-icon>accessibility</mat-icon> Graba y haz escuchar tu voz</button>
+          <button mat-raised-button color="primary" (click)="save()"> <mat-icon>accessibility</mat-icon> Graba y haz escuchar tu voz</button>
         </div>
       </div>
 <br>  
