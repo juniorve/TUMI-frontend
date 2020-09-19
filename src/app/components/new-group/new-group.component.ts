@@ -1,3 +1,4 @@
+import { concatMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GroupService } from './../../services/group.service';
@@ -11,6 +12,7 @@ import { showNotificationMini } from 'src/app/services/utilFunction';
 })
 export class NewGroupComponent implements OnInit {
   @ViewChild('inputUpload') file: ElementRef;
+  fileUpload;
   sectors = [];
   listGroupType = [];
   categoryList = [];
@@ -31,8 +33,7 @@ export class NewGroupComponent implements OnInit {
       latitud: [null],
       longitud: [null],
       vision: [null, Validators.required],
-      concepto: [null, Validators.required],
-      adjunto: ['']
+      concepto: [null, Validators.required]
     });
   }
   ngOnInit(): void {
@@ -40,6 +41,22 @@ export class NewGroupComponent implements OnInit {
     this.getGroupType();
     this.getCategoryList();
     this.getLocation();
+  }
+
+  fileChange(event) {
+    console.log(event);
+    if ((event.target.files[0].size / (1024 * 1024)) <= 1) {
+      const extension = event.target.files[0].name.split('.')[event.target.files[0].name.split('.').length - 1];
+      const extensionesPermitidas = ['pdf', 'PDF', 'doc', 'docx'];
+      if (extensionesPermitidas.includes(extension)) {
+        this.fileUpload = event.target.files[0];
+
+      } else {
+        showNotificationMini('Solo estan permitido archivos PDF o Word', 'error');
+      }
+    } else {
+      showNotificationMini('El archivo excede el tamaño de 1MB', 'error');
+    }
   }
 
   getLocation(): void {
@@ -79,15 +96,20 @@ export class NewGroupComponent implements OnInit {
   }
 
   saveGroup() {
+    const requestFile: any = {
+      file: this.fileUpload
+    };
     this.form.controls.latitud.setValue(this.latitude);
     this.form.controls.longitud.setValue(this.longitude);
     this.groupService.saveGroup(this.form.value)
-      .subscribe(response => {
-        console.log(response);
-        if (response) {
+      .subscribe(group => {
+        console.log(group);
+        requestFile.code = group;
+        this.groupService.saveFile(requestFile).subscribe(response => {
+          console.log(response);
           showNotificationMini('Grupo registrado exitosamente!', 'success');
           this.router.navigate(['/principal']);
-        }
+        });
       });
   }
 

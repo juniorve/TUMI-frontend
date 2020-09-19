@@ -9,7 +9,7 @@ export class AudioService {
     headers: HttpHeaders = new HttpHeaders({
         'Content-Type': 'audio/wav'
     });
-    constructor(private http: HttpClient) {
+    constructor() {
 
     }
 

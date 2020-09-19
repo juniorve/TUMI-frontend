@@ -52,10 +52,10 @@
             </div>
             <div class="col-md-12" style="text-align: center; padding: 10px;">
                 
-                <button mat-raised-button (click)="selectFile()" class="upload">
+                <button mat-raised-button (click)="selectFile()" class="upload" type="button">
                     <mat-icon>cloud_upload</mat-icon> Subir archivo
                 </button>
-                    <input #inputUpload id="files" onclick="this.value=null;" type="file" style="display: none;"
+                    <input (change)="fileChange($event)" #inputUpload id="files" onclick="this.value=null;" type="file" style="display: none;"
                             accept=".pdf,.doc,.docx" />
             </div>
           </div>
