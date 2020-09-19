@@ -23,3 +23,16 @@ button{
     background: #14a1b7;
     color: white;
 }
+
+
+@media (min-width:983px){
+    .img-1{
+        border-right: 2px solid black; 
+    }
+}
+
+@media (max-width:768px){
+    .form-content{
+        margin-top: 15px; 
+    }
+}

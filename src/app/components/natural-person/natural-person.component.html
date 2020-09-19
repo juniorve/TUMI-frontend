@@ -1,5 +1,5 @@
 <form [formGroup]="form" class="global-content" (ngSubmit)="savePerson()">
-    <div class="container" style="padding: 0 10%; font-size: 11px;background:white">
+    <div class="container-fluid" style="padding: 0 10%; font-size: 11px;background:white">
       <br>
       <div class="row">
         <div class="col-sm-12">
@@ -8,7 +8,7 @@
               <!-- Registro de Persona Natural -->
           </h1>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <mat-form-field appearance="outline" class="col-sm-12">
             <mat-label>Seleccione su edad</mat-label>
             <mat-select formControlName="grupoEdad">
@@ -108,13 +108,13 @@
   
         </div>
   
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <img src="../assets/images/plazaAyacucho.jpg" class="img-square" alt="">
         </div>
       </div>
   
       <div class="row" style="margin-top: 12px;">
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <div class="col-sm-12 black">
             <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
           </div>
@@ -132,7 +132,7 @@
           </mat-form-field>
         </div>
   
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <div class="col-sm-12 black">
             <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
           </div>
@@ -150,7 +150,7 @@
           </mat-form-field>
         </div>
   
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <div class="col-sm-12 black">
             <mat-label>Categoría a la que considera pertenece</mat-label>
           </div>

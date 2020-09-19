@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { GroupService } from './../../services/group.service';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { showNotificationMini } from 'src/app/services/utilFunction';
 
 @Component({
   selector: 'app-new-group',
@@ -7,78 +11,84 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 })
 export class NewGroupComponent implements OnInit {
   @ViewChild('inputUpload') file: ElementRef;
-  sectores = [
-    'Sector económico',
-    'Sector social',
-    'Sector cultural',
-    'Sector político',
-    'Sector Ambiental',
-    'Sector Agricultura',
-    'Sector Manufacturero',
-    'Sector Minero',
-    'Sector Industrial',
-    'Sector Educativo',
-    'Sector Investigación y Desarrollo',
-    'Sector artes',
-    'Sector Gastronómico',
-    'Sector periodismo e investigación',
-    'Sector Turismo'
-  ];
-  listInstitucion = [
-    {
-      value: '1',
-      viewValue: 'Movimiento o Grupo social'
-    },
-    {
-      value: '2',
-      viewValue: 'Movimiento o grupo político'
-    },
-    {
-      value: '3',
-      viewValue: 'Entidad Gubernamental (del Gobierno)'
-    },
-    {
-      value: '4',
-      viewValue: 'Asociación sin fines de lucro'
-    },
-    {
-      value: '5',
-      viewValue: 'Asociación con fines de lucro'
-    }
-  ];
-  listOfTypes = [
-    {
-      value: '1',
-      viewValue: 'Deber'
-    },
-    {
-      value: '2',
-      viewValue: 'Derecho'
-    },
-    {
-      value: '3',
-      viewValue: 'Hecho'
-    },
-    {
-      value: '4',
-      viewValue: 'Política'
-    },
-    {
-      value: '5',
-      viewValue: 'Valor'
-    }
-  ];
-
-  constructor(private renderer: Renderer2) {
-
+  sectors = [];
+  listGroupType = [];
+  categoryList = [];
+  form: FormGroup;
+  longitude;
+  latitude;
+  constructor(
+    private renderer: Renderer2,
+    private groupService: GroupService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
+      nombInstitucion: 'Universidad Nacional Mayor de San Marcos',
+      tipoInstitucion: [null, Validators.required],
+      sectorEconomico: [null, Validators.required],
+      categoria: [null, Validators.required],
+      latitud: [null],
+      longitud: [null],
+      vision: [null, Validators.required],
+      concepto: [null, Validators.required],
+      adjunto: ['']
+    });
   }
   ngOnInit(): void {
+    this.getSectors();
+    this.getGroupType();
+    this.getCategoryList();
+    this.getLocation();
+  }
+
+  getLocation(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.longitude = position.coords.longitude;
+        this.latitude = position.coords.latitude;
+      });
+    } else {
+      console.log('No support for geolocation');
+    }
   }
 
   selectFile() {
     this.renderer.selectRootElement(this.file.nativeElement).click();
   }
 
- 
+  getSectors() {
+    this.groupService.getSectors().subscribe(response => {
+      console.log(response);
+      this.sectors = response;
+    });
+  }
+
+  getGroupType() {
+    this.groupService.getGroupType().subscribe(response => {
+      console.log(response);
+      this.listGroupType = response;
+    });
+  }
+
+  getCategoryList() {
+    this.groupService.getCategoryList().subscribe(response => {
+      console.log(response);
+      this.categoryList = response;
+    });
+  }
+
+  saveGroup() {
+    this.form.controls.latitud.setValue(this.latitude);
+    this.form.controls.longitud.setValue(this.longitude);
+    this.groupService.saveGroup(this.form.value)
+      .subscribe(response => {
+        console.log(response);
+        if (response) {
+          showNotificationMini('Grupo registrado exitosamente!', 'success');
+          this.router.navigate(['/principal']);
+        }
+      });
+  }
 
 }

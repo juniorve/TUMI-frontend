@@ -5,3 +5,11 @@
 .mat-step-label{
     color: #5c89ad !important;
 }
+ 
+
+@media (max-width:767px){
+    .verticalStep{
+        border-left: 15px solid #eeeeee !important;
+        border-right: 15px solid #eeeeee !important;
+    }
+}

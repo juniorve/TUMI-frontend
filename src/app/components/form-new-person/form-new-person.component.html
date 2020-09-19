@@ -4,7 +4,7 @@
         style="border-bottom:20px solid #eeeeee;"
         [ngClass]="{'first': indexStepper==0}"
         #stepper 
-        class="col-md-3"  
+        class="col-md-4 col-lg-3 verticalStep"  
         [linear]="true"
         [selectedIndex]="indexStepper"
         (selectionChange)="indexStepper = $event.selectedIndex"
@@ -30,11 +30,14 @@
             </ng-container>
         </mat-vertical-stepper>
 
-        <div class="col-md-9">
+        <div class="col-md-8 col-lg-9">
             <app-person-type-form 
             #personTypeForm
             [hidden]="indexStepper!=0"
             >
+
+            <!-- nombre institución opcional, debajo de tipo -->
+
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
                     <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
                     (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">

@@ -1,5 +1,5 @@
-<div class="global-content">
-    <div class="container" style="padding: 0 10%; font-size: 11px;background:white">
+<form [formGroup]="form" class="global-content" (ngSubmit)="saveGroup()">
+    <div class="container-fluid" style="padding: 0 10%; font-size: 11px;background:white">
       <br>
       <div class="row">
         <div class="col-md-12">
@@ -7,21 +7,21 @@
               Registro de grupo o movimiento
           </h1>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <mat-form-field appearance="outline" class="col-md-12">
             <mat-label>Tipo de institución</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let item of listInstitucion" [value]="item.value">
-                {{item.viewValue}}
+            <mat-select formControlName="tipoInstitucion">
+              <mat-option *ngFor="let item of listGroupType" [value]="item.id">
+                {{item.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           
           <mat-form-field appearance="outline" class="col-md-12">
             <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let item of sectores" [value]="item">
-                {{item}}
+            <mat-select formControlName="sectorEconomico">
+              <mat-option *ngFor="let item of sectors" [value]="item.id">
+                {{item.nombre}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -32,7 +32,7 @@
             </div>
             <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
               <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off">
+              <input matInput type="text" autocomplete="off" formControlName="vision">
             </mat-form-field>
           </div>
     
@@ -42,7 +42,7 @@
             </div>
             <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
               <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off">
+              <input matInput type="text" autocomplete="off" formControlName="concepto">
             </mat-form-field>
           </div>
     
@@ -58,7 +58,6 @@
                     <input #inputUpload id="files" onclick="this.value=null;" type="file" style="display: none;"
                             accept=".pdf,.doc,.docx" />
             </div>
-            
           </div>
 
           <div class="col-md-12" style="padding: 0 !important;">
@@ -68,9 +67,9 @@
     
             <mat-form-field appearance="outline" class="col-md-12">
               <mat-label class="black">Categoría</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let type of listOfTypes" [value]="type.value">
-                  {{type.viewValue}}
+              <mat-select formControlName="categoria">
+                <mat-option *ngFor="let type of categoryList" [value]="type.id">
+                  {{type.nombre}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -78,15 +77,21 @@
 
         </div>
         
-        <div class="col-md-6">
+        <div class="col-sm-12 col-lg-6">
           <img src="../../../assets/images/carousel3.jpg" class="img-square" alt="">
         </div>
         <div class="col-md-12" align="center" style="margin-top: 10px;">
-          <button mat-raised-button color="primary"> <mat-icon>accessibility</mat-icon> Graba y participa activamente</button>
+          <button 
+          type="submit"
+          [disabled]="!form.valid"
+          mat-raised-button color="primary"
+          > 
+          <mat-icon>accessibility</mat-icon> Graba y participa activamente
+          </button>
         </div>
       </div>
       <br>
     </div>
-  </div>
+  </form>
   
   <br>

@@ -31,3 +31,9 @@
     display: flex;
     font-size: 13px !important;
   }
+
+  @media (max-width:575px){
+    .map{
+      display: none;
+    }
+  }
