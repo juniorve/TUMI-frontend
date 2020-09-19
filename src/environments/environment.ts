@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url: 'https://tumi-backend.herokuapp.com/'
-  // url: 'http://localhost:8181/vgrupo/adjuntar'
+  // url: 'http://localhost:8181/'
 };
 
 /*

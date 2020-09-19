@@ -71,7 +71,11 @@
                 <app-quechua-person
                 [hidden]="indexStepper!=2"
                 *ngIf="languageType.form.controls.idioma.value==='2'"
-                ></app-quechua-person>
+                >
+                 <!--    <button previous style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
+                        <mat-icon>navigate_before</mat-icon> Anterior
+                    </button> -->
+                </app-quechua-person>
             </ng-container>
 
             <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">

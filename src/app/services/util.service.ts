@@ -27,7 +27,7 @@ export class UtilService {
     }
 
     getDistricts(departmentId, provinceId): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaProvincias?pdepartamento=${departmentId}&pprovincia=${provinceId}`);
+        return this.http.get(`${environment.url}/util/getListaDistritos?pdepartamento=${departmentId}&pprovincia=${provinceId}`);
     }
 
     saveQuechuaPerson(request): Observable<any> {

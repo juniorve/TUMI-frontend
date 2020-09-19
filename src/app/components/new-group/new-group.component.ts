@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GroupService } from './../../services/group.service';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { showNotificationMini } from 'src/app/services/utilFunction';
+import { messages } from './new-group-validatons';
 
 @Component({
   selector: 'app-new-group',
@@ -19,6 +20,7 @@ export class NewGroupComponent implements OnInit {
   form: FormGroup;
   longitude;
   latitude;
+  messagesValidations;
   constructor(
     private renderer: Renderer2,
     private groupService: GroupService,
@@ -37,6 +39,7 @@ export class NewGroupComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.messagesValidations = messages;
     this.getSectors();
     this.getGroupType();
     this.getCategoryList();
