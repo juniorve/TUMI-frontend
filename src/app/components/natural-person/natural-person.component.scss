@@ -20,3 +20,9 @@ mat-icon{
     border: 1px solid;
     margin-right: 1px;
 }
+
+@media (max-width:993px){
+    .img-square{
+        display: none;
+    }
+}

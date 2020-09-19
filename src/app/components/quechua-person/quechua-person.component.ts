@@ -36,6 +36,18 @@ export class QuechuaPersonComponent implements OnInit {
     private router: Router,
     private groupService: GroupService
   ) {
+    this.newForm();
+  }
+
+  ngOnInit(): void {
+    this.getDepartments();
+    this.getAgeList();
+    this.getCategoryList();
+    this.getLocation();
+    this.messagesValidations = messages;
+  }
+
+  newForm() {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
       sexo: [null, Validators.required],
@@ -49,14 +61,6 @@ export class QuechuaPersonComponent implements OnInit {
       concepto: [null],
       categoria: [null, Validators.required]
     });
-  }
-
-  ngOnInit(): void {
-    this.getDepartments();
-    this.getAgeList();
-    this.getCategoryList();
-    this.getLocation();
-    this.messagesValidations = messages;
   }
 
   getCategoryList() {

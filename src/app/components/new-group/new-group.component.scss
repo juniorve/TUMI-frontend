@@ -14,3 +14,9 @@
     background: #1e6a88;
     color: white;
 }
+
+@media (max-width:993px){
+    .img-square{
+        display: none;
+    }
+}

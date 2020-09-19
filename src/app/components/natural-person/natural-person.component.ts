@@ -27,6 +27,17 @@ export class NaturalPersonComponent implements OnInit {
     private router: Router,
     private groupService: GroupService,
     private fb: FormBuilder) {
+    this.newForm();
+  }
+  ngOnInit(): void {
+    this.messagesValidations = messages;
+    this.getLocation();
+    this.getDepartments();
+    this.getAgeList();
+    this.getCategoryList();
+  }
+
+  newForm() {
     this.form = this.fb.group({
       grupoEdad: [null, Validators.required],
       sexo: [null, Validators.required],
@@ -40,13 +51,6 @@ export class NaturalPersonComponent implements OnInit {
       concepto: [null, Validators.required],
       categoria: [null, Validators.required]
     });
-  }
-  ngOnInit(): void {
-    this.messagesValidations = messages;
-    this.getLocation();
-    this.getDepartments();
-    this.getAgeList();
-    this.getCategoryList();
   }
 
   getCategoryList() {
