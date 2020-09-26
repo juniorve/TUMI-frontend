@@ -21,6 +21,7 @@ export class NewGroupComponent implements OnInit {
   longitude;
   latitude;
   messagesValidations;
+  fileName;
   constructor(
     private renderer: Renderer2,
     private groupService: GroupService,
@@ -53,7 +54,7 @@ export class NewGroupComponent implements OnInit {
       const extensionesPermitidas = ['pdf', 'PDF', 'doc', 'docx'];
       if (extensionesPermitidas.includes(extension)) {
         this.fileUpload = event.target.files[0];
-
+        this.fileName = event.target.files[0].name;
       } else {
         showNotificationMini('Solo estan permitido archivos PDF o Word', 'error');
       }

@@ -1,142 +1,141 @@
 <form [formGroup]="form" class="global-content" (ngSubmit)="saveGroup()">
-    <div class="container-fluid" style="padding: 0 10%; font-size: 11px;background:white">
-      <br>
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="title">
-              Registro de grupo o movimiento
-          </h1>
-        </div>
-        <div class="col-sm-12 col-lg-6">
-          <mat-form-field appearance="outline" class="col-md-12">
-            <mat-label>Tipo de institución</mat-label>
-            <mat-select formControlName="tipoInstitucion">
-              <mat-option *ngFor="let item of listGroupType" [value]="item.id">
-                {{item.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.tipoInstitucion">
-              <mat-error *ngIf="
+  <div class="container-fluid" style="padding: 0 10%; font-size: 11px;background:white">
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="title">
+          Registro de grupo o movimiento
+        </h1>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <mat-form-field appearance="outline" class="col-md-12">
+          <mat-label>Tipo de institución</mat-label>
+          <mat-select formControlName="tipoInstitucion">
+            <mat-option *ngFor="let item of listGroupType" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of messagesValidations.tipoInstitucion">
+            <mat-error *ngIf="
                   form.controls['tipoInstitucion'].hasError(validation.type) &&
                   (form.controls['tipoInstitucion'].dirty || form.controls['tipoInstitucion'].touched)
                 ">
-                {{ validation.message }}
-              </mat-error>
+              {{ validation.message }}
             </mat-error>
-          </mat-form-field>
+          </mat-error>
+        </mat-form-field>
 
-          <mat-form-field  class="col-md-12" appearance="outline">
-            <mat-label class="black">Nombre institución (opcional)</mat-label>
-              <input matInput type="text" autocomplete="off"  formControlName="nombInstitucion" placeholder="Ingrese su idioma nativo">
-            </mat-form-field>
-          
-          <mat-form-field appearance="outline" class="col-md-12">
-            <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
-            <mat-select formControlName="sectorEconomico">
-              <mat-option *ngFor="let item of sectors" [value]="item.id">
-                {{item.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.sectorEconomico">
-              <mat-error *ngIf="
+        <mat-form-field class="col-md-12" appearance="outline">
+          <mat-label class="black">Nombre institución (opcional)</mat-label>
+          <input matInput type="text" autocomplete="off" formControlName="nombInstitucion"
+            placeholder="Ingrese su idioma nativo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-12">
+          <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
+          <mat-select formControlName="sectorEconomico">
+            <mat-option *ngFor="let item of sectors" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of messagesValidations.sectorEconomico">
+            <mat-error *ngIf="
                   form.controls['sectorEconomico'].hasError(validation.type) &&
                   (form.controls['sectorEconomico'].dirty || form.controls['sectorEconomico'].touched)
                 ">
+              {{ validation.message }}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="col-md-12" style="padding: 0 !important;">
+          <div class="col-md-12 black">
+            <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
+          </div>
+          <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
+            <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+            <input matInput type="text" autocomplete="off" formControlName="vision">
+            <mat-error *ngFor="let validation of messagesValidations.vision">
+              <mat-error *ngIf="
+                    form.controls['vision'].hasError(validation.type) &&
+                    (form.controls['vision'].dirty || form.controls['vision'].touched)
+                  ">
                 {{ validation.message }}
               </mat-error>
             </mat-error>
           </mat-form-field>
+        </div>
 
-          <div class="col-md-12" style="padding: 0 !important;">
-            <div class="col-md-12 black">
-              <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
-            </div>
-            <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
-              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off" formControlName="vision">
-              <mat-error *ngFor="let validation of messagesValidations.vision">
-                <mat-error *ngIf="
-                    form.controls['vision'].hasError(validation.type) &&
-                    (form.controls['vision'].dirty || form.controls['vision'].touched)
-                  ">
-                  {{ validation.message }}
-                </mat-error>
-              </mat-error>
-            </mat-form-field>
+        <div class="col-md-12" style="padding: 0 !important;">
+          <div class="col-md-12 black">
+            <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
           </div>
-    
-          <div class="col-md-12" style="padding: 0 !important;">
-            <div class="col-md-12 black">
-              <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
-            </div>
-            <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
-              <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
-              <input matInput type="text" autocomplete="off" formControlName="concepto">
-              <mat-error *ngFor="let validation of messagesValidations.concepto">
-                <mat-error *ngIf="
+          <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
+            <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
+            <input matInput type="text" autocomplete="off" formControlName="concepto">
+            <mat-error *ngFor="let validation of messagesValidations.concepto">
+              <mat-error *ngIf="
                     form.controls['concepto'].hasError(validation.type) &&
                     (form.controls['concepto'].dirty || form.controls['concepto'].touched)
                   ">
-                  {{ validation.message }}
-                </mat-error>
+                {{ validation.message }}
               </mat-error>
-            </mat-form-field>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12" style="padding: 0 !important;">
+          <div class="col-md-12 black">
+            <mat-label>Opcional - Adjuntar Acta/Acuerdo/Manifiesto:</mat-label>
           </div>
-    
-          <div class="col-md-12" style="padding: 0 !important;">
-            <div class="col-md-12 black">
-              <mat-label>Opcional - Adjuntar Acta/Acuerdo/Manifiesto:</mat-label>
-            </div>
-            <div class="col-md-12" style="text-align: center; padding: 10px;">
-                
-                <button mat-raised-button (click)="selectFile()" class="upload" type="button">
-                    <mat-icon>cloud_upload</mat-icon> Subir archivo
-                </button>
-                    <input (change)="fileChange($event)" #inputUpload id="files" onclick="this.value=null;" type="file" style="display: none;"
-                            accept=".pdf,.doc,.docx" />
-            </div>
+          <div class="col-md-12" style="text-align: center; padding-top: 10px; padding-bottom: 5px;">
+            <button mat-raised-button (click)="selectFile()" class="upload" type="button">
+              <mat-icon>cloud_upload</mat-icon> Subir archivo
+            </button>
+            <input (change)="fileChange($event)" #inputUpload id="files" onclick="this.value=null;" type="file"
+              style="display: none;" accept=".pdf,.doc,.docx" />
+          </div>
+          <div class="col-sm-12" *ngIf="fileName" style="text-align: center;">
+            <span style="color: #444;font-weight: 500;">Archivo: </span>{{fileName}}
+          </div>
+        </div>
+
+        <div class="col-md-12" style="padding: 0 !important;">
+          <div class="col-md-12 black">
+            <mat-label>Categoría a la que considera pertenece</mat-label>
           </div>
 
-          <div class="col-md-12" style="padding: 0 !important;">
-            <div class="col-md-12 black">
-              <mat-label>Categoría a la que considera pertenece</mat-label>
-            </div>
-    
-            <mat-form-field appearance="outline" class="col-md-12">
-              <mat-label class="black">Categoría</mat-label>
-              <mat-select formControlName="categoria">
-                <mat-option *ngFor="let type of categoryList" [value]="type.id">
-                  {{type.nombre}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngFor="let validation of messagesValidations.categoria">
-                <mat-error *ngIf="
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label class="black">Categoría</mat-label>
+            <mat-select formControlName="categoria">
+              <mat-option *ngFor="let type of categoryList" [value]="type.id">
+                {{type.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngFor="let validation of messagesValidations.categoria">
+              <mat-error *ngIf="
                     form.controls['categoria'].hasError(validation.type) &&
                     (form.controls['categoria'].dirty || form.controls['categoria'].touched)
                   ">
-                  {{ validation.message }}
-                </mat-error>
+                {{ validation.message }}
               </mat-error>
-            </mat-form-field>
-          </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        </div>
-        
-        <div class="col-sm-12 col-lg-6">
-          <img src="../../../assets/images/carousel3.jpg" class="img-square" alt="">
-        </div>
-        <div class="col-md-12" align="center" style="margin-top: 10px;">
-          <button 
-          type="submit"
-          [disabled]="!form.valid"
-          mat-raised-button color="primary"
-          > 
-          <mat-icon>groups</mat-icon> Graba y participa activamente
-          </button>
-        </div>
       </div>
-      <br>
+
+      <div class="col-sm-12 col-lg-6">
+        <img src="../../../assets/images/carousel3.jpg" class="img-square" alt="">
+      </div>
+      <div class="col-md-12" align="center" style="margin-top: 10px;">
+        <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">
+          <mat-icon>groups</mat-icon> Graba y participa activamente
+        </button>
+      </div>
     </div>
-  </form>
-  
-  <br>
+    <br>
+  </div>
+</form>
+
+<br>
