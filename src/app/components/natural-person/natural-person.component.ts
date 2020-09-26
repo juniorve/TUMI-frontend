@@ -19,8 +19,7 @@ export class NaturalPersonComponent implements OnInit {
 
   categoryList = [];
   form: FormGroup;
-  longitude;
-  latitude;
+
   messagesValidations;
   constructor(
     private utilService: UtilService,
@@ -31,11 +30,22 @@ export class NaturalPersonComponent implements OnInit {
   }
   ngOnInit(): void {
     this.messagesValidations = messages;
-    this.getLocation();
+    this.showLocation();
     this.getDepartments();
     this.getAgeList();
     this.getCategoryList();
   }
+
+  showLocation() {
+    this.utilService.getLocation().subscribe(response => {
+      console.log(response);
+      if (response) {
+        this.form.controls.latitud.setValue(response.latitude);
+        this.form.controls.longitud.setValue(response.longitude);
+      }
+    });
+  }
+
 
   newForm() {
     this.form = this.fb.group({
@@ -63,8 +73,8 @@ export class NaturalPersonComponent implements OnInit {
   getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.longitude = position.coords.longitude;
-        this.latitude = position.coords.latitude;
+        this.form.controls.latitud.setValue(position.coords.longitude);
+        this.form.controls.longitud.setValue(position.coords.latitude);
       });
     } else {
       console.log('No support for geolocation');
@@ -72,9 +82,6 @@ export class NaturalPersonComponent implements OnInit {
   }
 
   savePerson() {
-    console.log(this.latitude);
-    this.form.controls.latitud.setValue(this.latitude);
-    this.form.controls.longitud.setValue(this.longitude);
     this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
       console.log(response);
       showNotificationMini('Persona registrada exitosamente!', 'success');

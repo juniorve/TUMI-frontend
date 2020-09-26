@@ -7,7 +7,6 @@ import { TranslatorService } from './../../services/translator.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
-import { concatMap } from 'rxjs/operators';
 import { GroupService } from 'src/app/services/group.service';
 @Component({
   selector: 'app-quechua-person',
@@ -22,10 +21,7 @@ export class QuechuaPersonComponent implements OnInit {
   listOfProvinces = [];
   listOfDistricts = [];
   messagesValidations: any = {};
-
   form: FormGroup;
-  longitude;
-  latitude;
   categoryList = [];
 
   constructor(
@@ -70,11 +66,21 @@ export class QuechuaPersonComponent implements OnInit {
     });
   }
 
+  showLocation() {
+    this.utilService.getLocation().subscribe(response => {
+      console.log(response);
+      if (response) {
+        this.form.controls.latitud.setValue(response.latitude);
+        this.form.controls.longitud.setValue(response.longitude);
+      }
+    });
+  }
+
   getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.longitude = position.coords.longitude;
-        this.latitude = position.coords.latitude;
+        this.form.controls.latitud.setValue(position.coords.longitude);
+        this.form.controls.longitud.setValue(position.coords.latitude);
       });
     } else {
       console.log('No support for geolocation');
@@ -114,15 +120,10 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   save() {
-
     this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
       this.form.controls.vision.setValue(audio1.text_source);
-
       this.translatorService.translateLanguage(this.audio2.recordRTC.blob).subscribe(audio2 => {
         this.form.controls.concepto.setValue(audio2.text_source);
-        this.form.controls.latitud.setValue(this.latitude);
-        this.form.controls.longitud.setValue(this.longitude);
-
         this.audioService.saveAudio(this.audio1.recordRTC.blob).subscribe(() => {
           this.audioService.saveAudio(this.audio2.recordRTC.blob).subscribe(() => {
             console.log('guarda');

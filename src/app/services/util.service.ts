@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -33,5 +33,9 @@ export class UtilService {
     saveQuechuaPerson(request): Observable<any> {
         return this.http.post(`${environment.url}/vpersonaquec/registrar`, request,
             { headers: this.headers });
+    }
+
+    getLocation(): Observable<any> {
+        return this.http.get('https://ipapi.co/json/');
     }
 }

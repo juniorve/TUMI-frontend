@@ -20,6 +20,7 @@ import { NewGroupComponent } from './components/new-group/new-group.component';
 import { FormNewPersonComponent } from './components/form-new-person/form-new-person.component';
 import { UtilService } from './services/util.service';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
+import { DialogLocationComponent } from './components/dialog-location/dialog-location.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
     PersonTypeFormComponent,
     NewGroupComponent,
     FormNewPersonComponent,
+    DialogLocationComponent,
   ],
   imports: [
     BrowserModule,

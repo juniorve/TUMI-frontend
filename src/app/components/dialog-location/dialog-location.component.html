@@ -1,0 +1,12 @@
+<h1 style="color: silver; font-weight: 500;">
+    Permitir localización
+</h1>
+<p style="color: white;" *ngIf="!data">
+    Haz clic en "Permitir" para poder obtener su ubicación
+</p>
+<p style="color: white;" *ngIf="data && data.msg">
+    {{data.msg}}
+</p>
+<button type="button" mat-raised-button color="primary" (click)="onNoClick()">
+    <mat-icon>check</mat-icon> Entiendo
+</button>
