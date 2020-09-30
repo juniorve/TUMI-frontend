@@ -53,8 +53,8 @@ export class QuechuaPersonComponent implements OnInit {
       distrito: [null, Validators.required],
       latitud: [null], // revisar
       longitud: [null], // revisar
-      vision: [null],
-      concepto: [null],
+      vision: ['pendiente'],
+      concepto: ['pendiente'],
       categoria: [null, Validators.required]
     });
   }
@@ -120,19 +120,15 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   save() {
-    this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
+    this.savePerson();
+   /*  this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
       this.form.controls.vision.setValue(audio1.text_source);
       this.translatorService.translateLanguage(this.audio2.recordRTC.blob).subscribe(audio2 => {
         this.form.controls.concepto.setValue(audio2.text_source);
-        this.audioService.saveAudio(this.audio1.recordRTC.blob).subscribe(() => {
-          this.audioService.saveAudio(this.audio2.recordRTC.blob).subscribe(() => {
-            console.log('guarda');
-            this.savePerson();
-          });
-        });
+
         console.log('No espera');
       });
-    });
+    }); */
     // ATUKUNA UAU
     // awajakikuna
     // manam karirqanchI
@@ -141,8 +137,12 @@ export class QuechuaPersonComponent implements OnInit {
   savePerson() {
     this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
       console.log(response);
-      showNotificationMini('Persona registrada exitosamente!', 'success');
-      this.router.navigate(['/principal']);
+      this.audioService.saveAudio(this.audio1.recordRTC.blob, response, 'v').subscribe(() => {
+        this.audioService.saveAudio(this.audio2.recordRTC.blob, response, 'c').subscribe(() => {
+          showNotificationMini('Persona registrada exitosamente!', 'success');
+          this.router.navigate(['/principal']);
+        });
+      });
     });
   }
 

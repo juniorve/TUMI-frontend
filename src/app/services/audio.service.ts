@@ -12,14 +12,14 @@ export class AudioService {
 
     }
 
-    saveAudio(file: any): any {
+    saveAudio(file: any, code: string, type: string): any {
         const now = new Date();
         const nameFile = (now.getFullYear() + (now.getMonth() + 1) + now.getDate()
             + now.getSeconds() + now.getMilliseconds() + '.wav').toString();
-        console.log(nameFile);
         const formdata = new FormData();
         formdata.append('file', file, nameFile);
+        formdata.append('code', code);
+        formdata.append('tipo', type);
         return this.http.post(`${environment.url}/vgrupo/descargar`, formdata, { headers: this.headers });
-
     }
 }
