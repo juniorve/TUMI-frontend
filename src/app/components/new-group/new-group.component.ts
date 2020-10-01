@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class NewGroupComponent implements OnInit {
   @ViewChild('inputUpload') file: ElementRef;
   fileUpload;
+  fileBase64;
   sectors = [];
   listGroupType = [];
   categoryList = [];
@@ -24,6 +25,7 @@ export class NewGroupComponent implements OnInit {
   latitude;
   messagesValidations;
   fileName;
+  extension;
   constructor(
     private renderer: Renderer2,
     private groupService: GroupService,
@@ -52,25 +54,9 @@ export class NewGroupComponent implements OnInit {
     this.showLocation();
   }
 
-  fileChange(event) {
-    console.log(event);
-    if ((event.target.files[0].size / (1024 * 1024)) <= 1) {
-      const extension = event.target.files[0].name.split('.')[event.target.files[0].name.split('.').length - 1];
-      const extensionesPermitidas = ['pdf', 'PDF', 'doc', 'docx'];
-      if (extensionesPermitidas.includes(extension)) {
-        this.fileUpload = event.target.files[0];
-        this.fileName = event.target.files[0].name;
-      } else {
-        showNotificationMini('Solo estan permitido archivos PDF o Word', 'error');
-      }
-    } else {
-      showNotificationMini('El archivo excede el tamaño de 1MB', 'error');
-    }
-  }
 
   showLocation() {
     this.utilService.getLocation().subscribe(response => {
-      console.log(response);
       if (response) {
         this.form.controls.latitud.setValue(response.latitude);
         this.form.controls.longitud.setValue(response.longitude);
@@ -115,21 +101,18 @@ export class NewGroupComponent implements OnInit {
 
   getSectors() {
     this.groupService.getSectors().subscribe(response => {
-      console.log(response);
       this.sectors = response;
     });
   }
 
   getGroupType() {
     this.groupService.getGroupType().subscribe(response => {
-      console.log(response);
       this.listGroupType = response;
     });
   }
 
   getCategoryList() {
     this.groupService.getCategoryList().subscribe(response => {
-      console.log(response);
       this.categoryList = response;
     });
   }
@@ -140,11 +123,9 @@ export class NewGroupComponent implements OnInit {
     };
     this.groupService.saveGroup(this.form.value)
       .subscribe(group => {
-        console.log(group);
         requestFile.code = group;
         if (this.fileUpload) {
           this.groupService.saveFile(requestFile).subscribe(response => {
-            console.log(response);
             this.finish();
           });
         } else {
@@ -158,4 +139,62 @@ export class NewGroupComponent implements OnInit {
     this.router.navigate(['/principal']);
   }
 
+  fileChange(event) {
+    this.extension = null;
+    if ((event.target.files[0].size / (1024 * 1024)) <= 1) {
+      this.extension = event.target.files[0].name.split('.')[event.target.files[0].name.split('.').length - 1];
+      const extensionesPermitidas = ['pdf', 'PDF', 'doc', 'docx'];
+      if (extensionesPermitidas.includes(this.extension)) {
+        this.fileUpload = event.target.files[0];
+        this.fileName = event.target.files[0].name;
+
+        this.getBase64(event.target.files[0]).then(
+          (val: any) => {
+            if (val) {
+              this.fileBase64 = val.split(',')[1];
+            }
+          }
+        );
+      } else {
+        showNotificationMini('Solo estan permitido archivos PDF o Word', 'error');
+      }
+    } else {
+      showNotificationMini('El archivo excede el tamaño de 1MB', 'error');
+    }
+  }
+
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  showDocument() {
+    if (!this.fileBase64 || !this.extension) {
+      return;
+    }
+
+    if (this.extension === 'doc' || this.extension === 'docx') {
+      window.location.href = 'data:application/msword;base64,' + this.fileBase64;
+    } else {
+      const binary = atob(this.fileBase64);
+      const len = binary.length;
+      const buffer = new ArrayBuffer(len);
+      const view = new Uint8Array(buffer);
+      for (let j = 0; j < len; j++) {
+        view[j] = binary.charCodeAt(j);
+      }
+      const blob = new Blob([view], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+      iframe.contentWindow.print();
+    }
+  }
 }

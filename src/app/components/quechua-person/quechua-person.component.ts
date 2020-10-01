@@ -138,6 +138,7 @@ export class QuechuaPersonComponent implements OnInit {
     this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
       console.log(response);
       this.audioService.saveAudio(this.audio1.recordRTC.blob, response, 'v').subscribe(() => {
+        console.log('entra 222222222');
         this.audioService.saveAudio(this.audio2.recordRTC.blob, response, 'c').subscribe(() => {
           showNotificationMini('Persona registrada exitosamente!', 'success');
           this.router.navigate(['/principal']);

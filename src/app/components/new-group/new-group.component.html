@@ -95,8 +95,8 @@
             <input (change)="fileChange($event)" #inputUpload id="files" onclick="this.value=null;" type="file"
               style="display: none;" accept=".pdf,.doc,.docx" />
           </div>
-          <div class="col-sm-12" *ngIf="fileName" style="text-align: center;">
-            <span style="color: #444;font-weight: 500;">Archivo: </span>{{fileName}}
+          <div class="col-sm-12" *ngIf="fileName" style="text-align: center;" (click)="showDocument()" matTooltip="Revisar documento">
+            <span style="color: #444;font-weight: 500;">Archivo: </span> <span style="cursor: pointer; color:blue">{{fileName}}</span> 
           </div>
         </div>
 
@@ -122,7 +122,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-
       </div>
 
       <div class="col-sm-12 col-lg-6">

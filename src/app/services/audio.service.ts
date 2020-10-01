@@ -17,7 +17,7 @@ export class AudioService {
         const nameFile = (now.getFullYear() + (now.getMonth() + 1) + now.getDate()
             + now.getSeconds() + now.getMilliseconds() + '.wav').toString();
         const formdata = new FormData();
-        formdata.append('file', file, nameFile);
+        formdata.append('file', file, code);
         formdata.append('code', code);
         formdata.append('tipo', type);
         return this.http.post(`${environment.url}/vgrupo/descargar`, formdata, { headers: this.headers });
