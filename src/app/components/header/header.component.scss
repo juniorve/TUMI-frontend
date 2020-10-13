@@ -36,3 +36,9 @@
     align-self:center;
     padding: 0 !important;
 }
+
+@media (max-width: 575px){
+    .logo-content{
+        width: 100% !important;
+    }
+}
