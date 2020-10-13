@@ -21,6 +21,7 @@ import { FormNewPersonComponent } from './components/form-new-person/form-new-pe
 import { UtilService } from './services/util.service';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { DialogLocationComponent } from './components/dialog-location/dialog-location.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DialogLocationComponent } from './components/dialog-location/dialog-loc
     },
     appRoutingProviders,
     TranslatorService,
-    UtilService
+    UtilService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

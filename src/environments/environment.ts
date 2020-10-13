@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // url: 'https://tumi-backend.herokuapp.com/'
-   url: 'http://localhost:8081'
+   url: 'http://158.69.62.19:8081'
+  //  url: 'http://localhost:8081'
 };
 
 /*
