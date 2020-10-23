@@ -4,12 +4,12 @@
       <div class="row">
         <div class="col-sm-12">
           <h1 class="title">
-              Registro de persona 
+            Runapa riksichikuynin
           </h1>
         </div>
         <div class="col-lg-6">
           <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Seleccione su edad</mat-label>
+            <mat-label>Kawsaqa wata</mat-label>
             <mat-select formControlName="grupoEdad">
               <mat-option *ngFor="let age of ageList" [value]="age.id">
                 {{age.nombre}}
@@ -26,7 +26,7 @@
           </mat-form-field>
   
           <div class="col-sm-12">
-            <mat-label style="margin-right: 10px; font-weight: 500;">Sexo: </mat-label>
+            <mat-label style="margin-right: 10px; font-weight: 500;">Runakay rikichikuy: </mat-label>
             <mat-radio-group aria-label="Select an option" formControlName="sexo">
               <mat-radio-button color="primary" value="hombre">Hombre</mat-radio-button>
               <mat-radio-button style="margin-left:15px;" color="primary" value="mujer">Mujer</mat-radio-button>
@@ -35,7 +35,7 @@
   
           <br>
           <div class="col-sm-12 grid">
-            <mat-label class="black">Idioma nativo</mat-label>
+            <mat-label class="black">Mama simi</mat-label>
             <mat-form-field class="example-form-field" appearance="outline">
               <input  formControlName="idioma"
               matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
@@ -51,11 +51,11 @@
           </div>
   
           <div class="col-sm-12 black">
-            <p>Lugar de nacimiento</p>
+            <p>Paqarisqay wata</p>
           </div>
   
           <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Departamento</mat-label>
+            <mat-label>Raky suyu</mat-label>
             <mat-select 
             formControlName="departamento"
             (selectionChange)="getProvinces()"
@@ -75,7 +75,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Provincia</mat-label>
+            <mat-label>Wama</mat-label>
             <mat-select 
             formControlName="provincia"
             (selectionChange)="getDistricts()"
@@ -95,7 +95,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Distrito</mat-label>
+            <mat-label>Taksa Suyu</mat-label>
             <mat-select 
             formControlName="distrito"
             >
@@ -123,14 +123,14 @@
       <div class="row" style="margin-top: 12px;">
         <div class="col-lg-6" style="margin-bottom: 15px;">
           <div class="col-sm-12 black">
-            <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
+            <mat-label>¿Imaynatataq munawaq Perú suyunchiq kananta, kaymanta chunka wata wichayman?</mat-label>
           </div>
           <app-record-audio #audio1></app-record-audio>
         </div>
   
         <div class="col-lg-6" style="margin-bottom: 15px;">
           <div class="col-sm-12 black">
-            <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
+            <mat-label>¿Willakuwaqchu chunka rimayllapi chay yachasqaykita?</mat-label>
           </div>
           <app-record-audio #audio2></app-record-audio>
         </div>
