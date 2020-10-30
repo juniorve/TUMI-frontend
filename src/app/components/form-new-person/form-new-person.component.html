@@ -1,10 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <mat-vertical-stepper 
-        style="border-right:3px solid silver !important;"
         [ngClass]="{'first': indexStepper==0}"
         #stepper 
-        class="col-md-4 col-lg-3 verticalStep"  
+        class="col-md-4 col-lg-3 vertical-step"  
         [linear]="true"
         [selectedIndex]="indexStepper"
         (selectionChange)="indexStepper = $event.selectedIndex"
