@@ -1,3 +1,5 @@
+import { DialogSaveComponent } from './../dialog-save/dialog-save.component';
+import { MatDialog } from '@angular/material/dialog';
 import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +24,7 @@ export class NaturalPersonComponent implements OnInit {
 
   messagesValidations;
   constructor(
+    private dialog: MatDialog,
     private utilService: UtilService,
     private router: Router,
     private groupService: GroupService,
@@ -82,10 +85,15 @@ export class NaturalPersonComponent implements OnInit {
   }
 
   savePerson() {
-    this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
-      console.log(response);
-      showNotificationMini('Persona registrada exitosamente!', 'success');
-      this.router.navigate(['/principal']);
+    this.dialog.open(DialogSaveComponent).afterClosed().subscribe(save => {
+      console.log(save);
+      if (save) {
+        this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
+          console.log(response);
+          showNotificationMini('Persona registrada exitosamente!', 'success');
+          this.router.navigate(['/principal']);
+        });
+      }
     });
   }
 

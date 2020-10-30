@@ -1,3 +1,4 @@
+import { DialogSaveComponent } from './components/dialog-save/dialog-save.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
@@ -36,6 +37,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     NewGroupComponent,
     FormNewPersonComponent,
     DialogLocationComponent,
+    DialogSaveComponent
   ],
   imports: [
     BrowserModule,
