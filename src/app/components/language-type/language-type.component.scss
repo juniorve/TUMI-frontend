@@ -12,9 +12,9 @@
       margin-top: 10px;
   }
 
-  .map{
-    height: auto;
-    width: auto;
+  .img-map{
+  /*   height: 300px;
+    width: 500px; */
   }
 
   img{
@@ -32,11 +32,11 @@
     font-size: 13px !important;
   }
 
-  @media (max-width:575px){
+ /*  @media (max-width:768px){
     .map{
       display: none;
     }
-  }
+  } */
 
 .buttons{
   margin-top: 30px;;
