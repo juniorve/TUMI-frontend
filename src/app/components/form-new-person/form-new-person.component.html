@@ -35,11 +35,8 @@
             #personTypeForm
             [hidden]="indexStepper!=0"
             >
-
-            <!-- nombre institución opcional, debajo de tipo -->
-
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
-                    <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
+                    <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
                     (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
                     <mat-icon>navigate_next</mat-icon> Siguiente
                 </button>
@@ -55,7 +52,7 @@
                         <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
                             <mat-icon>navigate_before</mat-icon> Anterior
                         </button>
-                        <button style="margin-left: 4px;" mat-flat-button color="primary" type="button"
+                        <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
                             (click)="stepper.next()"
                             [disabled]="!languageType.form.valid">
                             <mat-icon>navigate_next</mat-icon> Siguiente

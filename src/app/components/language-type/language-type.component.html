@@ -1,16 +1,11 @@
-<form 
-class="container-fluid"
-style="background:white; padding: 30px;"
-[formGroup]="form"
-(ngSubmit)="sendValue()"
->
+<form class="container-fluid" style="background:white; padding: 30px;" [formGroup]="form"
+  (ngSubmit)="sendValue()">
   <div class="row">
-    <div class="col-md-12">
-      <mat-radio-group
-        aria-labelledby="example-radio-group-label"
-        class="example-radio-group"
-        formControlName="idioma"
-      >
+    <div class="col-md-4">
+      <img src="../../../assets/images/mapa2.jpg" alt="" class="map img-fluid">
+    </div>
+    <div class="col-md-8">
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="idioma">
         <mat-radio-button style="font-weight: 400;
                     font-size: 15px;" color="primary" class="example-radio-button" value="1">
           Español o Castellano
@@ -24,9 +19,10 @@ style="background:white; padding: 30px;"
           Bilingüe (Español/Idioma nativo)
         </mat-radio-button>
       </mat-radio-group>
-      <img src="../../../assets/images/mapa.jpg" alt="" class="map">
+      <ng-content select="[content-btn]"></ng-content>
     </div>
-    <ng-content select="[content-btn]"></ng-content>
+   <!--  <div class="col-md-12 buttons">
+    </div> -->
   </div>
 </form>
 
