@@ -42,7 +42,7 @@ export class QuechuaPersonComponent implements OnInit {
     this.getDepartments();
     this.getAgeList();
     this.getCategoryList();
-    this.getLocation();
+    this.showLocation();
     this.messagesValidations = messages;
   }
 
