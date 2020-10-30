@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { AudioService } from './../../services/audio.service';
 import { Router } from '@angular/router';
 import { RecordAudioComponent } from './../record-audio/record-audio.component';
@@ -8,6 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
 import { GroupService } from 'src/app/services/group.service';
+import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
@@ -30,7 +32,8 @@ export class QuechuaPersonComponent implements OnInit {
     private utilService: UtilService,
     private fb: FormBuilder,
     private router: Router,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private dialog: MatDialog
   ) {
     this.newForm();
   }
@@ -121,29 +124,30 @@ export class QuechuaPersonComponent implements OnInit {
 
   save() {
     this.savePerson();
-   /*  this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
-      this.form.controls.vision.setValue(audio1.text_source);
-      this.translatorService.translateLanguage(this.audio2.recordRTC.blob).subscribe(audio2 => {
-        this.form.controls.concepto.setValue(audio2.text_source);
-
-        console.log('No espera');
-      });
-    }); */
+    /*  this.translatorService.translateLanguage(this.audio1.recordRTC.blob).subscribe(audio1 => {
+       this.form.controls.vision.setValue(audio1.text_source);
+       this.translatorService.translateLanguage(this.audio2.recordRTC.blob).subscribe(audio2 => {
+         this.form.controls.concepto.setValue(audio2.text_source);
+         console.log('No espera');
+       });
+     }); */
     // ATUKUNA UAU
     // awajakikuna
     // manam karirqanchI
   }
 
   savePerson() {
-    this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
-      console.log(response);
-      this.audioService.saveAudio(this.audio1.recordRTC.blob, response, 'v').subscribe(() => {
-        console.log('entra 222222222');
-        this.audioService.saveAudio(this.audio2.recordRTC.blob, response, 'c').subscribe(() => {
-          showNotificationMini('Persona registrada exitosamente!', 'success');
-          this.router.navigate(['/principal']);
+    this.dialog.open(DialogSaveComponent).afterClosed().subscribe(save => {
+      if (save) {
+        this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
+          this.audioService.saveAudio(this.audio1.recordRTC.blob, response, 'v').subscribe(() => {
+            this.audioService.saveAudio(this.audio2.recordRTC.blob, response, 'c').subscribe(() => {
+              showNotificationMini('Persona registrada exitosamente!', 'success');
+              this.router.navigate(['/principal']);
+            });
+          });
         });
-      });
+      }
     });
   }
 

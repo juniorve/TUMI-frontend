@@ -7,6 +7,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { showNotificationMini } from 'src/app/services/utilFunction';
 import { messages } from './new-group-validatons';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
 
 @Component({
   selector: 'app-new-group',
@@ -118,20 +119,24 @@ export class NewGroupComponent implements OnInit {
   }
 
   saveGroup() {
-    const requestFile: any = {
-      file: this.fileUpload
-    };
-    this.groupService.saveGroup(this.form.value)
-      .subscribe(group => {
-        requestFile.code = group;
-        if (this.fileUpload) {
-          this.groupService.saveFile(requestFile).subscribe(response => {
-            this.finish();
+    this.dialog.open(DialogSaveComponent).afterClosed().subscribe(save => {
+      if (save) {
+        const requestFile: any = {
+          file: this.fileUpload
+        };
+        this.groupService.saveGroup(this.form.value)
+          .subscribe(group => {
+            requestFile.code = group;
+            if (this.fileUpload) {
+              this.groupService.saveFile(requestFile).subscribe(response => {
+                this.finish();
+              });
+            } else {
+              this.finish();
+            }
           });
-        } else {
-          this.finish();
-        }
-      });
+      }
+    });
   }
 
   finish() {
