@@ -1,20 +1,32 @@
 export const messages = {
     tipoInstitucion: [
-        { type: 'required', message: 'Tipo es obligatorio' },
+        {
+            type: 'required',
+            message: 'Tipo es obligatorio',
+            messageChanka: '',
+            messageCollao: ''
+        }
     ],
     sectorEconomico: [
-        { type: 'required', message: 'Sector es obligatorio' },
-    ],
-    categoria: [
-        { type: 'required', message: 'Categoría es obligatoria' },
+        {
+            type: 'required',
+            message: 'Sector es obligatorio',
+            messageChanka: '',
+            messageCollao: ''
+        }
     ],
     vision: [
-        { type: 'required', message: 'Visión es obligatorio' },
-    ],
-    provincia: [
-        { type: 'required', message: 'Provincia es obligatorio' },
+        {
+            type: 'required',
+            message: 'Visión es obligatorio',
+            messageChanka: '',
+            messageCollao: ''
+        }
     ],
     concepto: [
-        { type: 'required', message: 'Concepto es obligatorio' },
+        {
+            type: 'required',
+            message: 'Concepto es obligatorio'
+        }
     ]
 };

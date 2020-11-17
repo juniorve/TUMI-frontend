@@ -1,3 +1,4 @@
+import { languages } from './../../core/form.config';
 import { UtilService } from 'src/app/services/util.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  languages = languages;
   constructor(public utilService: UtilService) { }
 
   ngOnInit(): void {

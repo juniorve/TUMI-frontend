@@ -4,12 +4,28 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="title">
-          Registro de grupo o movimiento
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Registro de grupo o movimiento
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Huñunakuynikita utaq mayman sayasqaykita sutinta qillqay
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+            Huñunakuynikita utaq mayman sayasqaykita sutinta qhillqay
+          </ng-container>
         </h1>
       </div>
       <div class="col-sm-12 col-lg-6">
         <mat-form-field appearance="outline" class="col-md-12">
-          <mat-label>Tipo de institución</mat-label>
+          <mat-label>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+              Tipo de institución
+            </ng-container>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value">
+              Imaynaraq institucionmi
+            </ng-container>
+          </mat-label>
           <mat-select formControlName="tipoInstitucion">
             <mat-option *ngFor="let item of listGroupType" [value]="item.id">
               {{item.nombre}}
@@ -26,13 +42,32 @@
         </mat-form-field>
 
         <mat-form-field class="col-md-12" appearance="outline">
-          <mat-label class="black">Nombre institución (opcional)</mat-label>
-          <input matInput type="text" autocomplete="off" formControlName="nombInstitucion"
-            placeholder="Ingrese su idioma nativo">
+          <mat-label class="black">
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+              Nombre institución (opcional)
+            </ng-container>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+              Institucionpa sutinta (kaytaqa atispalla)
+            </ng-container>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+              Institucionpaq sutinta (kaytaqa atispalla)
+            </ng-container>
+          </mat-label>
+          <input matInput type="text" autocomplete="off" formControlName="nombInstitucion">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-md-12">
-          <mat-label>Sector en el que realiza sus principales actividades:</mat-label>
+          <mat-label>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+              Sector en el que realiza sus principales actividades
+            </ng-container>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+              mayniqpin chanin llamkaykunata llamkanki
+            </ng-container>
+            <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+              mayniqpin chanin llamk’aykunata llamk’anki
+            </ng-container>
+          </mat-label>
           <mat-select formControlName="sectorEconomico">
             <mat-option *ngFor="let item of sectors" [value]="item.id">
               {{item.nombre}}
@@ -50,7 +85,17 @@
 
         <div class="col-md-12" style="padding: 0 !important;">
           <div class="col-md-12 black">
-            <mat-label>¿Cómo le gustaría que fuera el país de aquí a 10 años?</mat-label>
+            <mat-label>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                ¿Cómo le gustaría que fuera el país de aquí a 10 años (argumento)?
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                Imaynatan munawaq qawariyta Perú suyuta kaymanta chunka wata hamuqman(willariy)?
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                Imaynatan munawaq qhawariyta Perú suyuta kaymanta chunka wata hamuqman(willariy)?
+              </ng-container>
+            </mat-label>
           </div>
           <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
             <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
@@ -68,10 +113,17 @@
 
         <div class="col-md-12" style="padding: 0 !important;">
           <div class="col-md-12 black">
-            <mat-label>¿Podría sintetizar en 10 palabras como máximo su concepto?</mat-label>
+            <mat-label>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                ¿Podría sintetizar en 10 palabras como máximo su concepto?
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+              || utilService.typeOfLanguage===languages.collao.value">
+                Ichapas atiwaq rimanaynikita churayta 10 suysusqa rimayllapi?
+              </ng-container>
+            </mat-label>
           </div>
           <mat-form-field class="example-form-field" appearance="outline" class="col-md-12">
-            <!-- <mat-label>Ingrese su idioma nativo</mat-label> -->
             <input matInput type="text" autocomplete="off" formControlName="concepto">
             <mat-error *ngFor="let validation of messagesValidations.concepto">
               <mat-error *ngIf="
@@ -86,40 +138,66 @@
 
         <div class="col-md-12" style="padding: 0 !important;">
           <div class="col-md-12 black">
-            <mat-label>Opcional - Adjuntar Acta/Acuerdo/Manifiesto:</mat-label>
+            <mat-label>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                Opcional - adjuntar acta/acuerdo/manifiesto:
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+              || utilService.typeOfLanguage===languages.collao.value">
+                kaytaqa atispalla - kayman churanayki actata/hayninchasqata/rimay chaninchasqata:
+              </ng-container>
+            </mat-label>
           </div>
           <div class="col-md-12" style="text-align: center; padding-top: 10px; padding-bottom: 5px;">
             <button mat-raised-button (click)="selectFile()" class="upload" type="button">
-              <mat-icon>cloud_upload</mat-icon> Subir archivo
+              <mat-icon>cloud_upload</mat-icon>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                Subir o adjuntar archivo
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                Wichay churamuy archivota
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                Wichay churamuy qhillqata
+              </ng-container>
             </button>
             <input (change)="fileChange($event)" #inputUpload id="files" onclick="this.value=null;" type="file"
               style="display: none;" accept=".pdf,.doc,.docx" />
           </div>
-          <div class="col-sm-12" *ngIf="fileName" style="text-align: center;" (click)="showDocument()" matTooltip="Revisar documento">
-            <span style="color: #444;font-weight: 500;">Archivo: </span> <span style="cursor: pointer; color:blue">{{fileName}}</span> 
+          <div class="col-sm-12" *ngIf="fileName" style="text-align: center;" (click)="showDocument()"
+            matTooltip="Revisar documento">
+            <span style="color: #444;font-weight: 500;">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                Archivo:
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                archivota:
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                qhillqata:
+              </ng-container>
+            </span> <span style="cursor: pointer; color:blue">{{fileName}}</span>
           </div>
         </div>
 
         <div class="col-md-12" style="padding: 0 !important;">
-          <div class="col-md-12 black">
-            <mat-label>Categoría a la que considera pertenece</mat-label>
-          </div>
-
           <mat-form-field appearance="outline" class="col-md-12">
-            <mat-label class="black">Categoría</mat-label>
+            <mat-label class="black">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                ¿Cómo clasificaría su argumento (Opcional)?
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                Imaynatan taqariwaq rimaynikita (Kayta atispalla)?
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                Imaynatan t’aqariwaq rimanikita (Kayta atispalla)?
+              </ng-container>
+            </mat-label>
             <mat-select formControlName="categoria">
               <mat-option *ngFor="let type of categoryList" [value]="type.id">
                 {{type.nombre}}
               </mat-option>
             </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.categoria">
-              <mat-error *ngIf="
-                    form.controls['categoria'].hasError(validation.type) &&
-                    (form.controls['categoria'].dirty || form.controls['categoria'].touched)
-                  ">
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -129,7 +207,14 @@
       </div>
       <div class="col-md-12" align="center" style="margin-top: 10px;">
         <button type="submit" [disabled]="!form.valid" mat-raised-button class="btn-save">
-          <mat-icon>groups</mat-icon> Graba y participa activamente
+          <mat-icon>groups</mat-icon>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Graba y participa activamente
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.collao.value">
+            Rimasqaykita churay hinallataq ama qasiychu puriynikipi
+          </ng-container>
         </button>
       </div>
     </div>

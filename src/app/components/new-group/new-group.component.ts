@@ -8,6 +8,7 @@ import { showNotificationMini } from 'src/app/services/utilFunction';
 import { messages } from './new-group-validatons';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
+import { languages } from 'src/app/core/form.config';
 
 @Component({
   selector: 'app-new-group',
@@ -16,6 +17,7 @@ import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
 })
 export class NewGroupComponent implements OnInit {
   @ViewChild('inputUpload') file: ElementRef;
+  languages = languages;
   fileUpload;
   fileBase64;
   sectors = [];
@@ -33,7 +35,7 @@ export class NewGroupComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
-    private utilService: UtilService
+    public utilService: UtilService
   ) {
     this.form = this.fb.group({
       nombInstitucion: [''],
