@@ -1,165 +1,180 @@
 <form [formGroup]="form" class="global-content" style="min-height: 100vh; width: 100%;">
-    <div class="container-fluid" style="padding: 0 10%; font-size: 12px; background: white;">
-      <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="title">
-            Runapa riksichikuynin
-          </h1>
-        </div>
-        <div class="col-lg-6">
-          <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Kawsaqa wata</mat-label>
-            <mat-select formControlName="grupoEdad">
-              <mat-option *ngFor="let age of ageList" [value]="age.id">
-                {{age.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.grupoEdad">
-              <mat-error *ngIf="
+  <div class="container" style="padding: 0 10%; font-size: 12px; background: white;">
+    <br>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="title">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Runakunaq qilqakunanpaq
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+            Runakunaq qhilqakunanpaq
+          </ng-container>
+        </h1>
+      </div>
+
+      <!-- validos para ambos -->
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="col-sm-12">
+          <mat-label>
+              Akllariy wataykita
+          </mat-label>
+          <mat-select formControlName="grupoEdad">
+            <mat-option *ngFor="let age of ageList" [value]="age.id">
+              {{age.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of messagesValidations.grupoEdad">
+            <mat-error *ngIf="
                   form.controls['grupoEdad'].hasError(validation.type) &&
                   (form.controls['grupoEdad'].dirty || form.controls['grupoEdad'].touched)
                 ">
-                {{ validation.message }}
-              </mat-error>
+              {{ utilService.typeOfLanguage===languages.chanka.value? 
+                  validation.messageChanka: validation.messageCollao }}
             </mat-error>
-          </mat-form-field>
-  
-          <div class="col-sm-12">
-            <mat-label style="margin-right: 10px; font-weight: 500;">Runakay rikichikuy: </mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="sexo">
-              <mat-radio-button color="primary" value="hombre">Hombre</mat-radio-button>
-              <mat-radio-button style="margin-left:15px;" color="primary" value="mujer">Mujer</mat-radio-button>
-            </mat-radio-group>
-          </div>
-  
-          <br>
-          <div class="col-sm-12 grid">
-            <mat-label class="black">Mama simi</mat-label>
-            <mat-form-field class="example-form-field" appearance="outline">
-              <input  formControlName="idioma"
-              matInput type="text" autocomplete="off" placeholder="Ingrese su idioma nativo">
-              <mat-error *ngFor="let validation of messagesValidations.idioma">
-                <mat-error *ngIf="
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ESTA PARA AMBOS -->
+        <div class="col-sm-12">
+          <mat-label style="margin-right: 10px; font-weight: 500;">Iman kanki: </mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="sexo">
+            <mat-radio-button color="primary" value="hombre">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                Qari
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                Qhari
+              </ng-container>
+            </mat-radio-button>
+            <mat-radio-button style="margin-left:15px;" color="primary" value="mujer">Warmi</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- ESTA PARA AMBOS -->
+        <br>
+        <div class="col-sm-12 grid">
+          <mat-label class="black">Mama simi</mat-label>
+          <mat-form-field class="example-form-field" appearance="outline">
+            <input formControlName="idioma" matInput type="text" autocomplete="off">
+            <mat-error *ngFor="let validation of messagesValidations.idioma">
+              <mat-error *ngIf="
                     form.controls['idioma'].hasError(validation.type) &&
                     (form.controls['idioma'].dirty || form.controls['idioma'].touched)
                   ">
-                  {{ validation.message }}
-                </mat-error>
+                {{ utilService.typeOfLanguage===languages.chanka.value? 
+                    validation.messageChanka: validation.messageCollao }}
               </mat-error>
-            </mat-form-field>
-          </div>
-  
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ESTA PARA AMBOS -->
+        <div class="col-sm-12 grid">
+          <mat-label class="black">Maymanta kanki?</mat-label>
+          <mat-form-field class="example-form-field" appearance="outline">
+            <input formControlName="plugarproc" matInput type="text" autocomplete="off">
+            <!--  <mat-error *ngFor="let validation of messagesValidations.plugarproc">
+              <mat-error *ngIf="
+                    form.controls['plugarproc'].hasError(validation.type) &&
+                    (form.controls['plugarproc'].dirty || form.controls['plugarproc'].touched)
+                  ">
+                {{ utilService.typeOfLanguage===languages.chanka.value? 
+                    validation.messageChanka: validation.messageCollao }}
+              </mat-error>
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 audio-info">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                <p>
+                 <strong>1. Qallarinapaq:</strong> Hukllata ñit’iykuy, micro patachapi (<span class="puka">puka</span>) kachariy rimay
+                  qallarinapaq
+                </p>
+                <p>
+                  <strong>2. Qatipanapaq:</strong> Rimaspalla kutichiy chay tapukuykunata
+                </p>
+                <p>
+                  <strong>3. Tukunapaq:</strong> Huktawan ñitiykuy kasqan micro patachapi (<span class="puka">puka</span>) chaymantataq
+                  kachariy rimasqayki
+                  waqaychakunanpaq.
+                </p>
+                <p>
+                  Wakamanta pichaspa rimasqaykita waqaychayta munanki chayqa, wakmanta qatipay kay 1, 2 hinallataq 3
+                  taskiykunata.
+                </p>
+              </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+            1. Qallarinapaq: hukllata ñit’iykuy, micro patachapi (<span class="puka">puka</span>) kachariy rimay
+            qallarinapaq
+            2. Qatipanapaq: Rimaspalla kutichiy chay tapukuykunata
+            3. Tukunapaq: huktawan ñit’iykuy kasqan micro patachapi (<span class="puka">puka</span>) chaymantataq kachariy
+            rimasqayki
+            waqaychakunanpaq.
+            Wakamanta pichaspa rimasqaykita waqaychayta munanki chayqa, wakmanta qatipay kay 1, 2 hinallataq 3
+            taskiykunata.
+          </ng-container>
+        </div>
+
+      </div>
+      <div class="col-lg-6">
+        <img src="../assets/images/plazaArmasAyacucho.jpg" class="img-square" alt="">
+
+        <div class="col-lg-12" style="margin-top: 15px;">
           <div class="col-sm-12 black">
-            <p>Paqarisqay wata</p>
+            <mat-label>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                Imaynatan munawaq qawariyta Perú suyuta kaymanta chunka wata hamuqman(willariy)? Kaypi rimariy 3
+                tuytullata.
+              </ng-container>
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                Imaynatan munawaq qhawariyta Perú suyuta kaymanta chunka wata hamuqman(willariy)? Kaypi rimariy 3
+                tuytullata.
+              </ng-container>
+            </mat-label>
           </div>
-  
-          <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Raky suyu</mat-label>
-            <mat-select 
-            formControlName="departamento"
-            (selectionChange)="getProvinces()"
-            >
-              <mat-option *ngFor="let department of listOfDepartments" [value]="department.id">
-                {{department.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.departamento">
-              <mat-error *ngIf="
-                  form.controls['departamento'].hasError(validation.type) &&
-                  (form.controls['departamento'].dirty || form.controls['departamento'].touched)
-                ">
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Wama</mat-label>
-            <mat-select 
-            formControlName="provincia"
-            (selectionChange)="getDistricts()"
-            >
-              <mat-option *ngFor="let province of listOfProvinces" [value]="province.id">
-                {{province.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.provincia">
-              <mat-error *ngIf="
-                  form.controls['provincia'].hasError(validation.type) &&
-                  (form.controls['provincia'].dirty || form.controls['provincia'].touched)
-                ">
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline" class="col-sm-12">
-            <mat-label>Taksa Suyu</mat-label>
-            <mat-select 
-            formControlName="distrito"
-            >
-              <mat-option *ngFor="let district of listOfDistricts" [value]="district.id">
-                {{district.nombre}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.distrito">
-              <mat-error *ngIf="
-                  form.controls['distrito'].hasError(validation.type) &&
-                  (form.controls['distrito'].dirty || form.controls['distrito'].touched)
-                ">
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-  
+          <app-record-audio class="audio" #audio1></app-record-audio>
         </div>
   
-        <div class="col-lg-6">
-          <img src="../assets/images/plazaArmasAyacucho.jpg" class="img-square" alt="">
+        <!-- valido para ambos -->
+        <div class="col-lg-12">
+          <div class="col-sm-12 black">
+            <mat-label>
+              Ichapas atiwaq rimanaynikita churayta 10 suysusqa rimayllapi? 1 tuytulla kanan rimayniki waqaychanapaq
+            </mat-label>
+          </div>
+          <app-record-audio class="audio" #audio2></app-record-audio>
         </div>
       </div>
-  
-      <div class="row" style="margin-top: 12px;">
-        <div class="col-lg-6" style="margin-bottom: 15px;">
-          <div class="col-sm-12 black">
-            <mat-label>¿Imaynatataq munawaq Perú suyunchiq kananta, kaymanta chunka wata wichayman?</mat-label>
-          </div>
-          <app-record-audio #audio1></app-record-audio>
-        </div>
-  
-        <div class="col-lg-6" style="margin-bottom: 15px;">
-          <div class="col-sm-12 black">
-            <mat-label>¿Willakuwaqchu chunka rimayllapi chay yachasqaykita?</mat-label>
-          </div>
-          <app-record-audio #audio2></app-record-audio>
-        </div>
-  
-        <div class="col-lg-6">
-            <mat-form-field appearance="outline" class="col-sm-12">
-              <mat-label class="black">Categoría</mat-label>
-              <mat-select formControlName="categoria">
-                <mat-option *ngFor="let type of categoryList" [value]="type.id">
-                  {{type.nombre}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-        </div>
-  
-        <div class="col-sm-12" align="center" style="margin-top:20px">
-          <!-- <ng-content select="[previous]"></ng-content> -->
-          <button 
-          mat-raised-button 
-          class="btn-save" 
-          (click)="save()"
-          [disabled]="!form.valid 
+
+    </div>
+
+    <div class="row" style="margin-top: 12px;">
+      
+      <!-- valido para ambos -->
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="col-sm-12">
+          <mat-select formControlName="categoria" placeholder="Imaynata taqariwaq rimaynikita (kaytaqa atispalla)?">
+            <mat-option *ngFor="let type of categoryList" [value]="type.id">
+              {{type.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- valido para ambos -->
+      <div class="col-sm-12" align="center" style="margin-top:20px">
+        <button mat-raised-button class="btn-save" (click)="save()" [disabled]="!form.valid 
           || !this.audio1.recordRTC.blob
-          || !this.audio2.recordRTC.blob"
-          > <mat-icon>accessibility</mat-icon> Graba y haz escuchar tu voz</button>
-        </div>
+          || !this.audio2.recordRTC.blob">
+          <mat-icon>accessibility</mat-icon>
+          Rimaykuy hinaspataq uyariykuy rimasqaykita
+        </button>
       </div>
-<br>  
-</div>
+    </div>
+    <br>
+  </div>
 </form>
 
-<br>  
+<br>

@@ -113,7 +113,7 @@ export class NewGroupComponent implements OnInit {
   }
 
   getCategoryList() {
-    this.groupService.getCategoryList().subscribe(response => {
+    this.utilService.getCategoryList().subscribe(response => {
       this.categoryList = response;
     });
   }

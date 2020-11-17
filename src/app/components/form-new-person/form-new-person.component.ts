@@ -1,3 +1,5 @@
+import { languages } from './../../core/form.config';
+import { UtilService } from 'src/app/services/util.service';
 import { QuechuaPersonComponent } from './../quechua-person/quechua-person.component';
 import { NaturalPersonComponent } from './../natural-person/natural-person.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -11,7 +13,8 @@ export class FormNewPersonComponent implements OnInit {
   @ViewChild(NaturalPersonComponent) natural: NaturalPersonComponent;
   @ViewChild(QuechuaPersonComponent) quechua: QuechuaPersonComponent;
   indexStepper = 0;
-  constructor() { }
+  languages = languages;
+  constructor(public utilService: UtilService) { }
 
   ngOnInit(): void {
   }

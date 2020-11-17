@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-   url: 'https://201.234.116.22:8081'
+   url: 'https://procesoconstituyente.pe:8081'
   //  url: 'http://localhost:8081'
 };
 

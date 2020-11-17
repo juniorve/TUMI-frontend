@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class UtilService {
 
+    typeOfLanguage = 'cha';
+
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -15,7 +17,11 @@ export class UtilService {
     }
 
     getAgeList(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaGrupoEdad`);
+        return this.http.get(`${environment.url}/util/getListaGrupoEdad?pidioma=${this.typeOfLanguage}`);
+    }
+
+    getCategoryList(): Observable<any> {
+        return this.http.get(`${environment.url}/util/getListaCategoria?pidioma=${this.typeOfLanguage}`);
     }
 
     getDepatments(): Observable<any> {

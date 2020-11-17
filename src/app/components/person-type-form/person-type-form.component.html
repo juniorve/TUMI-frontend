@@ -12,7 +12,13 @@
                     <mat-radio-button color="primary" class="example-margin" value="1" style="
                     font-weight: 500;
                     font-size: 15px;
-                    margin-top:15px;">Persona Natural
+                    margin-top:15px;">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        Persona Natural
+                    </ng-container>
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        Sapan runa
+                    </ng-container>
                     </mat-radio-button>
                 </div>
 
@@ -23,7 +29,13 @@
                     <mat-radio-button color="primary" class="example-margin" value="2" style="
                     font-weight: 500;
                     font-size: 15px;
-                    margin-top:15px;">Grupo / Movimiento / Organización
+                    margin-top:15px;">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        Grupo / Movimiento / Organización
+                    </ng-container>
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        Pikunaq rantinta
+                    </ng-container>
                     </mat-radio-button>
                 </div>
             </mat-radio-group>

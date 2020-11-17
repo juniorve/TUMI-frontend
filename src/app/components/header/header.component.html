@@ -13,7 +13,12 @@
             </div>
             <div class="col-sm-12 header-info">
                 <label for="" style="color: white;">
-                    Plataforma al servicio de la ciudadanía para el proceso constituyente de los pueblos del Perú
+                    <ng-container *ngIf="utilService.typeOfLanguage==='spanish'">
+                        Plataforma al servicio de la ciudadanía para el proceso constituyente de los pueblos del Perú
+                    </ng-container>
+                    <ng-container *ngIf="utilService.typeOfLanguage==='chanka'">
+                        Kay plataforma kanqa llaqta runakunapa tapukuyninkun paskariq lliw kay huk musuq kamachikuy mama qillqa Perú suyunchikpaq awariypi.
+                    </ng-container>
                 </label>
             </div>
         </div>

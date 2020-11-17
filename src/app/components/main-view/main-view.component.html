@@ -1,11 +1,26 @@
 <div class="container-fluid" style="background: white; padding: 30px 40px; width: 98%;">
   <div class="row">
-    <div class="col-md-5 info">
-      Portal web al servicio de todas las peruanas y peruanos para construir una visión compartida del Perú y ser
-      coprotagonistas de la toma de decisiones en el proceso constituyente de los pueblos del Perú hacia una Nueva
-      Constitución.
+    <div class="col-md-6 info">
+      <p>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+          Portal web al servicio de todas las peruanas y peruanos para construir una visión compartida del Perú y ser
+          coprotagonistas de la toma de decisiones en el proceso constituyente de los pueblos del Perú hacia una Nueva
+          Constitución.
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          Kay portal wed kanqa lliw Perú suyu runamasikunapa kikillantaq mayqan runamasikunachus waq sumaq nirayta qawarinku Perú suyunchikpaq.
+        </ng-container>
+      </p>
+      <p>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+          Proceso constituyente: Es el camino en el cual se hace una propuesta constitucional de un nuevo régimen político a la población. Hablamos de proceso porque se trata de generar un espacio donde las ciudadanas y ciudadanos puedan participar en la elaboración de un nuevo contrato social entre el Estado y los pueblos del Perú a partir de sus necesidades y demandas a corto y mediano plazo respetando nuestro espacio y nuestra cultura. 
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          Musuq kamachikuy mama qillqaman puriy: kay puriypiqa riqsichikuchkan huk musuq kamachikuy mama qillqa suyunchikpa huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapa. rimarinchik kay musuq kamachikuy mama qillqamanta imaraykuchus llapallan runamasikuna warmi qari rimayninku chaninchasqa uyarisqa kananpa, chaywantaqa huk musuq kamachinakuyta ruwakunanpa kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Utqayllaman ruwakunanpaq, chayllaman huntakunanpaq kaykuna kanan lliw llaqtanchikkunata, kawsayninchikkunata hayninchaspa.
+        </ng-container>
+      </p>
     </div>
-    <div class="col-md-7 carousel-content">
+    <div class="col-md-6 carousel-content">
 
       <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -42,7 +57,14 @@
   </div>
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12" align="center">
-      <button mat-raised-button style="background-color: #a51e1f; color:white" (click)="showNewPerson()"> <mat-icon>person_add</mat-icon> Únete a esta iniciativa constituyente</button>
+      <button mat-raised-button style="background-color: #a51e1f; color:white" (click)="showNewPerson()"> <mat-icon>person_add</mat-icon> 
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+          Únete a esta iniciativa constituyente
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          Masachakamuy nuqaykuwan kay musuq ñan puriyman
+        </ng-container>
+      </button>
     </div>
    <!--  <div class="col-md-7 show-list" align="center">
       <button mat-raised-button class="concept"> <mat-icon>person_pin</mat-icon> Ver lista de conceptos constiuyentes</button>

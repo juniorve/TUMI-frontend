@@ -62,12 +62,13 @@ export class NaturalPersonComponent implements OnInit {
       longitud: [null], // revisar
       vision: [null, Validators.required],
       concepto: [null, Validators.required],
-      categoria: [null, Validators.required]
+      categoria: [null, Validators.required],
+      plugarproc: ['']
     });
   }
 
   getCategoryList() {
-    this.groupService.getCategoryList().subscribe(response => {
+    this.utilService.getCategoryList().subscribe(response => {
       console.log(response);
       this.categoryList = response;
     });

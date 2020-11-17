@@ -1,20 +1,37 @@
 export const messages = {
     grupoEdad: [
-        { type: 'required', message: 'Edad es obligatorio' },
-    ],
-    sexo: [
-        { type: 'required', message: 'Sexo es obligatorio' },
+        {
+            type: 'required',
+            messageChanka: 'hinallataq aswan kuraqkuna',
+            messageCollao: 'Edad es obligatorio'
+        },
     ],
     idioma: [
-        { type: 'required', message: 'Idioma es obligatorio' },
+        {
+            type: 'required',
+            messageChanka: 'Mama simi churanapuni kanqa',
+            messageCollao: 'Mama simi churanapuni kanqa'
+        },
     ],
     departamento: [
-        { type: 'required', message: 'Departamento es obligatorio' },
+        {
+            type: 'required',
+            messageChanka: 'Departamento es obligatorio',
+            messageCollao: ''
+        },
     ],
     provincia: [
-        { type: 'required', message: 'Provincia es obligatorio' },
+        {
+            type: 'required',
+            messageChanka: 'Provincia es obligatorio',
+            messageCollao: ''
+        },
     ],
     distrito: [
-        { type: 'required', message: 'Distrito es obligatorio' },
+        {
+            type: 'required',
+            messageChanka: 'Distrito es obligatorio',
+            messageCollao: ''
+        }
     ]
 };

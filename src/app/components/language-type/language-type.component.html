@@ -1,5 +1,4 @@
-<form class="container-fluid" style="background:white; padding: 30px;" [formGroup]="form"
-  (ngSubmit)="sendValue()">
+<form class="container-fluid" style="background:white; padding: 30px;" [formGroup]="form" (ngSubmit)="sendValue()">
   <div class="row">
     <div class="col-xs-6 col-sm-6 col-lg-5 col-xl-4 map">
       <img src="../../../assets/images/mapa.svg" alt="" class="img-map img-fluid">
@@ -8,21 +7,43 @@
       <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="idioma">
         <mat-radio-button style="font-weight: 400;
                     font-size: 15px;" color="primary" class="example-radio-button" value="1">
-          Español o Castellano
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Español o Castellano
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Español utaq Castellano
+          </ng-container>
         </mat-radio-button>
         <mat-radio-button style="font-weight: 400;
                     font-size: 15px;" color="primary" class="example-radio-button distant" value="2">
-          Quechua Chanca o Collao
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Quechua Chanka
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Quechua Chanka
+          </ng-container>
+        </mat-radio-button>
+        <mat-radio-button style="font-weight: 400;
+        font-size: 15px;" color="primary" class="example-radio-button distant" value="2">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Quechua Cusco Collao
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Quechua Cusco Collao
+          </ng-container>
         </mat-radio-button>
         <mat-radio-button style="font-weight: 400;
                     font-size: 15px;" color="primary" class="example-radio-button distant" value="3">
-          Bilingüe (Español/Idioma nativo)
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+            Bilingüe (Español/Idioma nativo)
+          </ng-container>
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+            Iskay simipi (Español/Mama Simi)
+          </ng-container>
         </mat-radio-button>
       </mat-radio-group>
       <ng-content select="[content-btn]"></ng-content>
     </div>
-    <!--  <div class="col-md-12 buttons" align="center">
-    </div> -->
   </div>
 </form>
 

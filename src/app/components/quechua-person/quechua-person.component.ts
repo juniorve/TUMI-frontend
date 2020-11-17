@@ -1,3 +1,4 @@
+import { languages } from './../../core/form.config';
 import { MatDialog } from '@angular/material/dialog';
 import { AudioService } from './../../services/audio.service';
 import { Router } from '@angular/router';
@@ -18,6 +19,7 @@ import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
 export class QuechuaPersonComponent implements OnInit {
   @ViewChild('audio1') audio1: RecordAudioComponent;
   @ViewChild('audio2') audio2: RecordAudioComponent;
+  languages = languages;
   ageList = [];
   listOfDepartments = [];
   listOfProvinces = [];
@@ -27,9 +29,8 @@ export class QuechuaPersonComponent implements OnInit {
   categoryList = [];
 
   constructor(
-    private translatorService: TranslatorService,
     private audioService: AudioService,
-    private utilService: UtilService,
+    public utilService: UtilService,
     private fb: FormBuilder,
     private router: Router,
     private groupService: GroupService,
@@ -51,19 +52,21 @@ export class QuechuaPersonComponent implements OnInit {
       grupoEdad: [null, Validators.required],
       sexo: [null, Validators.required],
       idioma: [null, Validators.required],
-      departamento: [null, Validators.required],
-      provincia: [null, Validators.required],
-      distrito: [null, Validators.required],
-      latitud: [null], // revisar
-      longitud: [null], // revisar
+      departamento: [null],
+      provincia: [null],
+      distrito: [null],
+      latitud: [null],
+      longitud: [null],
       vision: ['pendiente'],
       concepto: ['pendiente'],
-      categoria: [null, Validators.required]
+      categoria: [null, Validators.required],
+      plugarproc: [null]
+      // plugarproc: [null, Validators.required]
     });
   }
 
   getCategoryList() {
-    this.groupService.getCategoryList().subscribe(response => {
+    this.utilService.getCategoryList().subscribe(response => {
       console.log(response);
       this.categoryList = response;
     });

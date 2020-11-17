@@ -9,15 +9,36 @@
         (selectionChange)="indexStepper = $event.selectedIndex"
         >
             <mat-step [stepControl]="personTypeForm.form">
-                <ng-template matStepLabel>Selección de persona</ng-template>
+                <ng-template matStepLabel>
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        Selección de persona
+                    </ng-container>
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        Pi kaynin akllarinapaq
+                    </ng-container>
+                </ng-template>
             </mat-step>
             <ng-container *ngIf="personTypeForm.form.controls.type.value=='1'">
                 <!-- <mat-step [stepControl]="languageType.form"> -->
                 <mat-step>
-                    <ng-template matStepLabel>Selección de idioma</ng-template>
+                    <ng-template matStepLabel>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                            Selección de idioma
+                        </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                            Simita akllariy
+                        </ng-container>
+                    </ng-template>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Registro de persona</ng-template>
+                    <ng-template matStepLabel>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                            Registro de persona
+                        </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                            Runakunaq qilqakunanpaq
+                        </ng-container>
+                    </ng-template>
                 </mat-step>
             </ng-container>
 
@@ -37,7 +58,13 @@
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
                     <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
                     (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
-                    <mat-icon>navigate_next</mat-icon> Siguiente
+                    <mat-icon>navigate_next</mat-icon> 
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        Siguiente
+                    </ng-container>
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        Qatipay
+                    </ng-container>
                 </button>
                 </div>
             </app-person-type-form>
@@ -49,12 +76,24 @@
                 >
                     <div class="col-sm-12" content-btn>
                         <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
-                            <mat-icon>navigate_before</mat-icon> Anterior
+                            <mat-icon>navigate_before</mat-icon> 
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                                Anterior
+                            </ng-container>
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                                Qipaman
+                            </ng-container>
                         </button>
                         <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
                             (click)="stepper.next()"
                             [disabled]="!languageType.form.valid">
-                            <mat-icon>navigate_next</mat-icon> Siguiente
+                            <mat-icon>navigate_next</mat-icon> 
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                                Siguiente
+                            </ng-container>
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                                Qatipay
+                            </ng-container>
                         </button>
                     </div>
                 </app-language-type>

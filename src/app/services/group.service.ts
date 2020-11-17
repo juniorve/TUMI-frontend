@@ -1,3 +1,4 @@
+import { UtilService } from 'src/app/services/util.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,7 @@ export class GroupService {
     });
 
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private utilService: UtilService) { }
 
     saveFile(request: any): Observable<any> {
         const headerFile: HttpHeaders = new HttpHeaders();
@@ -24,15 +25,11 @@ export class GroupService {
     }
 
     getSectors(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaSector`);
+        return this.http.get(`${environment.url}/util/getListaSector?pidioma=${this.utilService.typeOfLanguage}`);
     }
 
     getGroupType(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaTipoGrupo`);
-    }
-
-    getCategoryList(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaCategoria`);
+        return this.http.get(`${environment.url}/util/getListaTipoGrupo?pidioma=${this.utilService.typeOfLanguage}`);
     }
 
     saveGroup(request): Observable<any> {

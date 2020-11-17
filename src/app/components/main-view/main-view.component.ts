@@ -1,15 +1,19 @@
+import { UtilService } from 'src/app/services/util.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { languages } from 'src/app/core/form.config';
 declare var $: any;
-declare var jQuery: any;
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  languages = languages;
+  constructor(
+    private router: Router,
+    public utilService: UtilService
+  ) { }
 
   ngOnInit(): void {
   }
