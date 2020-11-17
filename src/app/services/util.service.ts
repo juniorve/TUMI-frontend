@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UtilService {
 
-    typeOfLanguage = 'cha';
+    typeOfLanguage = 'esp';
 
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 

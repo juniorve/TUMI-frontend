@@ -16,7 +16,8 @@
                     <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                         Persona Natural
                     </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                    || utilService.typeOfLanguage===languages.collao.value">
                         Sapan runa
                     </ng-container>
                     </mat-radio-button>
@@ -33,7 +34,8 @@
                     <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                         Grupo / Movimiento / Organización
                     </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                    || utilService.typeOfLanguage===languages.collao.value">
                         Pikunaq rantinta
                     </ng-container>
                     </mat-radio-button>

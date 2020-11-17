@@ -13,7 +13,8 @@
                     <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                         Selección de persona
                     </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
+                    || utilService.typeOfLanguage===languages.collao.value">
                         Pi kaynin akllarinapaq
                     </ng-container>
                 </ng-template>
@@ -25,8 +26,9 @@
                         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                             Selección de idioma
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
-                            Simita akllariy
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
+                        || utilService.typeOfLanguage===languages.collao.value">
+                            Simita akllariy 
                         </ng-container>
                     </ng-template>
                 </mat-step>

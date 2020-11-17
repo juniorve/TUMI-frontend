@@ -8,15 +8,37 @@
           Constitución.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
-          Kay portal wed kanqa lliw Perú suyu runamasikunapa kikillantaq mayqan runamasikunachus waq sumaq nirayta qawarinku Perú suyunchikpaq.
+          Kay portal wed kanqa lliw Perú suyu runamasikunapa kikillantaq mayqan runamasikunachus waq sumaq nirayta
+          qawarinku Perú suyunchikpaq.
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+          Kay portal wed kanqa lliw Perú suyu runamasikunapaq kikillantaq mayqan runamasikunachus waq sumaq nirayta
+          qhawarinku Perú suyunchispaq.
         </ng-container>
       </p>
       <p>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
-          Proceso constituyente: Es el camino en el cual se hace una propuesta constitucional de un nuevo régimen político a la población. Hablamos de proceso porque se trata de generar un espacio donde las ciudadanas y ciudadanos puedan participar en la elaboración de un nuevo contrato social entre el Estado y los pueblos del Perú a partir de sus necesidades y demandas a corto y mediano plazo respetando nuestro espacio y nuestra cultura. 
+          Proceso constituyente: Es el camino en el cual se hace una propuesta constitucional de un nuevo régimen
+          político a la población. Hablamos de proceso porque se trata de generar un espacio donde las ciudadanas y
+          ciudadanos puedan participar en la elaboración de un nuevo contrato social entre el Estado y los pueblos del
+          Perú a partir de sus necesidades y demandas a corto y mediano plazo respetando nuestro espacio y nuestra
+          cultura.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
-          Musuq kamachikuy mama qillqaman puriy: kay puriypiqa riqsichikuchkan huk musuq kamachikuy mama qillqa suyunchikpa huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapa. rimarinchik kay musuq kamachikuy mama qillqamanta imaraykuchus llapallan runamasikuna warmi qari rimayninku chaninchasqa uyarisqa kananpa, chaywantaqa huk musuq kamachinakuyta ruwakunanpa kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Utqayllaman ruwakunanpaq, chayllaman huntakunanpaq kaykuna kanan lliw llaqtanchikkunata, kawsayninchikkunata hayninchaspa.
+          Musuq kamachikuy mama qillqaman puriy: kay puriypiqa riqsichikuchkan huk musuq kamachikuy mama qillqa
+          suyunchikpa huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapa. rimarinchik kay musuq kamachikuy mama
+          qillqamanta imaraykuchus llapallan runamasikuna warmi qari rimayninku chaninchasqa uyarisqa kananpa,
+          chaywantaqa huk musuq kamachinakuyta ruwakunanpa kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan
+          kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Utqayllaman ruwakunanpaq,
+          chayllaman huntakunanpaq kaykuna kanan lliw llaqtanchikkunata, kawsayninchikkunata hayninchaspa.
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+          Musuq kamachikuy mama qhillqaman puriy: kay puriypiqa riqsichikushan huk musuq kamachikuy mama qhillqa
+          suyunchispaq huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapaq. rimarinchis kay musuq kamachikuy
+          mama qhillqamanta imaraykuchus llapallan runamasikuna warmi qhari rimayninku chaninchasqa uyarisqa kananpaq,
+          chaywantaq huk musuq kamachinakuyta ruwakunanpaq kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan
+          kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Usqhayllaman ruwakunanpaq,
+          chayllaman hunt’akunanpaq kaykuna kanan lliw llaqtanchiskunata, kawsayninchiskunata hayninchaspa.
         </ng-container>
       </p>
     </div>
@@ -53,22 +75,24 @@
 
     </div>
 
-    
+
   </div>
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12" align="center">
-      <button mat-raised-button style="background-color: #a51e1f; color:white" (click)="showNewPerson()"> <mat-icon>person_add</mat-icon> 
+      <button mat-raised-button style="background-color: #a51e1f; color:white" (click)="showNewPerson()">
+        <mat-icon>person_add</mat-icon>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
           Únete a esta iniciativa constituyente
         </ng-container>
-        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+        || utilService.typeOfLanguage===languages.collao.value
+        ">
           Masachakamuy nuqaykuwan kay musuq ñan puriyman
         </ng-container>
       </button>
     </div>
-   <!--  <div class="col-md-7 show-list" align="center">
+    <!--  <div class="col-md-7 show-list" align="center">
       <button mat-raised-button class="concept"> <mat-icon>person_pin</mat-icon> Ver lista de conceptos constiuyentes</button>
     </div> -->
   </div>
 </div>
-

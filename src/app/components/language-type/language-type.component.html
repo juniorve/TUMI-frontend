@@ -10,7 +10,8 @@
           <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
             Español o Castellano
           </ng-container>
-          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.collao.value">
             Español utaq Castellano
           </ng-container>
         </mat-radio-button>
@@ -19,7 +20,8 @@
           <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
             Quechua Chanka
           </ng-container>
-          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.collao.value">
             Quechua Chanka
           </ng-container>
         </mat-radio-button>
@@ -28,7 +30,8 @@
           <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
             Quechua Cusco Collao
           </ng-container>
-          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.collao.value">
             Quechua Cusco Collao
           </ng-container>
         </mat-radio-button>
@@ -37,7 +40,8 @@
           <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
             Bilingüe (Español/Idioma nativo)
           </ng-container>
-          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.collao.value">
             Iskay simipi (Español/Mama Simi)
           </ng-container>
         </mat-radio-button>
