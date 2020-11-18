@@ -28,12 +28,9 @@ export class RecordRTCService {
    */
   toggleRecord() {
     if (this.recordingTimer) {
-      console.log('a');
       this.stopRTC();
     } else {
-      console.log('b');
       navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        console.log(stream);
         this.startRTC(stream);
       }).catch(error => {
         alert(error);
@@ -67,7 +64,6 @@ export class RecordRTCService {
       //NOTE: upload on server
       this.blob = blob;
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-      console.log(blob, this.blobUrl);
       this.startCountdown(true, true);
     });
   }
@@ -78,7 +74,6 @@ export class RecordRTCService {
    * Maximum Recoding time `10`Minutes @see minutes == 10
    */
   startCountdown(clearTime = false, showTime?: boolean) {
-    console.log('aaaa');
     if (clearTime) {
       this.clearStream(this.mediaRecordStream);
       this.recordWebRTC = null;

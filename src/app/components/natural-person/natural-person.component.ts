@@ -1,3 +1,4 @@
+import { languages } from 'src/app/core/form.config';
 import { DialogSaveComponent } from './../dialog-save/dialog-save.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GroupService } from 'src/app/services/group.service';
@@ -18,7 +19,7 @@ export class NaturalPersonComponent implements OnInit {
   listOfProvinces = [];
   listOfDistricts = [];
   ageList = [];
-
+  languages = languages;
   categoryList = [];
   form: FormGroup;
 
@@ -27,7 +28,6 @@ export class NaturalPersonComponent implements OnInit {
     private dialog: MatDialog,
     private utilService: UtilService,
     private router: Router,
-    private groupService: GroupService,
     private fb: FormBuilder) {
     this.newForm();
   }
@@ -41,7 +41,6 @@ export class NaturalPersonComponent implements OnInit {
 
   showLocation() {
     this.utilService.getLocation().subscribe(response => {
-      console.log(response);
       if (response) {
         this.form.controls.latitud.setValue(response.latitude);
         this.form.controls.longitud.setValue(response.longitude);
@@ -68,8 +67,7 @@ export class NaturalPersonComponent implements OnInit {
   }
 
   getCategoryList() {
-    this.utilService.getCategoryList().subscribe(response => {
-      console.log(response);
+    this.utilService.getCategoryList(this.languages.spanish.value).subscribe(response => {
       this.categoryList = response;
     });
   }
@@ -80,17 +78,13 @@ export class NaturalPersonComponent implements OnInit {
         this.form.controls.latitud.setValue(position.coords.longitude);
         this.form.controls.longitud.setValue(position.coords.latitude);
       });
-    } else {
-      console.log('No support for geolocation');
     }
   }
 
   savePerson() {
     this.dialog.open(DialogSaveComponent).afterClosed().subscribe(save => {
-      console.log(save);
       if (save) {
         this.utilService.saveQuechuaPerson(this.form.value).subscribe(response => {
-          console.log(response);
           showNotificationMini('Persona registrada exitosamente!', 'success');
           this.router.navigate(['/principal']);
         });
@@ -99,15 +93,13 @@ export class NaturalPersonComponent implements OnInit {
   }
 
   getAgeList() {
-    this.utilService.getAgeList().subscribe(response => {
-      console.log(response);
+    this.utilService.getAgeList(this.languages.spanish.value).subscribe(response => {
       this.ageList = response;
     });
   }
 
   getDepartments() {
     this.utilService.getDepatments().subscribe(response => {
-      console.log(response);
       this.listOfDepartments = response;
     });
   }
@@ -124,7 +116,6 @@ export class NaturalPersonComponent implements OnInit {
   getDistricts() {
     this.utilService.getDistricts(this.form.controls.departamento.value, this.form.controls.provincia.value)
       .subscribe(response => {
-        console.log(response);
         this.listOfDistricts = response;
       });
   }

@@ -15,17 +15,17 @@
                 <!-- </div> -->
                 <img style="transform: scaleY(0.8); max-width: 200px;" src="../assets/images/texto3.png" alt=""
                     class="img-unmsm">
-                <mat-form-field appearance="outline" class="" style="float: right;">
-                    <mat-label>
-                        Seleccione idioma
-                    </mat-label>
-                    <mat-select [formControl]="idioma" (selectionChange)="changeLanguage()">
-                        <mat-option *ngFor="let language of languagesList" [value]="language.value">
-                            {{language.text}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
+                    <mat-form-field class="language">
+                        <mat-label>
+                            Seleccione idioma
+                        </mat-label>
+                        <mat-select [formControl]="idioma" (selectionChange)="changeLanguage()">
+                            <mat-option class="not-empty-select" *ngFor="let language of languagesList" [value]="language.value">
+                                {{language.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
             </div>
             <div class="col-sm-12 header-info">
                 <label for="" style="color: white;">

@@ -26,7 +26,6 @@ export class LanguageTypeComponent implements OnInit {
   }
 
   sendValue() {
-    console.log(this.form.value);
     if (this.form.controls.idioma.value === '1' || this.form.controls.idioma.value === '3') {
       this.router.navigate(['persona-natural']);
     }

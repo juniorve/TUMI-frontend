@@ -33,18 +33,26 @@ export class QuechuaPersonComponent implements OnInit {
     public utilService: UtilService,
     private fb: FormBuilder,
     private router: Router,
-    private groupService: GroupService,
     private dialog: MatDialog
   ) {
     this.newForm();
   }
 
   ngOnInit(): void {
-    this.getDepartments();
-    this.getAgeList();
-    this.getCategoryList();
+    this.utilService.language$.subscribe(value => {
+      if (this.utilService.typeOfLanguage !== languages.spanish.value) {
+        this.getOptions(null);
+      }
+    });
+    this.getOptions(null);
     this.showLocation();
     this.messagesValidations = messages;
+  }
+
+  getOptions(language) {
+    console.log('quechuaaaaaaaa');
+    this.getAgeList(language);
+    this.getCategoryList(language);
   }
 
   newForm() {
@@ -60,21 +68,18 @@ export class QuechuaPersonComponent implements OnInit {
       vision: ['pendiente'],
       concepto: ['pendiente'],
       categoria: [''],
-      lugarproc: [''] // ES OBLIGATORIO?
-      // lugarproc: [null, Validators.required]
+      lugarproc: ['', Validators.required]
     });
   }
 
-  getCategoryList() {
-    this.utilService.getCategoryList().subscribe(response => {
-      console.log(response);
+  getCategoryList(language) {
+    this.utilService.getCategoryList(language).subscribe(response => {
       this.categoryList = response;
     });
   }
 
   showLocation() {
     this.utilService.getLocation().subscribe(response => {
-      console.log(response);
       if (response) {
         this.form.controls.latitud.setValue(response.latitude);
         this.form.controls.longitud.setValue(response.longitude);
@@ -88,41 +93,13 @@ export class QuechuaPersonComponent implements OnInit {
         this.form.controls.latitud.setValue(position.coords.longitude);
         this.form.controls.longitud.setValue(position.coords.latitude);
       });
-    } else {
-      console.log('No support for geolocation');
     }
   }
 
-  getAgeList() {
-    this.utilService.getAgeList().subscribe(response => {
-      console.log(response);
+  getAgeList(language) {
+    this.utilService.getAgeList(language).subscribe(response => {
       this.ageList = response;
     });
-  }
-
-  getDepartments() {
-    this.utilService.getDepatments().subscribe(response => {
-      console.log(response);
-      this.listOfDepartments = response;
-    });
-  }
-
-  getProvinces() {
-    this.utilService.getProvinces(this.form.controls.departamento.value)
-      .subscribe(response => {
-        console.log(response);
-        this.listOfProvinces = response;
-        this.form.controls.provincia.setValue(null);
-        this.form.controls.distrito.setValue(null);
-      });
-  }
-
-  getDistricts() {
-    this.utilService.getDistricts(this.form.controls.departamento.value, this.form.controls.provincia.value)
-      .subscribe(response => {
-        console.log(response);
-        this.listOfDistricts = response;
-      });
   }
 
   save() {

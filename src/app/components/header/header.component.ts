@@ -21,5 +21,6 @@ export class HeaderComponent implements OnInit {
 
   changeLanguage(){
     this.utilService.typeOfLanguage = this.idioma.value;
+    this.utilService.emitEvent(true);
   }
 }

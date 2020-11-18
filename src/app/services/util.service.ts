@@ -1,12 +1,15 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UtilService {
+
+    private languageSource = new BehaviorSubject<boolean>(false);
+    public language$ = this.languageSource.asObservable();
 
     typeOfLanguage = 'esp';
 
@@ -16,12 +19,16 @@ export class UtilService {
     constructor(private http: HttpClient) {
     }
 
-    getAgeList(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaGrupoEdad?pidioma=${this.typeOfLanguage}`);
+    emitEvent(change) {
+        this.languageSource.next(change);
     }
 
-    getCategoryList(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaCategoria?pidioma=${this.typeOfLanguage}`);
+    getAgeList(language = null): Observable<any> {
+        return this.http.get(`${environment.url}/util/getListaGrupoEdad?pidioma=${!language ? this.typeOfLanguage : language}`);
+    }
+
+    getCategoryList(language = null): Observable<any> {
+        return this.http.get(`${environment.url}/util/getListaCategoria?pidioma=${!language ? this.typeOfLanguage : language}`);
     }
 
     getDepatments(): Observable<any> {

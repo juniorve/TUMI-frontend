@@ -28,7 +28,7 @@
     }
 }
 
-@media(min-width:592px) and (max-width:968px){
+@media(min-width:592px) and (max-width:984px){
     .spanish{
         height: 156px;
     }
@@ -51,9 +51,8 @@
 .header-content{
     box-shadow: 2px 2px 2px 2px silver;
     margin-bottom: 15px;
-    // background: #5c81a1 !important;
-     background: #970001;
-    //background:#5096b7;
+    //  background: white;
+    background: #970001;
 }
 
 .header-info{
@@ -76,7 +75,25 @@
     }
 }
 
-
-::ng-deep mat-form-field {
-    color: yellow !important;
+ :host ::ng-deep  .mat-form-field-label{
+      color: white !important;
   }
+
+  
+ :host ::ng-deep   .mat-select-value{
+    color: white !important;
+}
+
+
+.language{
+    // float: right;
+    position: absolute;
+    right: 0;
+    margin-top: 15px;
+    width: 110px;
+}
+
+.not-empty-select.mat-selected {
+    color: black !important;
+  }
+ 

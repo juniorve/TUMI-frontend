@@ -3,7 +3,7 @@ export const messages = {
         {
             type: 'required',
             messageChanka: 'hinallataq aswan kuraqkuna',
-            messageCollao: 'Edad es obligatorio'
+            messageCollao: 'hinallataq aswan kuraqkuna'
         },
     ],
     idioma: [

@@ -1,13 +1,7 @@
 <div class="container-fluid">
     <div class="row">
-        <mat-vertical-stepper 
-        [ngClass]="{'first': indexStepper==0}"
-        #stepper 
-        class="col-md-4 col-lg-3 vertical-step"  
-        [linear]="true"
-        [selectedIndex]="indexStepper"
-        (selectionChange)="indexStepper = $event.selectedIndex"
-        >
+        <mat-vertical-stepper [ngClass]="{'first': indexStepper==0}" #stepper class="col-md-4 col-lg-3 vertical-step"
+            [linear]="true" [selectedIndex]="indexStepper" (selectionChange)="indexStepper = $event.selectedIndex">
             <mat-step [stepControl]="personTypeForm.form">
                 <ng-template matStepLabel>
                     <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
@@ -28,7 +22,7 @@
                         </ng-container>
                         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
                         || utilService.typeOfLanguage===languages.collao.value">
-                            Simita akllariy 
+                            Simita akllariy
                         </ng-container>
                     </ng-template>
                 </mat-step>
@@ -50,7 +44,7 @@
             <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">
                 <mat-step>
                     <ng-template matStepLabel>
-                            Registro de grupo
+                        Registro de grupo
                     </ng-template>
                 </mat-step>
                 <!-- <app-new-group></app-new-group> -->
@@ -58,33 +52,28 @@
         </mat-vertical-stepper>
 
         <div class="col-md-8 col-lg-9">
-            <app-person-type-form 
-            #personTypeForm
-            [hidden]="indexStepper!=0"
-            >
+            <app-person-type-form #personTypeForm [hidden]="indexStepper!=0">
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
                     <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
-                    (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
-                    <mat-icon>navigate_next</mat-icon> 
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
-                        Siguiente
-                    </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                        (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
+                        <mat-icon>navigate_next</mat-icon>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                            Siguiente
+                        </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
                     || utilService.typeOfLanguage===languages.collao.value">
-                        Qatipay
-                    </ng-container>
-                </button>
+                            Qatipay
+                        </ng-container>
+                    </button>
                 </div>
             </app-person-type-form>
-    
+
             <ng-container *ngIf="personTypeForm.form.controls.type.value=='1'">
-                <app-language-type 
-                #languageType
-                [hidden]="indexStepper!=1"
-                >
+                <app-language-type #languageType [hidden]="indexStepper!=1">
                     <div class="col-sm-12" content-btn>
-                        <button style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
-                            <mat-icon>navigate_before</mat-icon> 
+                        <button style="border: 1px solid black;" mat-flat-button type="button"
+                            (click)="stepper.previous()">
+                            <mat-icon>navigate_before</mat-icon>
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                                 Anterior
                             </ng-container>
@@ -96,9 +85,8 @@
                             </ng-container>
                         </button>
                         <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
-                            (click)="stepper.next()"
-                            [disabled]="!languageType.form.valid">
-                            <mat-icon>navigate_next</mat-icon> 
+                            (click)="stepper.next()" [disabled]="!languageType.form.valid">
+                            <mat-icon>navigate_next</mat-icon>
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                                 Siguiente
                             </ng-container>
@@ -109,17 +97,13 @@
                         </button>
                     </div>
                 </app-language-type>
-    
-                <app-natural-person 
-                [hidden]="indexStepper!=2"
-                *ngIf="languageType.form.controls.idioma.value==='1'
+
+                <app-natural-person [hidden]="indexStepper!=2" *ngIf="languageType.form.controls.idioma.value==='1'
                       || languageType.form.controls.idioma.value==='4'">
                 </app-natural-person>
-                <app-quechua-person
-                [hidden]="indexStepper!=2"
-                *ngIf="languageType.form.controls.idioma.value==='2' || languageType.form.controls.idioma.value==='3'"
-                >
-                 <!--    <button previous style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
+                <app-quechua-person [hidden]="indexStepper!=2"
+                    *ngIf="languageType.form.controls.idioma.value==='2' || languageType.form.controls.idioma.value==='3'">
+                    <!--    <button previous style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
                         <mat-icon>navigate_before</mat-icon> Anterior
                     </button> -->
                 </app-quechua-person>

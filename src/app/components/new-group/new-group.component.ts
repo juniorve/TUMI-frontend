@@ -50,14 +50,18 @@ export class NewGroupComponent implements OnInit {
   }
   ngOnInit(): void {
     this.messagesValidations = messages;
-    this.getSectors();
-    this.getGroupType();
-    this.getCategoryList();
-    // this.getLocation();
+    this.utilService.language$.subscribe(value => {
+      this.getOptions();
+    });
+    this.getOptions();
     this.showLocation();
   }
 
-
+  getOptions() {
+    this.getSectors();
+    this.getGroupType();
+    this.getCategoryList();
+  }
   showLocation() {
     this.utilService.getLocation().subscribe(response => {
       if (response) {
@@ -77,14 +81,12 @@ export class NewGroupComponent implements OnInit {
         error => {
           this.showError(error);
         });
-    } else {
-      console.log('No support for geolocation');
-    }
+    }  
   }
 
   showError(error) {
     this.utilService.getLocation().subscribe(response => {
-      console.log(response);
+     // console.log(response);
     });
     switch (error.code) {
       case error.PERMISSION_DENIED:
