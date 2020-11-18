@@ -10,3 +10,18 @@ export const languages = {
     }
 };
 
+export const languagesList = [
+    {
+        text: 'Español',
+        value: 'esp'
+    },
+    {
+        text: 'Chanka',
+        value: 'cha'
+    },
+    {
+        text: 'Cusco Collao',
+        value: 'col'
+    }
+]
+

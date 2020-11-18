@@ -4,7 +4,8 @@
     font-size: 16px;
     text-align: justify;
     font-weight: 400;
-    color: #03457c;
+    font-family: serif;
+    // color: #03457c;
 }
 
 .carousel-indicators li {
@@ -37,5 +38,15 @@ button{
 
     .show-list{
         margin-top: 10px;
+    }
+}
+
+@media screen and (max-width:991px){
+    .info{
+        margin-bottom: 20px;
+    }
+
+    .carousel-content{
+        padding: 0;
     }
 }

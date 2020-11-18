@@ -63,7 +63,7 @@ export class NaturalPersonComponent implements OnInit {
       vision: [null, Validators.required],
       concepto: [null, Validators.required],
       categoria: [null, Validators.required],
-      plugarproc: ['']
+      lugarproc: ['']
     });
   }
 

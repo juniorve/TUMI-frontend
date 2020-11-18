@@ -60,8 +60,8 @@ export class QuechuaPersonComponent implements OnInit {
       vision: ['pendiente'],
       concepto: ['pendiente'],
       categoria: [null, Validators.required],
-      lugarproc: [null]
-      // plugarproc: [null, Validators.required]
+      lugarproc: [''] // ES OBLIGATORIO?
+      // lugarproc: [null, Validators.required]
     });
   }
 

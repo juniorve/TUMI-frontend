@@ -1,6 +1,7 @@
-import { languages } from './../../core/form.config';
+import { languagesList, languages } from './../../core/form.config';
 import { UtilService } from 'src/app/services/util.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   languages = languages;
-  constructor(public utilService: UtilService) { }
+  languagesList = languagesList;
+  idioma: FormControl = new FormControl();
+  constructor(public utilService: UtilService) {
+    this.idioma.setValue('esp');
+  }
 
   ngOnInit(): void {
   }
 
+  changeLanguage(){
+    this.utilService.typeOfLanguage = this.idioma.value;
+  }
 }

@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-sm-12">
         <h1 class="title">
-          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+          || utilService.typeOfLanguage===languages.spanish.value">
             Runakunaq qilqakunanpaq
           </ng-container>
           <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
@@ -40,7 +41,8 @@
           <mat-label style="margin-right: 10px; font-weight: 500;">Iman kanki: </mat-label>
           <mat-radio-group aria-label="Select an option" formControlName="sexo">
             <mat-radio-button color="primary" value="hombre">
-              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+              || utilService.typeOfLanguage===languages.spanish.value">
                 Qari
               </ng-container>
               <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
@@ -73,11 +75,11 @@
         <div class="col-sm-12 grid">
           <mat-label class="black">Maymanta kanki?</mat-label>
           <mat-form-field class="example-form-field" appearance="outline">
-            <input formControlName="plugarproc" matInput type="text" autocomplete="off">
-            <!--  <mat-error *ngFor="let validation of messagesValidations.plugarproc">
+            <input formControlName="lugarproc" matInput type="text" autocomplete="off">
+            <!--  <mat-error *ngFor="let validation of messagesValidations.lugarproc">
               <mat-error *ngIf="
-                    form.controls['plugarproc'].hasError(validation.type) &&
-                    (form.controls['plugarproc'].dirty || form.controls['plugarproc'].touched)
+                    form.controls['lugarproc'].hasError(validation.type) &&
+                    (form.controls['lugarproc'].dirty || form.controls['lugarproc'].touched)
                   ">
                 {{ utilService.typeOfLanguage===languages.chanka.value? 
                     validation.messageChanka: validation.messageCollao }}
@@ -87,7 +89,8 @@
         </div>
 
         <div class="col-sm-12 audio-info">
-              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+              || utilService.typeOfLanguage===languages.spanish.value">
                 <p>
                  <strong>1. Qallarinapaq:</strong> Hukllata ñit’iykuy, micro patachapi (<span class="puka">puka</span>) kachariy rimay
                   qallarinapaq
@@ -106,14 +109,21 @@
                 </p>
               </ng-container>
           <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
-            1. Qallarinapaq: hukllata ñit’iykuy, micro patachapi (<span class="puka">puka</span>) kachariy rimay
-            qallarinapaq
-            2. Qatipanapaq: Rimaspalla kutichiy chay tapukuykunata
-            3. Tukunapaq: huktawan ñit’iykuy kasqan micro patachapi (<span class="puka">puka</span>) chaymantataq kachariy
-            rimasqayki
-            waqaychakunanpaq.
-            Wakamanta pichaspa rimasqaykita waqaychayta munanki chayqa, wakmanta qatipay kay 1, 2 hinallataq 3
-            taskiykunata.
+            <p>
+              1. Qallarinapaq: hukllata ñit’iykuy, micro patachapi (<span class="puka">puka</span>) kachariy rimay
+              qallarinapaq
+            </p>
+            <p>
+              2. Qatipanapaq: Rimaspalla kutichiy chay tapukuykunata
+            </p>
+            <p>
+              3. Tukunapaq: huktawan ñit’iykuy kasqan micro patachapi (<span class="puka">puka</span>) chaymantataq kachariy
+              rimasqayki waqaychakunanpaq.
+            </p>
+            <p>
+              Wakamanta pichaspa rimasqaykita waqaychayta munanki chayqa, wakmanta qatipay kay 1, 2 hinallataq 3
+              taskiykunata.
+            </p>
           </ng-container>
         </div>
 
@@ -124,7 +134,8 @@
         <div class="col-lg-12" style="margin-top: 15px;">
           <div class="col-sm-12 black">
             <mat-label>
-              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+              <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+              || utilService.typeOfLanguage===languages.spanish.value">
                 Imaynatan munawaq qawariyta Perú suyuta kaymanta chunka wata hamuqman(willariy)? Kaypi rimariy 3
                 tuytullata.
               </ng-container>

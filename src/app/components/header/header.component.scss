@@ -7,25 +7,46 @@
     width: auto;
 }
 
-.img-logo{
-    height: 136px;
+.spanish, .chanka, .collao{
     width: 100%;
     cursor: pointer;
     border: none;
     outline:none;
 }
 
+.spanish{
+    height: 136px;
+}
+
+.chanka, .collao{
+    height: 156px;
+}
+
 @media(min-width:576px) and (max-width :592px){
-    .img-logo{
+    .spanish{
         height: 176px;
     }
 }
 
 @media(min-width:592px) and (max-width:968px){
-    .img-logo{
+    .spanish{
         height: 156px;
     }
 }
+
+@media(min-width:576px) and (max-width:680px){
+    .chanka, .collao{
+        height: 196px;
+    }
+}
+
+
+@media(min-width:681px) and (max-width:774px){
+    .chanka, .collao{
+        height: 176px;
+    }
+}
+
 
 .header-content{
     box-shadow: 2px 2px 2px 2px silver;

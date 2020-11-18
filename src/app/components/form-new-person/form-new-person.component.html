@@ -103,7 +103,7 @@
                                 Siguiente
                             </ng-container>
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
-                            || utilService.typeOfLanguage===languages.chanka.value">
+                            || utilService.typeOfLanguage===languages.collao.value">
                                 Qatipay
                             </ng-container>
                         </button>
@@ -113,11 +113,11 @@
                 <app-natural-person 
                 [hidden]="indexStepper!=2"
                 *ngIf="languageType.form.controls.idioma.value==='1'
-                      || languageType.form.controls.idioma.value==='3'">
+                      || languageType.form.controls.idioma.value==='4'">
                 </app-natural-person>
                 <app-quechua-person
                 [hidden]="indexStepper!=2"
-                *ngIf="languageType.form.controls.idioma.value==='2'"
+                *ngIf="languageType.form.controls.idioma.value==='2' || languageType.form.controls.idioma.value==='3'"
                 >
                  <!--    <button previous style="border: 1px solid black;" mat-flat-button type="button" (click)="stepper.previous()">
                         <mat-icon>navigate_before</mat-icon> Anterior
@@ -125,7 +125,7 @@
                 </app-quechua-person>
             </ng-container>
 
-            <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">
+            <ng-container *ngIf="personTypeForm.form.controls.type.value==='2'">
                 <app-new-group [hidden]="indexStepper!=1"></app-new-group>
             </ng-container>
         </div>
