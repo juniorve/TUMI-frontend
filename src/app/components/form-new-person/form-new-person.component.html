@@ -40,13 +40,18 @@
                         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
                             Runakunaq qilqakunanpaq
                         </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                            Runakunaq qhilqakunanpaq
+                        </ng-container>
                     </ng-template>
                 </mat-step>
             </ng-container>
 
             <ng-container *ngIf="personTypeForm.form.controls.type.value=='2'">
                 <mat-step>
-                    <ng-template matStepLabel>Registro de grupo</ng-template>
+                    <ng-template matStepLabel>
+                            Registro de grupo
+                    </ng-template>
                 </mat-step>
                 <!-- <app-new-group></app-new-group> -->
             </ng-container>
@@ -64,7 +69,8 @@
                     <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                         Siguiente
                     </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                    || utilService.typeOfLanguage===languages.collao.value">
                         Qatipay
                     </ng-container>
                 </button>
@@ -85,6 +91,9 @@
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
                                 Qipaman
                             </ng-container>
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                                Qhipaman
+                            </ng-container>
                         </button>
                         <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
                             (click)="stepper.next()"
@@ -93,7 +102,8 @@
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                                 Siguiente
                             </ng-container>
-                            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                            <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                            || utilService.typeOfLanguage===languages.chanka.value">
                                 Qatipay
                             </ng-container>
                         </button>

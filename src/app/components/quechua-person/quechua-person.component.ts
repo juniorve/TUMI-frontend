@@ -52,15 +52,15 @@ export class QuechuaPersonComponent implements OnInit {
       grupoEdad: [null, Validators.required],
       sexo: [null, Validators.required],
       idioma: [null, Validators.required],
-      departamento: [null],
-      provincia: [null],
-      distrito: [null],
+      departamento: [''],
+      provincia: [''],
+      distrito: [''],
       latitud: [null],
       longitud: [null],
       vision: ['pendiente'],
       concepto: ['pendiente'],
       categoria: [null, Validators.required],
-      plugarproc: [null]
+      lugarproc: [null]
       // plugarproc: [null, Validators.required]
     });
   }
