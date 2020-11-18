@@ -3,30 +3,29 @@
         <div class="col-sm-3 col-md-2 logo-content" style="width: 150px; height: 100%;">
             <!--  <img src="../assets/images/logog.png" [routerLink]="['/principal']" alt=""  
             class="img-logo img-fluid"> -->
-            <img src="../assets/images/logod.png" [routerLink]="['/principal']" alt="" 
-            class="img-logo img-fluid"
-            [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            <img src="../assets/images/logod.png" [routerLink]="['/principal']" alt="" class="img-logo img-fluid"
+                [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
             'chanka': utilService.typeOfLanguage===languages.chanka.value,
-            'collao': utilService.typeOfLanguage===languages.collao.value}"
-            >
+            'collao': utilService.typeOfLanguage===languages.collao.value}">
         </div>
         <div class="col-sm-9 col-md-10">
             <div class="col-sm-12 img-content">
+                <!-- <div> -->
                 <img style="transform: scaleY(0.9);" src="../assets/images/soloLogo.png" alt="" class="img-unmsm">
+                <!-- </div> -->
                 <img style="transform: scaleY(0.8); max-width: 200px;" src="../assets/images/texto3.png" alt=""
                     class="img-unmsm">
-                
-                    <mat-form-field appearance="outline" class="col-sm-12">
-                    <mat-select 
-                    [formControl]="idioma" 
-                    placeholder="Seleccione idioma"
-                    (selectionChange)="changeLanguage()"
-                    >
+                <mat-form-field appearance="outline" class="" style="float: right;">
+                    <mat-label>
+                        Seleccione idioma
+                    </mat-label>
+                    <mat-select [formControl]="idioma" (selectionChange)="changeLanguage()">
                         <mat-option *ngFor="let language of languagesList" [value]="language.value">
-                        {{language.text}}
+                            {{language.text}}
                         </mat-option>
                     </mat-select>
-                    </mat-form-field>
+                </mat-form-field>
+
             </div>
             <div class="col-sm-12 header-info">
                 <label for="" style="color: white;">

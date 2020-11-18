@@ -162,14 +162,14 @@
                 {{type.nombre}}
               </mat-option>
             </mat-select>
-            <mat-error *ngFor="let validation of messagesValidations.categoria">
+          <!--   <mat-error *ngFor="let validation of messagesValidations.categoria">
               <mat-error *ngIf="
                   form.controls['categoria'].hasError(validation.type) &&
                   (form.controls['categoria'].dirty || form.controls['categoria'].touched)
                 ">
                 {{ validation.message }}
               </mat-error>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
   

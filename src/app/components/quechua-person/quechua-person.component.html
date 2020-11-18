@@ -126,6 +126,16 @@
             </p>
           </ng-container>
         </div>
+          <!-- valido para ambos -->
+      <div class="col-sm-12" style="padding: 0;">
+        <mat-form-field appearance="outline" class="col-sm-12">
+          <mat-select formControlName="categoria" placeholder="Imaynata taqariwaq rimaynikita (kaytaqa atispalla)?">
+            <mat-option *ngFor="let type of categoryList" [value]="type.id">
+              {{type.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
       </div>
       <div class="col-lg-6">
@@ -162,18 +172,6 @@
     </div>
 
     <div class="row" style="margin-top: 12px;">
-      
-      <!-- valido para ambos -->
-      <div class="col-lg-6">
-        <mat-form-field appearance="outline" class="col-sm-12">
-          <mat-select formControlName="categoria" placeholder="Imaynata taqariwaq rimaynikita (kaytaqa atispalla)?">
-            <mat-option *ngFor="let type of categoryList" [value]="type.id">
-              {{type.nombre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
       <!-- valido para ambos -->
       <div class="col-sm-12" align="center" style="margin-top:20px">
         <button mat-raised-button class="btn-save" (click)="save()" [disabled]="!form.valid 
