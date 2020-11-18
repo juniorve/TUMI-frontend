@@ -3,19 +3,20 @@ import { DialogLocationComponent } from './../dialog-location/dialog-location.co
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GroupService } from './../../services/group.service';
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { showNotificationMini } from 'src/app/services/utilFunction';
 import { messages } from './new-group-validatons';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
 import { languages } from 'src/app/core/form.config';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-group',
   templateUrl: './new-group.component.html',
   styleUrls: ['./new-group.component.scss']
 })
-export class NewGroupComponent implements OnInit {
+export class NewGroupComponent implements OnInit, OnDestroy {
   @ViewChild('inputUpload') file: ElementRef;
   languages = languages;
   fileUpload;
@@ -29,6 +30,7 @@ export class NewGroupComponent implements OnInit {
   messagesValidations;
   fileName;
   extension;
+  private countdownEndRef: Subscription = null;
   constructor(
     private renderer: Renderer2,
     private groupService: GroupService,
@@ -50,11 +52,17 @@ export class NewGroupComponent implements OnInit {
   }
   ngOnInit(): void {
     this.messagesValidations = messages;
-    this.utilService.language$.subscribe(value => {
-      this.getOptions();
+    this.countdownEndRef = this.utilService.language$.subscribe(value => {
+      if (value) {
+        this.getOptions();
+      }
     });
     this.getOptions();
     this.showLocation();
+  }
+
+  ngOnDestroy() {
+    this.countdownEndRef.unsubscribe();
   }
 
   getOptions() {
@@ -81,12 +89,12 @@ export class NewGroupComponent implements OnInit {
         error => {
           this.showError(error);
         });
-    }  
+    }
   }
 
   showError(error) {
     this.utilService.getLocation().subscribe(response => {
-     // console.log(response);
+      // console.log(response);
     });
     switch (error.code) {
       case error.PERMISSION_DENIED:

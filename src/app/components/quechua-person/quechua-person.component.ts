@@ -6,17 +6,18 @@ import { RecordAudioComponent } from './../record-audio/record-audio.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilService } from './../../services/util.service';
 import { TranslatorService } from './../../services/translator.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { messages } from './quechua-person-validatons';
 import { showNotificationMini } from 'src/app/services/utilFunction';
 import { GroupService } from 'src/app/services/group.service';
 import { DialogSaveComponent } from '../dialog-save/dialog-save.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-quechua-person',
   templateUrl: './quechua-person.component.html',
   styleUrls: ['./quechua-person.component.scss']
 })
-export class QuechuaPersonComponent implements OnInit {
+export class QuechuaPersonComponent implements OnInit, OnDestroy {
   @ViewChild('audio1') audio1: RecordAudioComponent;
   @ViewChild('audio2') audio2: RecordAudioComponent;
   languages = languages;
@@ -27,6 +28,7 @@ export class QuechuaPersonComponent implements OnInit {
   messagesValidations: any = {};
   form: FormGroup;
   categoryList = [];
+  private countdownEndRef: Subscription = null;
 
   constructor(
     private audioService: AudioService,
@@ -39,14 +41,19 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.utilService.language$.subscribe(value => {
-      if (this.utilService.typeOfLanguage !== languages.spanish.value) {
+    this.countdownEndRef = this.utilService.language$.subscribe(value => {
+      console.log(value);
+      if (this.utilService.typeOfLanguage !== languages.spanish.value && value) {
         this.getOptions(null);
       }
     });
     this.getOptions(null);
     this.showLocation();
     this.messagesValidations = messages;
+  }
+
+  ngOnDestroy() {
+    this.countdownEndRef.unsubscribe();
   }
 
   getOptions(language) {
@@ -73,6 +80,7 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   getCategoryList(language) {
+    this.categoryList = [];
     this.utilService.getCategoryList(language).subscribe(response => {
       this.categoryList = response;
     });
@@ -97,6 +105,7 @@ export class QuechuaPersonComponent implements OnInit {
   }
 
   getAgeList(language) {
+    this.ageList = [];
     this.utilService.getAgeList(language).subscribe(response => {
       this.ageList = response;
     });
