@@ -21,31 +21,31 @@
 }
 
 .chanka, .collao{
-    height: 156px;
+    height: 168px;
 }
 
 @media(min-width:576px) and (max-width :592px){
     .spanish{
-        height: 176px;
+        height: 288px;
     }
 }
 
 @media(min-width:592px) and (max-width:984px){
     .spanish{
-        height: 204px;
+        height: 258px;
     }
 }
 
 @media(min-width:576px) and (max-width:680px){
     .chanka, .collao{
-        height: 288px;
+        height: 408px;
     }
 }
 
 
 @media(min-width:681px) and (max-width:774px){
     .chanka, .collao{
-        height: 260px;
+        height: 318px;
     }
 }
 
@@ -62,12 +62,12 @@
     color: white; 
     text-align: center;
     // margin-bottom: 18px;
-
+    padding: 5px;
     align-self: center;
-    font-family: serif;
+    // font-family: serif;
 
-    font-size: 30px;
-    line-height: 28px;
+    font-size: 28px;
+    line-height: 30px;
 }
 
 .logo-content{
