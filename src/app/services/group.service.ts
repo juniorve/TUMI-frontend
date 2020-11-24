@@ -1,3 +1,4 @@
+import { languages } from './../core/form.config';
 import { UtilService } from 'src/app/services/util.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,11 +26,11 @@ export class GroupService {
     }
 
     getSectors(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaSector?pidioma=${this.utilService.typeOfLanguage}`);
+        return this.http.get(`${environment.url}/util/getListaSector?pidioma=${languages.spanish.value}`);
     }
 
     getGroupType(): Observable<any> {
-        return this.http.get(`${environment.url}/util/getListaTipoGrupo?pidioma=${this.utilService.typeOfLanguage}`);
+        return this.http.get(`${environment.url}/util/getListaTipoGrupo?pidioma=${languages.spanish.value}`);
     }
 
     saveGroup(request): Observable<any> {

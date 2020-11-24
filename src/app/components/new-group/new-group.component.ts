@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './new-group.component.html',
   styleUrls: ['./new-group.component.scss']
 })
-export class NewGroupComponent implements OnInit, OnDestroy {
+export class NewGroupComponent implements OnInit {
   @ViewChild('inputUpload') file: ElementRef;
   languages = languages;
   fileUpload;
@@ -30,7 +30,6 @@ export class NewGroupComponent implements OnInit, OnDestroy {
   messagesValidations;
   fileName;
   extension;
-  private countdownEndRef: Subscription = null;
   constructor(
     private renderer: Renderer2,
     private groupService: GroupService,
@@ -52,18 +51,10 @@ export class NewGroupComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.messagesValidations = messages;
-    this.countdownEndRef = this.utilService.language$.subscribe(value => {
-      if (value) {
-        this.getOptions();
-      }
-    });
     this.getOptions();
     this.showLocation();
   }
-
-  ngOnDestroy() {
-    this.countdownEndRef.unsubscribe();
-  }
+ 
 
   getOptions() {
     this.getSectors();

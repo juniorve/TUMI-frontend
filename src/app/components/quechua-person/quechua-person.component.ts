@@ -42,7 +42,6 @@ export class QuechuaPersonComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.countdownEndRef = this.utilService.language$.subscribe(value => {
-      console.log(value);
       if (this.utilService.typeOfLanguage !== languages.spanish.value && value) {
         this.getOptions(null);
       }
@@ -57,7 +56,6 @@ export class QuechuaPersonComponent implements OnInit, OnDestroy {
   }
 
   getOptions(language) {
-    console.log('quechuaaaaaaaa');
     this.getAgeList(language);
     this.getCategoryList(language);
   }

@@ -1,5 +1,7 @@
 .img-content{
     text-align: center;
+    display: flex;
+    padding: 0 !important;
 }
 
 .img-unmsm{
@@ -15,7 +17,7 @@
 }
 
 .spanish{
-    height: 136px;
+    height: 147px;
 }
 
 .chanka, .collao{
@@ -30,20 +32,20 @@
 
 @media(min-width:592px) and (max-width:984px){
     .spanish{
-        height: 156px;
+        height: 204px;
     }
 }
 
 @media(min-width:576px) and (max-width:680px){
     .chanka, .collao{
-        height: 196px;
+        height: 288px;
     }
 }
 
 
 @media(min-width:681px) and (max-width:774px){
     .chanka, .collao{
-        height: 176px;
+        height: 260px;
     }
 }
 
@@ -58,9 +60,14 @@
 .header-info{
     font-weight:500;
     color: white; 
-    font-size: 18px;
     text-align: center;
-    margin-bottom: 18px;
+    // margin-bottom: 18px;
+
+    align-self: center;
+    font-family: serif;
+
+    font-size: 30px;
+    line-height: 28px;
 }
 
 .logo-content{
@@ -86,14 +93,30 @@
 
 
 .language{
-    // float: right;
-    position: absolute;
-    right: 0;
-    margin-top: 15px;
-    width: 110px;
+    float: right;
+   /*  position: absolute;
+    right: 0; */
+    // margin-top: 150px;
+    // width: 110px;
 }
 
 .not-empty-select.mat-selected {
     color: black !important;
   }
  
+.img-logo{
+    max-width: 145px;
+  /*   position: absolute;
+    right: 0;
+    height: 145px; */
+    float: right;
+}
+
+.one{
+    // padding-top: 20px;
+    align-self: center;
+}
+
+.unmsm{
+    text-align: end;
+}
