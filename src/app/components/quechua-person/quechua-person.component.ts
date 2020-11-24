@@ -46,7 +46,7 @@ export class QuechuaPersonComponent implements OnInit, OnDestroy {
         this.getOptions(null);
       }
     });
-    this.getOptions(null);
+    this.getOptions(this.utilService.typeOfLanguage !== languages.spanish.value ? null : languages.chanka.value);
     this.showLocation();
     this.messagesValidations = messages;
   }
