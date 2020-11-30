@@ -4,40 +4,39 @@
         <div class="row">
             <mat-radio-group class="col-md-12" style="display: flex; flex-wrap: wrap;" formControlName="type">
                 <!-- <div class="col-md-4"></div> -->
-                <div class="col-md-6 img-1"
-                    style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="../../../assets/images/PERSONA7.jpg" alt="" style="width: 280px;
+                <div class="col-md-6 img-1" style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="../../../assets/images/persona8.jpg" alt="" style="width: 280px;
                     height: 250px;">
                     <!-- <i class="fa fa-male" aria-hidden="true"></i> -->
                     <mat-radio-button color="primary" class="example-margin" value="1" style="
                     font-weight: 500;
                     font-size: 15px;
                     margin-top:15px;">
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
-                        Persona Natural
-                    </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                            Persona Natural
+                        </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
                     || utilService.typeOfLanguage===languages.collao.value">
-                        Sapan runa
-                    </ng-container>
+                            Sapallaymanta
+                        </ng-container>
                     </mat-radio-button>
                 </div>
 
                 <div class="col-md-6" style="display: flex; flex-direction: column; align-items: center;">
-                    <img class="img-fluid" src="../../../assets/images/grupo4.jpg" alt=""
+                    <img class="img-fluid" src="../../../assets/images/grupo5.jpg" alt=""
                         style="height: 250px; width: 350px;">
                     <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
                     <mat-radio-button color="primary" class="example-margin" value="2" style="
                     font-weight: 500;
                     font-size: 15px;
                     margin-top:15px;">
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
-                        Grupo / Movimiento / Organización
-                    </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                            Grupo / Movimiento / Organización
+                        </ng-container>
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
                     || utilService.typeOfLanguage===languages.collao.value">
-                        Pikunaq rantinta
-                    </ng-container>
+                            Runakunawan kuska
+                        </ng-container>
                     </mat-radio-button>
                 </div>
             </mat-radio-group>

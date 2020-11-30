@@ -1,3 +1,4 @@
+import { languages } from './../core/form.config';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +12,7 @@ export class UtilService {
     private languageSource = new BehaviorSubject<boolean>(false);
     public language$ = this.languageSource.asObservable();
 
-    typeOfLanguage = 'esp';
+    typeOfLanguage = languages.spanish.value;
 
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 

@@ -8,12 +8,12 @@
           Constitución.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
-          Kay portal wed kanqa lliw Perú suyu runamasikunapa kikillantaq mayqan runamasikunachus waq sumaq nirayta
-          qawarinku Perú suyunchikpaq.
+          Kay plataforma kanqa llaqta runakunapa tapukuyninkuna paskariq, lliwpaq huk musuq mama qillqa kamachikuy Perú
+          suyunchikpaq awariypi.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
-          Kay portal wed kanqa lliw Perú suyu runamasikunapaq kikillantaq mayqan runamasikunachus waq sumaq nirayta
-          qhawarinku Perú suyunchispaq.
+          Kay plataforma kanqa llaqta runakunaq tapukuyninkuna paskariq, lliwpaq huk musuq mama qhillqa kamachikuy Perú
+          suyunchispaq awariypi.
         </ng-container>
       </p>
       <p>
@@ -25,26 +25,36 @@
           territorio y nuestra cultura.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
-          Musuq kamachikuy mama qillqaman puriy: kay puriypiqa riqsichikuchkan huk musuq kamachikuy mama qillqa
-          suyunchikpa huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapa. rimarinchik kay musuq kamachikuy mama
-          qillqamanta imaraykuchus llapallan runamasikuna warmi qari rimayninku chaninchasqa uyarisqa kananpa,
-          chaywantaqa huk musuq kamachinakuyta ruwakunanpa kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan
-          kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Utqayllaman ruwakunanpaq,
-          chayllaman huntakunanpaq kaykuna kanan lliw llaqtanchikkunata, kawsayninchikkunata hayninchaspa.
+          Kay puriypiqa riqsichikuchkan huk musuq mama qillqa kamachikuyta Perú suyunchikpaq, chay hinatacha pusariwasun
+          llapachikta kinkillanta suyunchikta qawarinapaq. Rimarisunchik kay musuq kamachikuy mama qillqamanta
+          imaraykuchus llapallan runamasikunapa warmi qariq rimayninku chaninchasqa hinallataq uyarisqa kananpaq,
+          chaywantaq huk musuq kamachinakuyta ruwaspa hatarichikunanpaq, kaytaq kanan llaqta runawan hinallataq Perú
+          suyu umalliqkunawan masachakuspa hapirikunanmi imaymana sasachayninkunata, mañakuyninkunata qhawarispa
+          uyarispa llaqta ayllukunamanta. Kaykuna apakunan usqayllaman ruwakunanpaq, chayllaman huntakunanpaq, lliw
+          llaqtanchikkunata amachaspa, kawsayninchikkunata hayninchaspa ima.
         </ng-container>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
-          Musuq kamachikuy mama qhillqaman puriy: kay puriypiqa riqsichikushan huk musuq kamachikuy mama qhillqa
-          suyunchispaq huqarukunanpaqmi, kaytaq kanqa llapallan llaqta ayllukunapaq. rimarinchis kay musuq kamachikuy
-          mama qhillqamanta imaraykuchus llapallan runamasikuna warmi qhari rimayninku chaninchasqa uyarisqa kananpaq,
-          chaywantaq huk musuq kamachinakuyta ruwakunanpaq kaytaq llaqta runawan hinallataq Perú suyu umalliqkunawan
-          kaytataq imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa ima. Usqhayllaman ruwakunanpaq,
-          chayllaman hunt’akunanpaq kaykuna kanan lliw llaqtanchiskunata, kawsayninchiskunata hayninchaspa.
+          Kay puriypiqa riqsichikushan huk musuq mama qhillqa kamachikuyta Perú suyunchispaq, chay hinatacha pusariwasun
+          llapachista kinkinta suyunchista qhawarinapaq. Rimarinchis kay musuq kamachikuy mama qhillqamanta imaraykuchus
+          llapallan runamasikuna warmi qhariq rimayninku chaninchasqa hinallataq uyarisqa kananpaq, chaywantaq huk musuq
+          kamachinakuyta ruwaspa hatarichikunanpaq, kaytaq kanan llaqta runawan hinallataq Perú suyu umalliqkunawan
+          kuska masachakuspa chaskirikunanmi imaymana sasachayninkunata, mañakuyninkunata qhawarispa uyarispa llaqta
+          ayllukunamanta. Kaykuna apakunan usqhayllaman ruwakunanpaq, chayllaman hunt’akunanpaq, lliw llaqtanchiskunata
+          amachaspa, kawsayninchiskunata hayninchaspa ima.
         </ng-container>
       </p>
       <p>
         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
           Toda esta información estará disponible a los ciudadanos, ciudadanas y organizaciones del Perú, la ciencia y
           la tecnología al servicio del país.
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          Llapan kaypi willakuykunaqa mastarisqa kanqa lliw suyuchispi warmi qari runakunapaq hinallataq
+          Organizacionkunapaqpas riqsinankupaq, kay Ciencia y Tecnologíaqa Perú suyunchik qimirispa kallpachananpaqmi.
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+          Llapan kaypi willakuykunaqa mast’arisqa kanqa lliw suyuchispi warmi qhari runakunaman hinallataq
+          Organizacionkunapaqpas riqsinankupaq, kay Ciencia y Tecnologíaqa Perú suyunchis q’imirispa kallpachananpaqmi.
         </ng-container>
       </p>
     </div>
@@ -62,19 +72,29 @@
 
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="img-fluid" src="../../../assets/images/carousel1.png" alt="">
+            <img [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            'quechua': (utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value)}" class="img-fluid" src="../../../assets/images/carousel1.png" alt="">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="../../../assets/images/arequipa.jpg" alt="">
+            <img [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            'quechua': (utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value)}" class="img-fluid" src="../../../assets/images/arequipa.jpg" alt="">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="../../../assets/images/lima.jpg" alt="">
+            <img [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            'quechua': (utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value)}" class="img-fluid" src="../../../assets/images/lima.jpg" alt="">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="../../../assets/images/norteLoreto.jpg" alt="">
+            <img [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            'quechua': (utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value)}" class="img-fluid" src="../../../assets/images/norteLoreto.jpg" alt="">
           </div>
           <div class="carousel-item">
-            <img class="img-fluid" src="../../../assets/images/surCuzco.jpg" alt="">
+            <img [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            'quechua': (utilService.typeOfLanguage===languages.chanka.value
+            || utilService.typeOfLanguage===languages.collao.value)}" class="img-fluid" src="../../../assets/images/surCuzco.jpg" alt="">
           </div>
         </div>
       </div>
@@ -90,10 +110,12 @@
         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
           Únete a esta iniciativa constituyente
         </ng-container>
-        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
-        || utilService.typeOfLanguage===languages.collao.value
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+          Hakuchis kay puriyman
+        </ng-container>
+        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value
         ">
-          Masachakamuy nuqaykuwan kay musuq ñan puriyman
+          Hakuchik kay puriyman
         </ng-container>
       </button>
     </div>
