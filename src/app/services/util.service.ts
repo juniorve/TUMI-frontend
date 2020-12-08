@@ -1,4 +1,4 @@
-import { languages } from './../core/form.config';
+import { languages, typeForm } from './../core/form.config';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,11 +13,16 @@ export class UtilService {
     public language$ = this.languageSource.asObservable();
 
     typeOfLanguage = languages.spanish.value;
+    typeForm;
 
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
     constructor(private http: HttpClient) {
+    }
+
+    assignTypeForm(value){
+        this.typeForm = value;
     }
 
     emitEvent(change) {

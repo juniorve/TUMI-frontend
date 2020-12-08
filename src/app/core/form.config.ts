@@ -10,6 +10,10 @@ export const languages = {
     }
 };
 
+export const typeForm = {
+    spanish : 'spanish',
+}
+
 export const languagesList = [
     {
         text: 'Español',

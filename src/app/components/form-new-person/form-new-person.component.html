@@ -1,14 +1,16 @@
 <div class="container-fluid">
     <div class="row">
         <mat-vertical-stepper [ngClass]="{'first': indexStepper==0}" #stepper class="col-md-4 col-lg-3 vertical-step"
-            [linear]="true" [selectedIndex]="indexStepper" (selectionChange)="indexStepper = $event.selectedIndex">
+            [linear]="true" [selectedIndex]="indexStepper" (selectionChange)="indexStepper = $event.selectedIndex; cleanLanguage()">
             <mat-step [stepControl]="personTypeForm.form">
                 <ng-template matStepLabel>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                    <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value
+                    || utilService.typeForm === form.spanish">
                         Selección de persona
                     </ng-container>
-                    <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
-                    || utilService.typeOfLanguage===languages.collao.value">
+                    <ng-container *ngIf="(utilService.typeOfLanguage===languages.chanka.value 
+                    || utilService.typeOfLanguage===languages.collao.value)
+                    && utilService.typeForm !== form.spanish">
                         Akllanapaq
                     </ng-container>
                 </ng-template>
@@ -17,24 +19,29 @@
                 <!-- <mat-step [stepControl]="languageType.form"> -->
                 <mat-step>
                     <ng-template matStepLabel>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value
+                        || utilService.typeForm === form.spanish">
                             Selección de idioma
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
-                        || utilService.typeOfLanguage===languages.collao.value">
+                        <ng-container *ngIf="(utilService.typeOfLanguage===languages.chanka.value 
+                        || utilService.typeOfLanguage===languages.collao.value)
+                        && utilService.typeForm !== form.spanish">
                             Simiykita akllariy
                         </ng-container>
                     </ng-template>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value
+                        || utilService.typeForm === form.spanish">
                             Registro de persona
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value
+                        && utilService.typeForm !== form.spanish">
                             Runakunaq qilqakunanpaq
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value
+                        && utilService.typeForm !== form.spanish">
                             Runakunaq qhilqakunanpaq
                         </ng-container>
                     </ng-template>
@@ -55,7 +62,7 @@
             <app-person-type-form #personTypeForm [hidden]="indexStepper!=0">
                 <div class="col-sm-12" content-btn style="text-align:center; margin-top:15px">
                     <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
-                        (click)="stepper.next()" [disabled]="!personTypeForm.form.valid">
+                        (click)="stepper.next();changeLanguage()" [disabled]="!personTypeForm.form.valid">
                         <mat-icon>navigate_next</mat-icon>
                         <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                             Siguiente
@@ -85,7 +92,7 @@
                             </ng-container>
                         </button>
                         <button style="margin-left: 4px;" class="btn-next" mat-flat-button type="button"
-                            (click)="stepper.next()" [disabled]="!languageType.form.valid">
+                            (click)="stepper.next();changeLanguage()" [disabled]="!languageType.form.valid">
                             <mat-icon>navigate_next</mat-icon>
                             <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
                                 Siguiente

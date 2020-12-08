@@ -25,13 +25,4 @@ export class LanguageTypeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendValue() {
-    if (this.form.controls.idioma.value === '1' || this.form.controls.idioma.value === '3') {
-      this.router.navigate(['persona-natural']);
-    }
-    if (this.form.controls.idioma.value === '2') {
-      this.router.navigate(['persona-quechua']);
-    }
-  }
-
 }

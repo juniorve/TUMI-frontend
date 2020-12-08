@@ -1,7 +1,9 @@
 <div class="container-fluid header-content">
     <div class="row">
         <div class="col-sm-3 col-md-2 logo-content" style="width: 150px; height: 100%;">
-            <img src="../assets/images/logod.png" [routerLink]="['/principal']" alt="" class="img-fluid" [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
+            <img src="../assets/images/logod.png" [routerLink]="['/principal']" 
+            (click)="cleanLanguage()"
+            alt="" class="img-fluid" [ngClass]="{'spanish': utilService.typeOfLanguage===languages.spanish.value,
             'chanka': utilService.typeOfLanguage===languages.chanka.value,
             'collao': utilService.typeOfLanguage===languages.collao.value}">
         </div>
@@ -9,16 +11,19 @@
             <div class="col-sm-12 img-content">
                 <div class="one">
                     <label for="" style="color: white;" class="header-info">
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.spanish.value ||
+                        utilService.typeForm === form.spanish">
                             Plataforma al servicio de la ciudadanía para el proceso constituyente de los pueblos del
                             Perú
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.chanka.value 
+                        && utilService.typeForm !== form.spanish">
                             Kay plataforma kanqa llaqta runakunapa tapukuyninkun paskariq lliw kay huk musuq kamachikuy
                             mama
                             qillqa Perú suyunchikpaq awariypi.
                         </ng-container>
-                        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value">
+                        <ng-container *ngIf="utilService.typeOfLanguage===languages.collao.value
+                         && utilService.typeForm !== form.spanish">
                             Kay plataforma kanqa llaqta runakunaq tapukuyninkun paskariq lliw kay huk musuq kamachikuy
                             mama
                             qhillqa Perú suyunchispaq awariypi.
@@ -26,19 +31,19 @@
                     </label>
                 </div>
                 <div class="unmsm">
-                        <img style="transform: scaleY(0.7); max-width: 209px;" src="../assets/images/logo3.png" alt=""
+                    <img style="transform: scaleY(0.7); max-width: 209px;" src="../assets/images/logo3.png" alt=""
                         class="img-unmsm">
-                        <mat-form-field class="language">
-                            <mat-label>
-                                Seleccione idioma
-                            </mat-label>
-                            <mat-select [formControl]="idioma" (selectionChange)="changeLanguage()">
-                                <mat-option class="not-empty-select" *ngFor="let language of languagesList"
-                                    [value]="language.value">
-                                    {{language.text}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                    <mat-form-field class="language">
+                        <mat-label>
+                            Seleccione idioma
+                        </mat-label>
+                        <mat-select [formControl]="idioma" (selectionChange)="changeLanguage()">
+                            <mat-option class="not-empty-select" *ngFor="let language of languagesList"
+                                [value]="language.value">
+                                {{language.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </div>
         </div>
